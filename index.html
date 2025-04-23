@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NDB Propiedades</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'sans-serif';
+    }
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center h-screen bg-black text-white relative">
+
+  <!-- Video de fondo -->
+  <video autoplay muted loop class="bg-video">
+    <source src="https://videos.pexels.com/video-files/856992/856992-hd_1920_1080_25fps.mp4" type="video/mp4">
+    Tu navegador no soporta video HTML5.
+  </video>
+
+  <!-- Texto animado -->
+  <div class="text-center px-4">
+    <h1 class="text-4xl sm:text-6xl font-bold">
+      Se vienen <span id="changing-word" class="transition-all duration-500">cositas</span>.
+    </h1>
+  </div>
+
+  <script>
+    const word = document.getElementById("changing-word");
+    const options = ["cositas", "casitas"];
+    let index = 0;
+
+    setInterval(() => {
+      index = (index + 1) % options.length;
+      word.classList.add('opacity-0');
+      setTimeout(() => {
+        word.textContent = options[index];
+        word.classList.remove('opacity-0');
+      }, 300);
+    }, 2500);
+  </script>
+
+</body>
+</html>
