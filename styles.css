@@ -1,17 +1,30 @@
-   body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'sans-serif';
-      overflow: hidden;
-    }
+body, html {
+   margin: 0;
+   padding: 0;
+   height: 100%;
+   font-family: 'sans-serif';
+   overflow: hidden;
+ }
 
-    .bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
+.bg-video {
+   position: fixed;
+   top: 0;
+   left: 0;
+   min-width: 100%;
+   min-height: 100%;
+   object-fit: cover;
+   z-index: -1;
+}
+
+.wasap {
+  position: fixed;
+  left: 30px;
+  bottom: 30px;
+  height: 60px;
+  width: 60px;
+  z-index: 10000;
+  visibility: visible;
+  animation-duration: 3s;
+  animation-delay: 0s;
+  animation-iteration-count: 100;
+}
