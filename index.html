@@ -38,20 +38,7 @@
     </h1>
   </div>
 
-  <script>
-    const word = document.getElementById("changing-word");
-    const options = ["cositas", "casitas"];
-    let index = 0;
-
-    setInterval(() => {
-      index = (index + 1) % options.length;
-      word.classList.add('opacity-0');
-      setTimeout(() => {
-        word.textContent = options[index];
-        word.classList.remove('opacity-0');
-      }, 300);
-    }, 2500);
-  </script>
+<script src="main.js"></script>
 
 </body>
 </html>
