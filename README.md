@@ -16,8 +16,3 @@ Actualmente en construcción...
 
 ---
 
-## Cómo editar el sitio
-
-1. Cloná el repositorio:
-   ```bash
-   git clone https://github.com/ndbpropiedades/ndbpropiedades.github.io.git
