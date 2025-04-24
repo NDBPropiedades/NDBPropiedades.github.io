@@ -28,3 +28,11 @@ body, html {
   animation-delay: 0s;
   animation-iteration-count: 100;
 }
+
+h1 {
+  font-family: 'Playfair Display', serif;
+}
+
+h2 {
+  font-family: 'Poppins', sans-serif;
+}

@@ -1,35 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
-  <title>NDB Propiedades</title>
-  <link rel="icon" href="assets/favicon/favicon.ico" type="image/x-icon">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body class="flex items-center justify-center h-screen bg-black text-white relative">
-  <div class="wasap" style="animation-name: tada">
-    <a  href="https://api.whatsapp.com/send?l=es&text=Hola%20NDB%20Propiedades!%20Quiero%20consultarles%20por%20una%20propiedad&phone=+5491164078491"
-      target="_blank"
-      aria-label="Link a WhatsApp NDB Propiedades" >
-      <img src="assets/img/svg/logo-wapp-01.svg" alt="NDB Propiedades WhatsApp" />
-    </a>
-  </div>
-  <!-- Video de fondo -->
-  <video autoplay muted loop playsinline class="bg-video">
-    <source src="assets/video/casas.mp4" type="video/mp4">
-    Tu navegador no soporta video HTML5.
-  </video>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"
+    />
+    <title>NDB Propiedades</title>
+    <link rel="icon" href="assets/favicon/favicon.ico" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Texto animado -->
-  <div class="text-center px-4">
-   <h1 class="text-4xl sm:text-6xl font-bold">
-    Se vienen c<span id="changing-letter" class="transition-all duration-500">o</span>sitas...
-   </h1>
-  </div>
+  </head>
+  <body
+    class="flex items-center justify-center h-screen bg-black text-white relative"
+  >
+    <!-- Video de fondo -->
+    <video autoplay muted loop playsinline class="bg-video">
+      <source src="assets/video/casas.mp4" type="video/mp4" />
+      Tu navegador no soporta video HTML5.
+    </video>
 
-<script src="main.js"></script>
+    <!-- WhatsApp botón flotante -->
+    <div class="wasap" style="animation-name: tada">
+      <a
+        href="https://api.whatsapp.com/send?l=es&text=Hola%20NDB%20Propiedades!%20Quiero%20consultarles%20por%20una%20propiedad&phone=+5491164078491"
+        target="_blank"
+        aria-label="Link a WhatsApp NDB Propiedades"
+      >
+        <img
+          src="assets/img/svg/logo-wapp-01.svg"
+          alt="NDB Propiedades WhatsApp"
+        />
+      </a>
+    </div>
 
-</body>
+    <!-- Contenido central -->
+    <div
+      class="relative z-10 text-center px-4 backdrop-blur-sm bg-black/50 py-8 rounded-xl"
+    >
+      <h1 class="font-title text-5xl">
+        Nicolás De Brasi Propiedades
+      </h1>
+      <br/>
+      <h2 class="font-subtitle text-2xl">
+        Se vienen c<span
+          id="changing-letter"
+          class="transition-all duration-500"
+          >o</span
+        >sitas...
+      </h2>
+      <br/>
+      <div class="text-sm mb-4 text-gray-300">info@ndbpropiedades.com.ar</div>
+
+      <!-- Íconos sociales -->
+      <div class="flex justify-center space-x-6 text-2xl">
+        <a
+          href="mailto:info@ndbpropiedades.com.ar"
+          class="hover:text-blue-400 transition"
+        >
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="tel:+5491164078491" class="hover:text-green-400 transition">
+          <i class="fas fa-phone"></i>
+        </a>
+        <a
+          href="https://instagram.com/ndbpropiedades"
+          target="_blank"
+          class="hover:text-pink-500 transition"
+        >
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
 </html>
