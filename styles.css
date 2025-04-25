@@ -39,3 +39,36 @@ body, html {
 .font-subtitle {
   font-family: "Space Grotesk", sans-serif;
 }
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black; /* o el color que combine con tu marca */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+@keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#preloader img {
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  animation: animate-preloader 4s linear infinite;
+}
+

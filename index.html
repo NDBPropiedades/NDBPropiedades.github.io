@@ -7,19 +7,36 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"
     />
     <title>NDB Propiedades</title>
-    <link rel="icon" href="assets/img/favicon/favicon.ico" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="assets/img/favicon/favicon.ico"
+      type="image/x-icon"
+    />
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
   </head>
   <body
     class="flex items-center justify-center h-screen bg-black text-white relative"
   >
+    <!-- Preloader -->
+    <div id="preloader">
+      <img src="assets/img/favicon/android-chrome-512x512.png" alt="Loading..." />
+    </div>
     <!-- Video de fondo -->
     <video autoplay muted loop playsinline class="bg-video">
       <source src="assets/video/casas.mp4" type="video/mp4" />
@@ -44,11 +61,10 @@
     <div
       class="relative z-10 text-center px-4 backdrop-blur-sm bg-black/50 py-8 rounded-xl"
     >
-      <h1 class="font-title text-5xl">
-        Nicolás De Brasi 
-      </h1>
+      <h1 class="font-title text-5xl">Nicolás De Brasi</h1>
       <span class="subtitulo text-1xl">Propiedades</span>
-      <br/>     <br/>
+      <br />
+      <br />
       <h2 class="font-subtitle text-2xl">
         Se vienen c<span
           id="changing-letter"
@@ -56,7 +72,7 @@
           >o</span
         >sitas...
       </h2>
-      <br/>
+      <br />
       <div class="text-sm mb-4 text-gray-300">info@ndbpropiedades.com.ar</div>
 
       <!-- Íconos sociales -->
