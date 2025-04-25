@@ -13,19 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 2500);
 });
 
-/**
-* Easy selector helper function
-*/
-const select = (el, all = false) => {
- el = el.trim();
- return all
-   ? [...document.querySelectorAll(el)]
-   : document.querySelector(el);
-};
-
-let preloader = select("#preloader");
-if (preloader) {
-  window.addEventListener("load", () => {
-    preloader.remove();
-  });
-}  
+  /**
+   * Preloader
+   */
+  const preloader = document.querySelector("#preloader");
+  if (preloader) {
+    window.addEventListener("load", () => {
+      preloader.remove();
+    });
+  }
