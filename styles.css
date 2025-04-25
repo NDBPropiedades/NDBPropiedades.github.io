@@ -29,10 +29,17 @@ body, html {
   animation-iteration-count: 100;
 }
 
-h1 {
+.font-title {
   font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  line-height: 1;
+}
+.subtitulo{
+  font-size: 2rem;
 }
 
-h2 {
-  font-family: "Space Grotesk", sans-serif; 
+.font-subtitle {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1rem; 
+  line-height: 1;
 }
