@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NDB Propiedades</title>
+  <link
+  rel="icon"
+  href="../assets/img/favicon/favicon.ico"
+  type="image/x-icon"
+/>
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles_paralelo.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-container">
+      <!-- Logo -->
+      <a href="#" class="logo">
+        <img src="../assets/img/img/NDB_logo_transparente.png" alt="NDB Propiedades" />
+      </a>
+
+      <nav class="nav-container">
+        <!-- Navegación -->
+        <ul class="nav">
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#propiedades">Propiedades</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+        </ul>
+
+        <!-- Botón Tasá tu inmueble -->
+        <a href="#tasa" class="tasa-btn">Tasá tu inmueble</a>
+
+        <!-- Botón Hamburguesa -->
+        <button class="menu-toggle" aria-label="Abrir menú">
+          <i class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Slider principal de video -->
+  <section class="slider">
+    <video autoplay muted loop playsinline class="slider-video">
+      <source src="familia.mp4" type="video/mp4" />
+      Tu navegador no soporta video HTML5.
+    </video>
+
+    <div class="slider-content">
+      <h2>Encontrá tu próximo hogar</h2>
+      <p>Alquileres y ventas en Buenos Aires</p>
+
+      <!-- Buscador Avanzado -->
+      <div class="buscador-avanzado">
+        <!-- Venta/Alquiler -->
+        <div class="custom-select-fa">
+          <select>
+            <option disabled selected>Venta</option>
+            <option>Venta</option>
+            <option>Alquiler</option>
+          </select>
+          <div class="select-icons"></div>
+        </div>
+
+        <!-- Tipología -->
+        <div class="custom-select-fa">
+          <select>
+            <option disabled selected>Tipología</option>
+            <option>Departamento</option>
+            <option>Casa</option>
+            <option>PH</option>
+            <option>Local</option>
+          </select>
+          <div class="select-icons"></div>
+        </div>
+
+        <!-- Localidad -->
+        <div class="custom-select-fa">
+          <select>
+            <option disabled selected>Localidad</option>
+            <option>Palermo</option>
+            <option>Belgrano</option>
+            <option>Caballito</option>
+            <option>San Isidro</option>
+          </select>
+          <div class="select-icons"></div>
+        </div>
+
+        <!-- Botón buscar -->
+        <button type="button">
+          <i class="fas fa-search"></i> Buscar Inmueble
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Propiedades Destacadas -->
+  <section class="propiedades" id="propiedades">
+    <div class="container">
+      <h2>Propiedades Destacadas</h2>
+
+      <div class="swiper myMainSwiper" id="propiedades-slider">
+        <div class="swiper-wrapper" id="propiedades-list">
+          <!-- Aquí se cargarán las propiedades dinámicamente -->
+        </div>
+
+        <!-- Botones de navegación general -->
+        <!-- <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div> -->
+        <!-- <div class="swiper-pagination"></div> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="contacto">
+    <div class="container">
+      <p>© 2025 NDB Propiedades</p>
+      <div class="redes">
+        <a href="mailto:info@ndbpropiedades.com.ar"><i class="fas fa-envelope"></i></a>
+        <a href="tel:+5491164078491"><i class="fas fa-phone"></i></a>
+        <a href="https://instagram.com/ndbpropiedades" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="propiedades/propiedades.js"></script>
+  <script src="main_paralelo.js"></script>
+</body>
+</html>
