@@ -123,18 +123,18 @@ function inicializarSwiperGeneral() {
 // 🚀 Ejecutar todo al cargar
 cargarPropiedades();
 // Toggle footer hamburguer and X
-const footerToggleButton = document.querySelector('.footer-menu-toggle');
-const footerMenu = document.querySelector('.footer-menu');
-const footerIcon = footerToggleButton.querySelector('i');
+const footerToggleButton = document.querySelector(".footer-menu-toggle");
+const footerMenu = document.querySelector(".footer-menu");
+const footerIcon = footerToggleButton.querySelector("i");
 
-footerToggleButton.addEventListener('click', () => {
-  footerMenu.classList.toggle('active');
-  
-  if (footerMenu.classList.contains('active')) {
-    footerIcon.classList.remove('fa-bars');
-    footerIcon.classList.add('fa-times'); // Cambiamos a ícono X
+footerToggleButton.addEventListener("click", () => {
+  footerMenu.classList.toggle("active");
+
+  if (footerMenu.classList.contains("active")) {
+    footerIcon.classList.remove("fa-bars");
+    footerIcon.classList.add("fa-times"); // Cambiamos a ícono X
   } else {
-    footerIcon.classList.remove('fa-times');
-    footerIcon.classList.add('fa-bars'); // Volvemos a hamburguesa
+    footerIcon.classList.remove("fa-times");
+    footerIcon.classList.add("fa-bars"); // Volvemos a hamburguesa
   }
 });
