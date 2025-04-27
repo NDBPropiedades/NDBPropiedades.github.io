@@ -102,6 +102,15 @@ body {
   cursor: pointer;
 }
 
+.menu-toggle i {
+  transition: transform 0.4s ease, color 0.4s ease;
+}
+
+/* Cuando el menú esté activo, rotamos el ícono */
+.nav.active ~ .menu-toggle i {
+  transform: rotate(90deg);
+}
+
 /* Slider principal (video) */
 .slider {
   position: relative;
@@ -267,31 +276,6 @@ body {
   background: white;
 }
 
-/* Footer */
-.footer {
-  background-color: #000;
-  color: white;
-  text-align: center;
-  padding: 2rem 1rem;
-}
-
-.footer .redes {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-}
-
-.footer .redes a {
-  color: white;
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
-}
-
-.footer .redes a:hover {
-  color: #aaa;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .menu-toggle {
@@ -349,4 +333,200 @@ body {
 .iconos-card i {
   margin-right: 0.3rem;
   color: #666; /* mismo verde que el botón, o poné #0099cc si querés */
+}
+
+/* Footer */
+.footer {
+  background-color: #000;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 4rem;
+}
+
+.footer .redes {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.footer .redes a {
+  color: white;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.footer .redes a:hover {
+  color: #aaa;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.footer-left, .footer-center, .footer-right {
+  flex: 1 1 30%;
+}
+
+.footer-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-logo {
+  width: 180px;
+  height: auto;
+}
+
+.footer-center h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.footer-center p,
+.footer-center a {
+  font-size: 0.9rem;
+  margin: 0.2rem 0;
+  color: white;
+  text-decoration: none;
+}
+
+.footer-center a:hover {
+  text-decoration: underline;
+}
+
+.footer-right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  gap: 0.3rem;
+}
+
+.footer-right li {
+  margin: 0.5rem 0;
+}
+
+.footer-right a {
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-right a:hover {
+  text-decoration: underline;
+}
+
+.footer-menu {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  flex-direction: column;
+  width: 200px;
+  z-index: 10;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  visibility: hidden;
+}
+
+/* Cuando se activa */
+.footer-menu.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.footer-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.footer-menu-toggle i {
+  transition: transform 0.4s ease, color 0.4s ease;
+}
+
+/* Cuando el menú está activo, rotamos el ícono */
+.footer-menu.active ~ .footer-menu-toggle i {
+  transform: rotate(90deg);
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-left, .footer-center, .footer-right {
+    flex: 1 1 100%;
+  }
+
+  .footer-right{
+    margin-top: 30px;
+    position: relative; 
+  }
+
+  .footer-menu-toggle {
+    display: block;
+  }
+
+  .footer-menu {
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 200px;
+  }
+
+  .footer-menu.active {
+    display: flex;
+  }
+}
+
+/* Desktop > El menú siempre visible */
+@media (min-width: 769px) {
+  .footer-menu {
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    visibility: visible;
+    background: none;
+    padding: 0;
+    width: auto;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+    color: white;
+    box-shadow: none;
+  }
+
+  .footer-menu a {
+    color: white;
+  }
+
+  .footer-menu-toggle {
+    display: none;
+  }
 }
