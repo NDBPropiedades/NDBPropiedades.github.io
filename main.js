@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
       letter.textContent = options[index];
       letter.classList.remove("opacity-0");
     }, 300);
-  }, 2500);
+  }, 2000);
 });
 
   /**
