@@ -1,0 +1,224 @@
+:root {
+  --color-ndb-azul: #38b6a3;
+  --color-ndb-azul-hover: #2d9587;
+  --font-titulos: 'Poppins', sans-serif;
+  --font-texto: 'Roboto', sans-serif;
+}
+
+/* ------ General ------ */
+html, body {
+  min-width: 325px;
+  overflow-x: auto;
+}
+
+body {
+  background-color: #f5f5f5;
+  font-family: var(--font-texto);
+  padding-top: 184px; /* ajuste para header fijo */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+h1, h2, h3, .frase-buscador h2, .frase-buscador p {
+  font-family: var(--font-titulos);
+}
+
+/* ------ Header ------ */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  padding: 1rem 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ------ Buscador Section ------ */
+.buscador-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  min-height: 600px;
+  background-image: url('assets/img/inmuebles.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* Frase arriba de los filtros */
+.frase-buscador {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: white;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+  animation: fadeIn 1s ease-out forwards;
+  opacity: 0; /* empieza invisible */
+}
+
+.frase-buscador h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.frase-buscador p {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-top: 0.5rem;
+}
+
+/* Buscador filtros */
+.buscador {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  animation: fadeIn 1.5s ease-out forwards;
+  opacity: 0; /* empieza invisible */
+}
+
+.buscador select {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  min-width: 160px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  font-family: var(--font-texto);
+}
+
+/* Fade in Animation */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ------ Propiedades Section ------ */
+.propiedades-grid, .lista-propiedades {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card de propiedad */
+.card {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.card-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-content p {
+  margin-bottom: 0.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Iconos dentro de la card */
+.iconos-card {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.iconos-card i {
+  margin-right: 0.3rem;
+}
+
+/* Badge de tipo de transacción */
+.card-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--color-ndb-azul);
+  color: white;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 5px;
+  opacity: 0.85;
+  z-index: 2;
+}
+
+/* Loader de carga */
+.loader {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* ------ Botón Cargar Más (si lo usaras) ------ */
+.load-more {
+  display: block;
+  margin: 2rem auto;
+  padding: 0.75rem 2rem;
+  background-color: var(--color-ndb-azul);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.load-more:hover {
+  background-color: var(--color-ndb-azul-hover);
+}
+
+/* ------ Responsive ------ */
+@media (max-width: 768px) {
+  .filtros {
+    flex-direction: column;
+    align-items: center;
+  }
+}
