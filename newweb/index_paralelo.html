@@ -58,7 +58,7 @@
           <ul class="nav">
             <li><a href="#">Inicio</a></li>
             <li><a href="inmuebles.html">Inmuebles</a></li>
-            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#tasa">Contacto</a></li>
             <li><a href="#nosotros">Nosotros</a></li>
           </ul>
 
@@ -176,14 +176,20 @@
     
         <form action="https://formsubmit.co/tuemail@dominio.com" method="POST" class="tasa-form">
           <div class="form-row">
-            <input type="text" name="nombre" placeholder="Nombre completo" required>
-            <input type="email" name="email" placeholder="Correo electrónico" required>
+            <input type="text" name="nombre" placeholder="Nombre y Apellido" required>
+            <input type="text" name="localidad" placeholder="Localidad" required>
           </div>
           <div class="form-row">
-            <input type="tel" name="telefono" placeholder="Teléfono de contacto">
-            <input type="text" name="zona" placeholder="Zona o localidad del inmueble">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="tel" name="tipo" placeholder="Operación">
+          
+          </div>
+          <div class="form-row">
+            <input type="email" name="email" placeholder="Telefono" required>
+            <input type="tel" name="telefono" placeholder="Tipo de Inmueble">
           </div>
           <textarea name="mensaje" rows="4" placeholder="Contanos un poco más sobre tu propiedad..."></textarea>
+          <input type="hidden" name="_next" value="https://ndbpropiedades.com.ar/gracias.html">
           <button type="submit" class="tasa-btn">Enviar solicitud</button>
         </form>
       </div>
