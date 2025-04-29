@@ -5,7 +5,7 @@ const filtroTipologia = document.getElementById("filtro-tipologia");
 const filtroZona = document.getElementById("filtro-zona");
 const filtroPartido = document.getElementById("filtro-partido");
 const filtroLocalidad = document.getElementById("filtro-localidad");
-const ordenSelect = document.getElementById("orden");
+const ordenSelect = document.getElementById("filtro-orden");
 const contenedorPropiedades = document.getElementById('lista-propiedades');
 
 let paginaActual = 1;
