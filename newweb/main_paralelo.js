@@ -94,3 +94,18 @@ function inicializarSwiperGeneral() {
 
 // 🚀 Ejecutar todo al cargar
 cargarPropiedades();
+
+const animables = document.querySelectorAll(".fade-in");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target); // solo una vez
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+animables.forEach(el => observer.observe(el));

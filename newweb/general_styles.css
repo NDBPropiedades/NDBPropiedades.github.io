@@ -30,6 +30,18 @@
     transform: scale3d(1, 1, 1);
   }
 }
+
+/* Animación fade-in */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 .wasap {
   position: fixed;
   right: 30px;
