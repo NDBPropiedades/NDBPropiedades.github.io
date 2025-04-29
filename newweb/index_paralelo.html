@@ -177,20 +177,55 @@
         <form action="https://formsubmit.co/tuemail@dominio.com" method="POST" class="tasa-form">
           <div class="form-row">
             <input type="text" name="nombre" placeholder="Nombre y Apellido" required>
-            <input type="text" name="localidad" placeholder="Localidad" required>
+            <select name="localidad" required>
+              <option value="">Localidad</option>
+              <option value="Acassuso">Acassuso</option>
+              <option value="Beccar">Beccar</option>
+              <option value="Boulogne">Boulogne</option>
+              <option value="Del Viso">Del Viso</option>
+              <option value="Don Torcuato">Don Torcuato</option>
+              <option value="Florida">Florida</option>
+              <option value="General Pacheco">General Pacheco</option>
+              <option value="Ingeniero Maschwitz">Ingeniero Maschwitz</option>
+              <option value="La Lucila">La Lucila</option>
+              <option value="Martínez">Martínez</option>
+              <option value="Nordelta">Nordelta</option>
+              <option value="Olivos">Olivos</option>
+              <option value="Pilar">Pilar</option>
+              <option value="San Fernando">San Fernando</option>
+              <option value="San Isidro">San Isidro</option>
+              <option value="Tigre">Tigre</option>
+              <option value="Tortuguitas">Tortuguitas</option>
+              <option value="Vicente López">Vicente López</option>
+              <option value="Villa Adelina">Villa Adelina</option>
+            </select>
           </div>
           <div class="form-row">
             <input type="email" name="email" placeholder="Email" required>
-            <input type="tel" name="tipo" placeholder="Operación">
+            <select name="tipo_operacion" required>
+              <option value="">Operación</option>
+              <option value="Venta">Venta</option>
+              <option value="Alquiler">Alquiler</option>
+              <option value="Alquiler Temporario">Alquiler Temporario</option>
+            </select>
           
           </div>
           <div class="form-row">
             <input type="email" name="email" placeholder="Telefono" required>
-            <input type="tel" name="telefono" placeholder="Tipo de Inmueble">
+            <select name="tipo_inmueble" required>
+              <option value="">Tipo de Inmueble</option>
+              <option value="Departamento">Departamento</option>
+              <option value="Casa">Casa</option>
+              <option value="PH">PH</option>
+              <option value="Terreno">Terreno</option>
+              <option value="Local">Local</option>
+              <option value="Oficina">Oficina</option>
+              <option value="Otro">Otro</option>
+            </select>
           </div>
           <textarea name="mensaje" rows="4" placeholder="Contanos un poco más sobre tu propiedad..."></textarea>
           <input type="hidden" name="_next" value="https://ndbpropiedades.com.ar/gracias.html">
-          <button type="submit" class="tasa-btn">Enviar solicitud</button>
+          <button type="submit" class="tasa-btn">Enviar solicitud de Tasación</button>
         </form>
       </div>
     </section>

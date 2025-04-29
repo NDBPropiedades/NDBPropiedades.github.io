@@ -315,27 +315,96 @@ body {
   font-size: 1rem;
 }
 
+/* Tasa tu inmueble – Estilos base */
+.tasa-section {
+  background-color: #f9f9f9;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.tasa-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-titulos);
+}
+
+.tasa-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  font-family: var(--font-texto);
+  color: #666;
+}
+
+.tasa-form {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.tasa-form input,
+.tasa-form select,
 .tasa-form textarea {
+  flex: 1;
   padding: 0.75rem 1rem;
   font-size: 1rem;
   border-radius: 5px;
   border: 1px solid #ccc;
+  font-family: var(--font-texto);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  transition: border-color 0.2s ease;
+}
+
+.tasa-form input:focus,
+.tasa-form select:focus,
+.tasa-form textarea:focus {
+  border-color: var(--color-ndb-azul);
+  outline: none;
+}
+
+.tasa-form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+  appearance: none; /* Oculta el diseño nativo */
+  background-color: #fff;
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="gray" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.25 4.38a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem; /* espacio para la flecha */
+  cursor: pointer;
+  color: #666;
+}
+
+.tasa-form textarea {
   resize: vertical;
   min-height: 120px;
 }
 
-.tasa-form button {
+.tasa-btn {
+  align-self: center;
   background-color: var(--color-ndb-azul);
   color: white;
-  padding: 0.75rem 2rem;
-  font-weight: bold;
+  padding: 0.8rem 2rem;
   border: none;
   border-radius: 5px;
+  font-weight: bold;
+  font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.tasa-form button:hover {
+.tasa-btn:hover {
   background-color: var(--color-ndb-azul-hover);
 }
 
@@ -349,3 +418,4 @@ body {
     flex: 1 1 100%;
   }
 }
+
