@@ -212,3 +212,47 @@ body {
   margin-right: 0.3rem;
   color: #666; /* mismo verde que el botón, o poné #0099cc si querés */
 }
+
+.acerca-section {
+  background: #f9f9f9;
+  padding: 4rem 1rem;
+}
+
+.acerca-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+}
+
+.acerca-imagen {
+  flex: 1 1 45%;
+}
+
+.acerca-imagen img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.acerca-texto {
+  flex: 1 1 50%;
+}
+
+.acerca-texto h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.acerca-texto h2 span {
+  color: var(--color-ndb-azul);
+}
+
+.acerca-texto p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 1rem;
+}
