@@ -4,19 +4,10 @@
   --font-titulos: 'Poppins', sans-serif;
   --font-texto: 'Roboto', sans-serif;
 }
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
 
 body {
-  font-family: var( --font-texto);
-  line-height: 1.6;
   color: #333;
-  background-color: #f5f5f5;
-  padding-top: 85px; /* Ajuste por header fijo */
 }
 
 /* Slider principal (video) */
@@ -391,22 +382,7 @@ body {
   min-height: 120px;
 }
 
-.tasa-btn {
-  align-self: center;
-  background-color: var(--color-ndb-azul);
-  color: white;
-  padding: 0.8rem 2rem;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
 
-.tasa-btn:hover {
-  background-color: var(--color-ndb-azul-hover);
-}
 
 /* Responsive */
 @media (max-width: 600px) {
