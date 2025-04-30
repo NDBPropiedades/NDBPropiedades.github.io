@@ -26,11 +26,11 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </head>
 
   <body>
-
-    <div class="wasap" style="animation-name: tada;">
+    <div class="wasap" style="animation-name: tada">
       <a
         href="https://api.whatsapp.com/send?l=es&text=Hola%20NDB%20Propiedades!%20Quiero%20consultarles%20por%20una%20propiedad&phone=+5491164078491"
         target="_blank"
@@ -60,9 +60,7 @@
             <li><a href="index.html#nosotros">Nosotros</a></li>
           </ul>
 
-          <a href="index.html#tasa" class="tasa-btn"
-            >Tasá tu inmueble</a
-          >
+          <a href="index.html#tasa" class="tasa-btn">Tasá tu inmueble</a>
 
           <button class="menu-toggle" aria-label="Abrir menú">
             <i class="fas fa-bars"></i>
@@ -155,13 +153,29 @@
     <section class="acerca-section fade-in" id="nosotros">
       <div class="acerca-container containers">
         <div class="acerca-imagen fade-in">
-          <img src="assets/img/acerca.jpg" alt="Interior de propiedad destacada" />
+          <img
+            src="assets/img/acerca.jpg"
+            alt="Interior de propiedad destacada"
+          />
         </div>
         <div class="acerca-texto fade-in">
-          <h2 class="typewriter">Somos <span>Nicolás de Brasi Propiedades</span></h2>
-          <p>Una inmobiliaria joven, profesional y con un estilo propio. Nacimos del deseo de acompañar a las personas en uno de los momentos más importantes de sus vidas: encontrar su hogar ideal.</p>
-          <p>Trabajamos con pasión, empatía y compromiso, generando vínculos verdaderos que trascienden la operación inmobiliaria.</p>
-          <p>Nos distingue una identidad visual moderna, atención humana, y una estrategia integral que combina diseño, tecnología y marketing de vanguardia.</p>
+          <h2 class="typewriter">
+            Somos <span>Nicolás de Brasi Propiedades</span>
+          </h2>
+          <p>
+            Una inmobiliaria joven, profesional y con un estilo propio. Nacimos
+            del deseo de acompañar a las personas en uno de los momentos más
+            importantes de sus vidas: encontrar su hogar ideal.
+          </p>
+          <p>
+            Trabajamos con pasión, empatía y compromiso, generando vínculos
+            verdaderos que trascienden la operación inmobiliaria.
+          </p>
+          <p>
+            Nos distingue una identidad visual moderna, atención humana, y una
+            estrategia integral que combina diseño, tecnología y marketing de
+            vanguardia.
+          </p>
           <p>Queremos ser tu inmobiliaria de confianza, hoy y siempre.</p>
         </div>
       </div>
@@ -170,13 +184,26 @@
     <section class="tasa-section" id="tasa">
       <div class="containers">
         <h2 class="tasa-title">Tasá tu inmueble en línea</h2>
-        <p class="tasa-subtitle">Completá el formulario y te contactaremos a la brevedad</p>
-    
-        <form action="https://formsubmit.co/tuemail@dominio.com" method="POST" class="tasa-form">
+        <p class="tasa-subtitle">
+          Completá el formulario y te contactaremos a la brevedad
+        </p>
+
+        <form
+          id="contactForm"
+          action="https://formspree.io/f/xeogedgn"
+          method="POST"
+          class="tasa-form"
+        >
           <div class="form-row">
-            <input type="text" name="nombre" placeholder="Nombre y Apellido" required>
-            <select name="localidad" required>
-              <option value="">Localidad</option>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Nombre y Apellido"
+              required
+            />
+            <select name="localidad" id="localidad" required>
+              <option value="localidad">Localidad</option>
               <option value="Acassuso">Acassuso</option>
               <option value="Beccar">Beccar</option>
               <option value="Boulogne">Boulogne</option>
@@ -199,17 +226,16 @@
             </select>
           </div>
           <div class="form-row">
-            <input type="email" name="email" placeholder="Email" required>
+            <input type="email" id="email" name="email" placeholder="Email" required />
             <select name="tipo_operacion" required>
               <option value="">Operación</option>
               <option value="Venta">Venta</option>
               <option value="Alquiler">Alquiler</option>
               <option value="Alquiler Temporario">Alquiler Temporario</option>
             </select>
-          
           </div>
           <div class="form-row">
-            <input type="email" name="email" placeholder="Telefono" required>
+            <input type="tel" name="telefono" placeholder="Telefono" required />
             <select name="tipo_inmueble" required>
               <option value="">Tipo de Inmueble</option>
               <option value="Departamento">Departamento</option>
@@ -221,9 +247,21 @@
               <option value="Otro">Otro</option>
             </select>
           </div>
-          <textarea name="mensaje" rows="4" placeholder="Contanos un poco más sobre tu propiedad..."></textarea>
-          <input type="hidden" name="_next" value="https://ndbpropiedades.com.ar/gracias.html">
-          <button type="submit" class="tasa-btn">Enviar solicitud de Tasación</button>
+          <textarea
+            id="mensaje"
+            name="mensaje"
+            rows="4"
+            placeholder="Contanos un poco más sobre tu propiedad..."
+          ></textarea>
+          <input
+            type="hidden"
+            name="_next"
+            value="https://ndbpropiedades.com.ar/gracias.html"
+          />
+          <div class="g-recaptcha" data-sitekey="6Lf8RCorAAAAAKHkFqg0E9kAlzjeS7Yl-1Z3n-qz"></div>
+          <button type="submit" class="tasa-btn">
+            Enviar solicitud de Tasación
+          </button>
         </form>
       </div>
     </section>
@@ -261,7 +299,6 @@
         </div>
 
         <div class="footer-right">
-        
           <ul class="footer-menu">
             <li><a href="#">Inicio</a></li>
             <li><a href="inmuebles.html">Inmuebles</a></li>
@@ -269,20 +306,20 @@
             <li><a href="#nosotros">Nosotros</a></li>
             <a href="#tasa" class="tasa-btn">Tasá tu inmueble</a>
           </ul>
-         
+
           <button class="footer-menu-toggle" aria-label="Abrir menú">
             <i class="fas fa-bars"></i>
           </button>
         </div>
       </div>
-      <br/>
-      <br/>
+      <br />
+      <br />
       <div class="container">
         <p style="font-size: 12px">
           2025 © Copyright NDB Propiedades. Todos los derechos reservados.
           Argentina, Buenos Aires.
         </p>
-     
+
         <a
           href="https://www.raven3.com.ar"
           style="font-size: 10px; color: rgb(78, 78, 78); text-decoration: none"
@@ -292,6 +329,23 @@
     </footer>
 
     <!-- Scripts -->
+    <script>
+      function onSubmitCaptcha() {
+        grecaptcha.ready(() => {
+          grecaptcha.execute('TU_SITE_KEY', {action: 'submit'})
+            .then(token => {
+              // inyectás el token en tu form
+              const input = document.createElement('input');
+              input.type = 'hidden';
+              input.name = 'g-recaptcha-response';
+              input.value = token;
+              document.getElementById('miForm').appendChild(input);
+              // ahora sí enviás el formulario normalmente
+              document.getElementById('miForm').submit();
+            });
+        });
+      }
+    </script>
     <script src="navbar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="propiedades/propiedades.js"></script>

@@ -109,3 +109,27 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 animables.forEach(el => observer.observe(el));
+
+document
+.getElementById("contactForm")
+.addEventListener("submit", function (e) {
+  // 1) Obtén los valores de los campos extra
+  const localidad = this.localidad.value.trim();
+  const operacion = this.tipo_operacion.value.trim();
+  const telefono   = this.telefono.value.trim();
+  const inmueble   = this.tipo_inmueble.value.trim();
+
+  // 2) Construye un bloque de texto con ellos
+  let extras = "";
+  if (localidad) extras += `Localidad: ${localidad}\n`;
+  if (operacion) extras += `Operación: ${operacion}\n`;
+  if (telefono)  extras += `Teléfono: ${telefono}\n`;
+  if (inmueble)  extras += `Tipo de Inmueble: ${inmueble}\n`;
+
+  // 3) Si hay extras, los añades debajo del mensaje original
+  const msgEl = document.getElementById("message");
+  if (extras) {
+    msgEl.value = msgEl.value.trim() + "\n\n" + extras;
+  }
+  // Dejas que el form siga su curso (POST a Formspree)
+});
