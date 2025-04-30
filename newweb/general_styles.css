@@ -32,7 +32,7 @@ h1, h2, h3, .frase-buscador h2, .frase-buscador p {
   left: 0;
   width: 100%;
   height: 85px;
-  background-color: #000;
+  background-color: rgb(23, 23, 23);
   color: #fff;
   padding: 1rem 0;
   z-index: 1000;

@@ -395,3 +395,39 @@ body {
   }
 }
 
+/* Media query para móvil */
+@media (max-width: 768px) {
+  /* 1) Pasa la imagen arriba y el texto abajo */
+  .acerca-container {
+    flex-direction: column;
+    padding: 0 1rem;
+    gap: 1.5rem;
+  }
+
+  /* 2) Asegura que la imagen nunca se salga */
+  .acerca-imagen img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* 3) Reduce y permite que el heading “typewriter” haga wrap */
+  .acerca-texto .typewriter {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    text-align: center;
+    white-space: normal;      /* permite salto de línea */
+    line-height: 1.2;
+  }
+
+  /* 4) Ajusta todos los párrafos para que no desborden */
+  .acerca-texto p {
+    font-size: clamp(0.9rem, 4vw, 1rem);
+    width: 100%;
+    overflow-wrap:break-word;
+    word-break: break-word;
+    margin: 0.5rem 0;
+    text-align: justify;
+    box-sizing: border-box;
+  }
+}
+
