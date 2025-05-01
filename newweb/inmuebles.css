@@ -36,7 +36,6 @@
   text-shadow: 0 2px 5px rgba(0,0,0,0.6);
   animation: fadeIn 1s ease-out forwards;
   opacity: 0; /* empieza invisible */
-  position: relative;
   z-index: 1; /* 👈 Esto asegura que el texto y los filtros estén por arriba del video */
 }
 
