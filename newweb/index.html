@@ -26,7 +26,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
   </head>
 
   <body>
@@ -335,16 +335,16 @@
     <script>
       function onSubmitCaptcha() {
         grecaptcha.ready(() => {
-          grecaptcha.execute('TU_SITE_KEY', {action: 'submit'})
+          grecaptcha.execute('6Lf8RCorAAAAAKHkFqg0E9kAlzjeS7Yl-1Z3n-qz', {action: 'submit'})
             .then(token => {
               // inyectás el token en tu form
               const input = document.createElement('input');
               input.type = 'hidden';
               input.name = 'g-recaptcha-response';
               input.value = token;
-              document.getElementById('miForm').appendChild(input);
+              document.getElementById('contactForm').appendChild(input);
               // ahora sí enviás el formulario normalmente
-              document.getElementById('miForm').submit();
+              document.getElementById('contactForm').submit();
             });
         });
       }
