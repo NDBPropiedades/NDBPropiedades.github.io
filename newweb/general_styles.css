@@ -5,7 +5,8 @@
   box-sizing: border-box;
 }
 /* ------ General ------ */
-html, body {
+html,
+body {
   min-width: 325px;
   overflow-x: auto;
 }
@@ -23,9 +24,13 @@ body {
   padding: 1rem;
 }
 
-h1, h2, h3, .frase-buscador h2, .frase-buscador p {
+h1,
+h2,
+h3,
+.frase-buscador h2,
+.frase-buscador p {
   font-family: var(--font-titulos);
-}/* ------ Header ------ */
+} /* ------ Header ------ */
 .header {
   position: fixed;
   top: 0;
@@ -502,7 +507,7 @@ h1, h2, h3, .frase-buscador h2, .frase-buscador p {
   .footer-right .tasa-btn {
     display: block;
     margin-top: 0.5rem;
-    margin-bottom: 1rem;;
+    margin-bottom: 1rem;
     padding: 0.6rem 1.2rem;
     font-size: 1rem;
     text-align: center;
@@ -534,4 +539,117 @@ h1, h2, h3, .frase-buscador h2, .frase-buscador p {
   .footer-menu-toggle {
     display: none;
   }
+}
+/* Propiedades sección */
+.propiedades {
+  padding: 2rem 0;
+}
+
+.propiedades h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+/* Swiper general de propiedades */
+.myMainSwiper {
+  position: relative;
+}
+
+.swiper-wrapper {
+  display: flex;
+}
+
+/* Cada propiedad como una card */
+.swiper-slide {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Card */
+.card {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Mini Swiper de imágenes dentro de cada card */
+.mySwiper {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+}
+
+.mySwiper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Información de cada propiedad */
+.card h3 {
+  font-size: 1.2rem;
+  margin: 1rem;
+}
+
+.card p {
+  margin: 0 1rem 1rem;
+  color: #666;
+}
+
+/* Swiper flechas y bullets */
+.swiper-button-next,
+.swiper-button-prev {
+  --swiper-navigation-size: 30px;
+  color: white !important;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1rem;
+}
+
+.swiper-pagination-bullet {
+  background: white;
+}
+
+.card-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #000; /* Fondo negro */
+  color: white;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 5px;
+  z-index: 10;
+  opacity: 0.85;
+}
+
+.iconos-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 1rem 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.iconos-card i {
+  margin-right: 0.3rem;
+  color: #666; /* mismo verde que el botón, o poné #0099cc si querés */
 }
