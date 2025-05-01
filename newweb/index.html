@@ -23,10 +23,14 @@
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
     <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
-    rel="stylesheet"
-  />
-    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://www.google.com/recaptcha/enterprise.js"
+      async
+      defer
+    ></script>
   </head>
 
   <body>
@@ -75,60 +79,72 @@
         <source src="ZN.mp4" type="video/mp4" />
         Tu navegador no soporta video HTML5.
       </video>
-      <div class="frase-buscador">
-        <h2>ES LINDO LLEGAR A CASA,</h2>
-        <p>MEJOR ES ENCONTRARLA.</p>
-      </div>
+      <div class="slider-inner">
+        <div class="frase-buscador">
+          <h2>Es lindo llegar a casa,</h2>
+          <p>Mejor es encontrarla.</p>
+        </div>
 
-      <div class="slider-content">
-        <!-- Buscador Avanzado -->
-        <div class="buscador-avanzado">
-          <!-- Venta/Alquiler -->
-          <div class="custom-select-fa">
-            <select>
-              <option disabled selected>Operación</option>
-              <option>Venta</option>
-              <option>Alquiler</option>
-              <option>Alquiler Temporal</option>
-            </select>
-            <div class="select-icons"></div>
+        <div class="slider-content">
+          <!-- Buscador Avanzado -->
+          <div class="buscador-avanzado">
+            <!-- Venta/Alquiler -->
+            <div class="custom-select-fa">
+              <select>
+                <option disabled selected>Operación</option>
+                <option>Venta</option>
+                <option>Alquiler</option>
+                <option>Alquiler Temporal</option>
+              </select>
+              <div class="select-icons">
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+
+            <!-- Tipología -->
+            <div class="custom-select-fa">
+              <select>
+                <option disabled selected>Tipología</option>
+                <option>Campo</option>
+                <option>Casa</option>
+                <option>Cochera</option>
+                <option>Departamento</option>
+                <option>Depósito</option>
+                <option>Edificio Comercial</option>
+                <option>Galpón</option>
+                <option>Local</option>
+                <option>Oficina</option>
+                <option>PH</option>
+                <option>Terreno</option>
+              </select>
+              <div class="select-icons">
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+
+            <!-- Localidad -->
+            <div class="custom-select-fa">
+              <select>
+                <option disabled selected>Localidad</option>
+                <option>Palermo</option>
+                <option>Belgrano</option>
+                <option>Caballito</option>
+                <option>San Isidro</option>
+              </select>
+              <div class="select-icons">
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+
+            <!-- Botón buscar -->
+            <button type="button">
+              <i class="fas fa-search"></i> Buscar Inmueble
+            </button>
+            <!-- Botón reset -->
+            <button type="button" class="btn-reset" title="Limpiar filtros">
+              <i class="fas fa-broom"></i>
+            </button>
           </div>
-
-          <!-- Tipología -->
-          <div class="custom-select-fa">
-            <select>
-              <option disabled selected>Tipología</option>
-              <option>Campo</option>
-              <option>Casa</option>
-              <option>Cochera</option>
-              <option>Departamento</option>
-              <option>Depósito</option>
-              <option>Edificio Comercial</option>
-              <option>Galpón</option>
-              <option>Local</option>
-              <option>Oficina</option>
-              <option>PH</option>
-              <option>Terreno</option>
-            </select>
-            <div class="select-icons"></div>
-          </div>
-
-          <!-- Localidad -->
-          <div class="custom-select-fa">
-            <select>
-              <option disabled selected>Localidad</option>
-              <option>Palermo</option>
-              <option>Belgrano</option>
-              <option>Caballito</option>
-              <option>San Isidro</option>
-            </select>
-            <div class="select-icons"></div>
-          </div>
-
-          <!-- Botón buscar -->
-          <button type="button">
-            <i class="fas fa-search"></i> Buscar Inmueble
-          </button>
         </div>
       </div>
     </section>
@@ -227,7 +243,13 @@
             </select>
           </div>
           <div class="form-row">
-            <input type="email" id="email" name="email" placeholder="Email" required />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email"
+              required
+            />
             <select name="tipo_operacion" required>
               <option value="">Operación</option>
               <option value="Venta">Venta</option>
@@ -262,8 +284,11 @@
           <button type="submit" class="tasa-btn">
             Enviar solicitud de Tasación
           </button>
-          <div style="display: flex; justify-content: center;">
-            <div class="g-recaptcha" data-sitekey="6Lf8RCorAAAAAKHkFqg0E9kAlzjeS7Yl-1Z3n-qz"></div>
+          <div style="display: flex; justify-content: center">
+            <div
+              class="g-recaptcha"
+              data-sitekey="6Lf8RCorAAAAAKHkFqg0E9kAlzjeS7Yl-1Z3n-qz"
+            ></div>
           </div>
         </form>
       </div>
@@ -335,16 +360,19 @@
     <script>
       function onSubmitCaptcha() {
         grecaptcha.ready(() => {
-          grecaptcha.execute('6Lf8RCorAAAAAKHkFqg0E9kAlzjeS7Yl-1Z3n-qz', {action: 'submit'})
-            .then(token => {
+          grecaptcha
+            .execute("6Lf8RCorAAAAAKHkFqg0E9kAlzjeS7Yl-1Z3n-qz", {
+              action: "submit",
+            })
+            .then((token) => {
               // inyectás el token en tu form
-              const input = document.createElement('input');
-              input.type = 'hidden';
-              input.name = 'g-recaptcha-response';
+              const input = document.createElement("input");
+              input.type = "hidden";
+              input.name = "g-recaptcha-response";
               input.value = token;
-              document.getElementById('contactForm').appendChild(input);
+              document.getElementById("contactForm").appendChild(input);
               // ahora sí enviás el formulario normalmente
-              document.getElementById('contactForm').submit();
+              document.getElementById("contactForm").submit();
             });
         });
       }

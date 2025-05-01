@@ -133,3 +133,9 @@ document
   }
   // Dejas que el form siga su curso (POST a Formspree)
 });
+
+document.querySelector('.btn-reset').addEventListener('click', () => {
+  document
+    .querySelectorAll('.buscador-avanzado select')
+    .forEach(sel => sel.selectedIndex = 0);
+});

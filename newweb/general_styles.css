@@ -1,3 +1,10 @@
+:root {
+  --color-ndb-azul: #38b6a3;
+  --color-ndb-azul-hover: #2d9587;
+  --color-ndb-negro: #171717;
+  --font-titulos: "Poppins", sans-serif;
+  --font-texto: "Roboto", sans-serif;
+}
 /* Reset básico */
 * {
   margin: 0;
@@ -398,7 +405,7 @@ h3,
 /* Botón Tasá tu inmueble */
 .tasa-btn {
   background-color: #38b6a3;
-  color: white;
+  color: var(  --color-ndb-negro);
   padding: 0.6rem 1.2rem;
   border-radius: 5px;
   font-weight: bold;
@@ -410,7 +417,7 @@ h3,
 
 .tasa-btn:hover {
   background-color: var(--color-ndb-azul-hover);
-  color: #000;
+  color: white;
 }
 
 /* Navegación */
