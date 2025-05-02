@@ -89,61 +89,68 @@
           <!-- Buscador Avanzado -->
           <div class="buscador-avanzado">
             <!-- Venta/Alquiler -->
-            <div class="custom-select-fa">
-              <select>
-                <option disabled selected>Operación</option>
-                <option>Venta</option>
-                <option>Alquiler</option>
-                <option>Alquiler Temporal</option>
-              </select>
-              <div class="select-icons">
-                <i class="fas fa-chevron-down"></i>
+            <form
+              id="searchIndex"
+              action="inmuebles.html"
+              method="GET"
+              class="buscador-avanzado"
+            >
+              <div class="custom-select-fa">
+                <select id="operacion" name="operacion">
+                  <option disabled selected>Operación</option>
+                  <option>Venta</option>
+                  <option>Alquiler</option>
+                  <option>Alquiler Temporal</option>
+                </select>
+                <div class="select-icons">
+                  <i class="fas fa-chevron-down"></i>
+                </div>
               </div>
-            </div>
 
-            <!-- Tipología -->
-            <div class="custom-select-fa">
-              <select>
-                <option disabled selected>Tipología</option>
-                <option>Campo</option>
-                <option>Casa</option>
-                <option>Cochera</option>
-                <option>Departamento</option>
-                <option>Depósito</option>
-                <option>Edificio Comercial</option>
-                <option>Galpón</option>
-                <option>Local</option>
-                <option>Oficina</option>
-                <option>PH</option>
-                <option>Terreno</option>
-              </select>
-              <div class="select-icons">
-                <i class="fas fa-chevron-down"></i>
+              <!-- Tipología -->
+              <div class="custom-select-fa">
+                <select id="tipologia" name="tipologia">
+                  <option disabled selected>Tipología</option>
+                  <option>Campo</option>
+                  <option>Casa</option>
+                  <option>Cochera</option>
+                  <option>Departamento</option>
+                  <option>Depósito</option>
+                  <option>Edificio Comercial</option>
+                  <option>Galpón</option>
+                  <option>Local</option>
+                  <option>Oficina</option>
+                  <option>PH</option>
+                  <option>Terreno</option>
+                </select>
+                <div class="select-icons">
+                  <i class="fas fa-chevron-down"></i>
+                </div>
               </div>
-            </div>
 
-            <!-- Localidad -->
-            <div class="custom-select-fa">
-              <select>
-                <option disabled selected>Localidad</option>
-                <option>Palermo</option>
-                <option>Belgrano</option>
-                <option>Caballito</option>
-                <option>San Isidro</option>
-              </select>
-              <div class="select-icons">
-                <i class="fas fa-chevron-down"></i>
+              <!-- Localidad -->
+              <div class="custom-select-fa">
+                <select id="zona" name="zona">
+                  <option disabled selected>Localidad</option>
+                  <option>Palermo</option>
+                  <option>Belgrano</option>
+                  <option>Caballito</option>
+                  <option>San Isidro</option>
+                </select>
+                <div class="select-icons">
+                  <i class="fas fa-chevron-down"></i>
+                </div>
               </div>
-            </div>
 
-            <!-- Botón buscar -->
-            <button type="button">
-              <i class="fas fa-search"></i> Buscar Inmueble
-            </button>
-            <!-- Botón reset -->
-            <button type="button" class="btn-reset" title="Limpiar filtros">
-              <i class="fas fa-broom"></i>
-            </button>
+              <!-- Botón buscar -->
+              <button type="submit" class="btn-buscar">
+                <i class="fas fa-search"></i> Buscar Inmueble
+              </button>
+              <!-- Botón reset -->
+              <button type="button" class="btn-reset" title="Limpiar filtros">
+                <i class="fas fa-broom"></i>
+              </button>
+            </form>
           </div>
         </div>
       </div>

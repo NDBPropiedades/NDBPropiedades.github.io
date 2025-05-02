@@ -20,6 +20,34 @@ const propiedadesConDatos = propiedades.map(p => ({
   localidad: p.localidad || "San Isidro"
 }));
 
+// --- 0) Crear dinámicamente el contenedor de "no results" ---
+let noResults = document.getElementById('no-results');
+if (!noResults) {
+  noResults = document.createElement('div');
+  noResults.id = 'no-results';
+  noResults.textContent = 'Lo siento, no encontramos propiedades disponibles.';
+  Object.assign(noResults.style, {
+    display: 'none',
+    textAlign: 'center',
+    padding: '2rem',
+    fontSize: '1.25rem',
+    color: '#666'
+  });
+  contenedorPropiedades.parentNode.insertBefore(noResults, contenedorPropiedades.nextSibling);
+}
+
+// --- 1) Función para leer URL y poblar selects ---
+function poblarFiltrosDesdeURL() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('operacion'))    filtroOperacion.value  = params.get('operacion');
+  if (params.get('tipologia'))    filtroTipologia.value  = params.get('tipologia');
+  if (params.get('zona'))         filtroZona.value       = params.get('zona');
+  if (params.get('partido'))      filtroPartido.value    = params.get('partido');
+  if (params.get('localidad'))    filtroLocalidad.value  = params.get('localidad');
+  if (params.get('orden'))        ordenSelect.value      = params.get('orden');
+}
+
+poblarFiltrosDesdeURL();
     
 // --- Función: Crear HTML de cada card ---
 function crearCardHTML(p, index) {
@@ -64,8 +92,8 @@ function cargarPropiedades(lista) {
     const fin = inicio + propiedadesPorPagina;
     const propsParaMostrar = lista.slice(inicio, fin);
   
-    const loader = document.getElementById("loader");
-    loader.style.display = "block";
+    // const loader = document.getElementById("loader");
+    // loader.style.display = "block";
   
     propsParaMostrar.forEach((propiedad, index) => {
       const cardHTML = crearCardHTML(propiedad, index);
@@ -73,7 +101,7 @@ function cargarPropiedades(lista) {
     });
   
     inicializarSwipers();
-    loader.style.display = "none";
+    // loader.style.display = "none";
   }
 
 // --- Función: Inicializar todos los Swipers de las propiedades ---
@@ -99,31 +127,59 @@ function inicializarSwipers() {
 function aplicarFiltros() {
   let filtradas = [...propiedadesConDatos];
 
-  if (filtroOperacion && filtroOperacion.value) {
-    filtradas = filtradas.filter(p => p.tipoTransaccion === filtroOperacion.value);
-  }
-  if (filtroTipologia && filtroTipologia.value) {
-    filtradas = filtradas.filter(p => p.tipoPropiedad === filtroTipologia.value);
-  }
-  if (filtroZona && filtroZona.value) {
-    filtradas = filtradas.filter(p => p.zona === filtroZona.value);
-  }
-  if (filtroPartido && filtroPartido.value) {
-    filtradas = filtradas.filter(p => p.partido === filtroPartido.value);
-  }
-  if (filtroLocalidad && filtroLocalidad.value) {
-    filtradas = filtradas.filter(p => p.localidad === filtroLocalidad.value);
+  // FILTRAR OPERACIÓN sólo si NO es la opción default
+  if (filtroOperacion.value && filtroOperacion.value !== 'default') {
+    filtradas = filtradas.filter(
+      p => p.tipoTransaccion === filtroOperacion.value
+    );
   }
 
-  // Ordenar
-  if (ordenSelect && ordenSelect.value) {
+  // FILTRAR TIPOLOGÍA
+  if (filtroTipologia.value && filtroTipologia.value !== 'default') {
+    filtradas = filtradas.filter(
+      p => p.tipoPropiedad === filtroTipologia.value
+    );
+  }
+
+  // FILTRAR ZONA
+  if (filtroZona.value && filtroZona.value !== 'default') {
+    filtradas = filtradas.filter(
+      p => p.zona === filtroZona.value
+    );
+  }
+
+  // FILTRAR PARTIDO
+  // if (filtroPartido.value && filtroPartido.value !== 'default') {
+  //   filtradas = filtradas.filter(
+  //     p => p.partido === filtroPartido.value
+  //   );
+  // }
+
+  // FILTRAR LOCALIDAD
+  // if (filtroLocalidad.value && filtroLocalidad.value !== 'default') {
+  //   filtradas = filtradas.filter(
+  //     p => p.localidad === filtroLocalidad.value
+  //   );
+  // }
+
+  // ORDENAR sólo si NO es default
+  if (ordenSelect.value && ordenSelect.value !== 'default') {
     filtradas = ordenarPropiedades(filtradas, ordenSelect.value);
   }
 
   propiedadesFiltradasGlobal = filtradas;
   paginaActual = 1;
   contenedorPropiedades.innerHTML = "";
-  cargarPropiedades(propiedadesFiltradasGlobal);
+
+  if (filtradas.length === 0) {
+    // si no hay coincidencias, muestro mensaje y me voy
+    noResults.style.display = 'block';
+    return;
+  } else {
+    // oculto el mensaje y cargo normalmente
+    noResults.style.display = 'none';
+    cargarPropiedades(propiedadesFiltradasGlobal);
+  }
 }
 
 // --- Función: Ordenar propiedades ---

@@ -29,8 +29,7 @@
   </head>
 
   <body>
-
-    <div class="wasap" style="animation-name: tada;">
+    <div class="wasap" style="animation-name: tada">
       <a
         href="https://api.whatsapp.com/send?l=es&text=Hola%20NDB%20Propiedades!%20Quiero%20consultarles%20por%20una%20propiedad&phone=+5491164078491"
         target="_blank"
@@ -60,9 +59,7 @@
             <li><a href="index.html#nosotros">Nosotros</a></li>
           </ul>
 
-          <a href="index.html#tasa" class="tasa-btn"
-            >Tasá tu inmueble</a
-          >
+          <a href="index.html#tasa" class="tasa-btn">Tasá tu inmueble</a>
 
           <button class="menu-toggle" aria-label="Abrir menú">
             <i class="fas fa-bars"></i>
@@ -76,7 +73,7 @@
       <!-- Filtros de búsqueda -->
       <section class="buscador-section">
         <video autoplay muted loop playsinline class="video-fondo">
-          <source src="assets/video/mudanza.mp4" type="video/mp4">
+          <source src="assets/video/mudanza.mp4" type="video/mp4" />
           Tu navegador no soporta el video HTML5.
         </video>
         <div class="frase-buscador">
@@ -85,14 +82,14 @@
         </div>
         <div class="buscador">
           <select id="filtro-operacion">
-            <option value="">Operación</option>
+            <option value="default" disabled selected>Operación</option>
             <option value="Venta">Venta</option>
             <option value="Alquiler">Alquiler</option>
             <option value="Alquiler">Alquiler Temporal</option>
           </select>
 
           <select id="filtro-tipologia">
-            <option value="">Tipología</option>
+            <option value="default" disabled selected>Tipología</option>
             <option value="Departamento">Departamento</option>
             <option value="Casa">Casa</option>
             <option value="PH">PH</option>
@@ -100,7 +97,7 @@
           </select>
 
           <select id="filtro-zona">
-            <option value="">Zona</option>
+            <option value="default" selected>Zona</option>
             <option value="Acassuso">Acassuso</option>
             <option value="Beccar">Beccar</option>
             <option value="Boulogne">Boulogne</option>
@@ -123,6 +120,7 @@
           </select>
 
           <select id="filtro-orden">
+            <option value="default" disabled selected>Ordenar</option>
             <option value="precio-desc">Precio: Alto a Bajo</option>
             <option value="precio-asc">Precio: Bajo a Alto</option>
             <option value="titulo-asc">Título: A-Z</option>
@@ -136,7 +134,6 @@
       <!-- Grilla de propiedades -->
       <section class="propiedades-section">
         <div id="lista-propiedades" class="lista-propiedades"></div>
-        <div id="loader" class="loader">Cargando más propiedades...</div>
       </section>
     </main>
 
@@ -198,6 +195,35 @@
     </footer>
 
     <!-- Scripts -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const params = new URLSearchParams(window.location.search);
+
+        // 1) Poblar cada select
+        const campos = ["operacion", "tipologia", "zona"];
+        campos.forEach((name) => {
+          const val = params.get(name);
+          if (val) {
+            const sel = document.querySelector(`select[name="${name}"]`);
+            if (sel) sel.value = val;
+          }
+        });
+
+        // 2) Llamar al filtrado automático si hubo parámetros
+        if (
+          params.has("operacion") ||
+          params.has("tipologia") ||
+          params.has("zona")
+        ) {
+          // Asume que tu función de filtrado se llama filterProperties()
+          if (typeof filterProperties === "function") {
+            filterProperties();
+          }
+          // O dispara el click del botón buscar:
+          // document.querySelector('.btn-buscar').click();
+        }
+      });
+    </script>
     <script src="navbar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="propiedades/propiedades.js"></script>
