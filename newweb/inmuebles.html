@@ -81,53 +81,73 @@
           <p>Más que propiedades, construimos historias.</p>
         </div>
         <div class="buscador">
-          <select id="filtro-operacion">
-            <option value="default" disabled selected>Operación</option>
-            <option value="Venta">Venta</option>
-            <option value="Alquiler">Alquiler</option>
-            <option value="Alquiler">Alquiler Temporal</option>
-          </select>
+          <form>
+            <div class="custom-select-fa">
+              <select id="filtro-operacion">
+                <option value="default" disabled selected>Operación</option>
+                <option value="Venta">Venta</option>
+                <option value="Alquiler">Alquiler</option>
+                <option value="Alquiler">Alquiler Temporal</option>
+              </select>
+              <div class="select-icons">
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+            <div class="custom-select-fa">
+              <select id="filtro-tipologia">
+                <option value="default" disabled selected>Tipología</option>
+                <option value="Departamento">Departamento</option>
+                <option value="Casa">Casa</option>
+                <option value="PH">PH</option>
+                <option value="Local">Local</option>
+              </select>
+              <div class="select-icons">
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+            <div class="custom-select-fa">
+              <select id="filtro-zona">
+                <option value="default" selected>Zona</option>
+                <option value="Acassuso">Acassuso</option>
+                <option value="Beccar">Beccar</option>
+                <option value="Boulogne">Boulogne</option>
+                <option value="Del Viso">Del Viso</option>
+                <option value="Don Torcuato">Don Torcuato</option>
+                <option value="Florida">Florida</option>
+                <option value="General Pacheco">General Pacheco</option>
+                <option value="Ingeniero Maschwitz">Ingeniero Maschwitz</option>
+                <option value="La Lucila">La Lucila</option>
+                <option value="Martínez">Martínez</option>
+                <option value="Nordelta">Nordelta</option>
+                <option value="Olivos">Olivos</option>
+                <option value="Pilar">Pilar</option>
+                <option value="San Fernando">San Fernando</option>
+                <option value="San Isidro">San Isidro</option>
+                <option value="Tigre">Tigre</option>
+                <option value="Tortuguitas">Tortuguitas</option>
+                <option value="Vicente López">Vicente López</option>
+                <option value="Villa Adelina">Villa Adelina</option>
+              </select>
+              <div class="select-icons">
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
 
-          <select id="filtro-tipologia">
-            <option value="default" disabled selected>Tipología</option>
-            <option value="Departamento">Departamento</option>
-            <option value="Casa">Casa</option>
-            <option value="PH">PH</option>
-            <option value="Local">Local</option>
-          </select>
-
-          <select id="filtro-zona">
-            <option value="default" selected>Zona</option>
-            <option value="Acassuso">Acassuso</option>
-            <option value="Beccar">Beccar</option>
-            <option value="Boulogne">Boulogne</option>
-            <option value="Del Viso">Del Viso</option>
-            <option value="Don Torcuato">Don Torcuato</option>
-            <option value="Florida">Florida</option>
-            <option value="General Pacheco">General Pacheco</option>
-            <option value="Ingeniero Maschwitz">Ingeniero Maschwitz</option>
-            <option value="La Lucila">La Lucila</option>
-            <option value="Martínez">Martínez</option>
-            <option value="Nordelta">Nordelta</option>
-            <option value="Olivos">Olivos</option>
-            <option value="Pilar">Pilar</option>
-            <option value="San Fernando">San Fernando</option>
-            <option value="San Isidro">San Isidro</option>
-            <option value="Tigre">Tigre</option>
-            <option value="Tortuguitas">Tortuguitas</option>
-            <option value="Vicente López">Vicente López</option>
-            <option value="Villa Adelina">Villa Adelina</option>
-          </select>
-
-          <select id="filtro-orden">
-            <option value="default" disabled selected>Ordenar</option>
-            <option value="precio-desc">Precio: Alto a Bajo</option>
-            <option value="precio-asc">Precio: Bajo a Alto</option>
-            <option value="titulo-asc">Título: A-Z</option>
-            <option value="titulo-desc">Título: Z-A</option>
-            <option value="fecha-desc">Fecha: Nuevas primero</option>
-            <option value="fecha-asc">Fecha: Antiguas primero</option>
-          </select>
+            <div class="custom-select-fa">
+              <select id="filtro-orden">
+                <option value="default" disabled selected>Ordenar</option>
+                <option value="precio-desc">Precio: Alto a Bajo</option>
+                <option value="precio-asc">Precio: Bajo a Alto</option>
+                <option value="titulo-asc">Título: A-Z</option>
+                <option value="titulo-desc">Título: Z-A</option>
+                <option value="fecha-desc">Fecha: Nuevas primero</option>
+                <option value="fecha-asc">Fecha: Antiguas primero</option>
+              </select>
+              <div class="select-icons">
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+          </form>
         </div>
       </section>
 

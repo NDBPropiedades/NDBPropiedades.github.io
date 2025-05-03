@@ -56,12 +56,15 @@
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   animation: fadeIn 1.5s ease-out forwards;
   opacity: 0; /* empieza invisible */
+  position: relative !important;
+  z-index: 2;
+margin-top: 30px;
 }
 
 .buscador select {
@@ -71,8 +74,40 @@
   border: none;
   min-width: 160px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  background-color: #fff;
+  color: #333;
   cursor: pointer;
   font-family: var(--font-texto);
+  appearance: none;
+}
+.buscador select:focus{
+  outline: none;
+  box-shadow: 0 0 0 2px #38b6a3;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+  background:         none; /* opcional si tienes un background propio */
+}
+.custom-select-fa {
+  position: relative; /* para posicionar el icono */
+  display: inline-block;
+}
+
+.select-icons {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none; /* para que no interfiera al abrir el menú */
+  font-size: 1rem;
+  color: #666;
+}
+
+select::-ms-expand {
+  display: none;
 }
 
 /* Fade in Animation */

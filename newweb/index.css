@@ -54,7 +54,7 @@ body {
   font-size: 2.5rem;
   font-weight: 700;
   padding: 0.5rem 1rem;
-  background-color: rgba(23, 23, 23, 0.671);
+  /* background-color: rgba(23, 23, 23, 0.671); */
   color: #fff;
   border-radius: 0.25rem;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
@@ -64,10 +64,11 @@ body {
   font-size: 1.3rem;
   font-weight: 400;
   margin-top: 0.5rem;
-  background-color: var(--color-ndb-azul);
-  color: black;
+  color: white;
+  /* background-color: var(--color-ndb-azul); */
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
 }
 
 /* Buscador Avanzado */
@@ -106,8 +107,10 @@ body {
 
 .buscador-avanzado button {
   padding: 0.75rem 1.5rem;
-  background-color: #38b6a3;
-  color: var(--color-ndb-negro);
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  /* color: var(--color-ndb-negro); */
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
