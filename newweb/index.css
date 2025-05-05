@@ -1,7 +1,10 @@
 :root {
-  --color-ndb-azul: #38b6a3;
-  --color-ndb-azul-hover: #2d9587;
-  --color-ndb-negro: #171717;
+  --color-ndb-Cobalt: #003eb0;
+  --color-ndb-Denim: #1663bf;
+  --color-ndb-Malibu: #7eccff;
+  --color-ndb-Madison: #0e246a;
+  --color-ndb-White: #ffffff;
+  --color-ndb-Black: #000000;
   --font-titulos: "Poppins", sans-serif;
   --font-texto: "Roboto", sans-serif;
 }
@@ -102,7 +105,7 @@ body {
 
 .buscador-avanzado select:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #38b6a3;
+  box-shadow: 0 0 0 2px var(--color-ndb-Cobalt);
 }
 
 .buscador-avanzado button {
@@ -117,7 +120,7 @@ body {
 }
 
 .buscador-avanzado button:hover {
-  background-color: #2d9587;
+  background-color: var(--color-ndb-Madison);
   color: white;
 }
 
@@ -135,7 +138,7 @@ body {
   transition: color .2s;
 }
 .btn-reset:hover {
-  color: var(--color-ndb-azul-hover);
+  color: var(--color-ndb-Denim);
 }
 
 .custom-select-fa {
@@ -187,7 +190,7 @@ body {
 }
 
 .acerca-texto h2 span {
-  color: var(--color-ndb-azul);
+  color: var(--color-ndb-Denim);
 }
 
 .acerca-texto p {
@@ -203,7 +206,7 @@ body {
   font-size: 2rem;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 3px solid var(--color-ndb-azul); /* cursor */
+  border-right: 3px solid var(--color-ndb-Denim); /* cursor */
   width: 0;
   animation: typing 3s steps(40, end) forwards, blink 0.7s step-end infinite;
 }

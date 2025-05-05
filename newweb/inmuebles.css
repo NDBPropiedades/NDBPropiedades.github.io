@@ -1,6 +1,10 @@
 :root {
-  --color-ndb-azul: #38b6a3;
-  --color-ndb-azul-hover: #2d9587;
+  --color-ndb-Cobalt: #003eb0;
+  --color-ndb-Denim: #1663bf;
+  --color-ndb-Malibu: #7eccff;
+  --color-ndb-Madison: #0e246a;
+  --color-ndb-White: #ffffff;
+  --color-ndb-Black: #000000;
   --font-titulos: 'Poppins', sans-serif;
   --font-texto: 'Roboto', sans-serif;
 }

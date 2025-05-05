@@ -1,7 +1,10 @@
 :root {
-  --color-ndb-azul: #38b6a3;
-  --color-ndb-azul-hover: #2d9587;
-  --color-ndb-negro: #171717;
+  --color-ndb-Cobalt: #003eb0;
+  --color-ndb-Denim: #1663bf;
+  --color-ndb-Malibu: #7eccff;
+  --color-ndb-Madison: #0e246a;
+  --color-ndb-White: #ffffff;
+  --color-ndb-Black: #000000;
   --font-titulos: "Poppins", sans-serif;
   --font-texto: "Roboto", sans-serif;
 }
@@ -19,7 +22,7 @@ body {
 }
 
 body {
-  background-color: #f5f5f5;
+  background-color: var(--color-ndb-White);
   font-family: var(--font-texto);
   line-height: 1.6;
   padding-top: 85px; /* ajuste para header fijo */
@@ -121,7 +124,7 @@ h3,
   left: 0;
   width: 100%;
   height: 100%;
-  background: black; /* o el color que combine con tu marca */
+  background: var(--color-ndb-Black); /* o el color que combine con tu marca */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -150,7 +153,7 @@ h3,
 /* Footer */
 .footer {
   background-color: rgb(23, 23, 23);
-  color: white;
+  color: var(--color-ndb-White);
   text-align: center;
   padding: 2rem 1rem;
   margin-top: 4rem;
@@ -164,7 +167,7 @@ h3,
 }
 
 .footer .redes a {
-  color: white;
+  color: var(--color-ndb-White);
   font-size: 1.5rem;
   transition: color 0.3s ease;
 }
@@ -232,7 +235,7 @@ h3,
 }
 
 .footer-right a {
-  color: black;
+  color: var(--color-ndb-Black);
   text-decoration: none;
   font-weight: 600;
 }
@@ -249,7 +252,7 @@ h3,
   position: absolute;
   bottom: 100%;
   right: 0;
-  background-color: white;
+  background-color: var(--color-ndb-White);
   padding: 1rem;
   border-radius: 5px;
   flex-direction: column;
@@ -271,7 +274,7 @@ h3,
   display: none;
   background: none;
   border: none;
-  color: white;
+  color: var(--color-ndb-White);
   font-size: 2rem;
   cursor: pointer;
 }
@@ -293,7 +296,7 @@ h3,
     right: 0;
     left: 0; /* 👈 Hacemos que vaya de borde a borde */
     width: 100%; /* 👈 Forzamos ancho completo */
-    background-color: white;
+    background-color: var(--color-ndb-White);
     flex-direction: column;
     padding: 1rem 0;
     display: none;
@@ -312,7 +315,7 @@ h3,
   }
 
   .nav li a {
-    color: black !important;
+    color: var(--color-ndb-Black) !important;
     font-weight: 600;
     font-size: 1.2rem;
   }
@@ -353,7 +356,7 @@ h3,
     bottom: 100%;
     left: 0;
     width: 100%;
-    background-color: white;
+    background-color: var(--color-ndb-White);
     padding: 1rem 0;
     display: none;
     flex-direction: column;
@@ -378,7 +381,7 @@ h3,
   }
 
   .footer-menu a {
-    color: black !important;
+    color: var(--color-ndb-White) !important;
     font-weight: 600;
     font-size: 1.2rem;
   }
@@ -393,7 +396,7 @@ h3,
   display: none;
   background: none;
   border: none;
-  color: white;
+  color: var(--color-ndb-White);
   font-size: 2rem;
   cursor: pointer;
 }
@@ -404,8 +407,8 @@ h3,
 
 /* Botón Tasá tu inmueble */
 .tasa-btn {
-  background-color: #38b6a3;
-  color: var(  --color-ndb-negro);
+  background-color: var(--color-ndb-Denim);
+  color: var(--color-ndb-White);
   padding: 0.6rem 1.2rem;
   border-radius: 5px;
   border: none;
@@ -417,8 +420,8 @@ h3,
 }
 
 .tasa-btn:hover {
-  background-color: var(--color-ndb-azul-hover);
-  color: white;
+  background-color: var(--color-ndb-Cobalt);
+  color: var(--color-ndb-Black);
 }
 
 /* Navegación */
