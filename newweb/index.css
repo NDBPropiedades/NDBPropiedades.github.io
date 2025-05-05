@@ -13,6 +13,39 @@ body {
   color: #333;
 }
 
+.frase-buscador .frase-btns {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-ndb-Cobalt);
+  color: var(--color-ndb-White);
+}
+.btn-primary:hover {
+  background-color: var(--color-ndb-Denim);
+}
+
+.btn-secondary {
+  background-color: var(--color-ndb-Malibu);
+  color: var(--color-ndb-Black);
+}
+.btn-secondary:hover {
+  background-color: var(--color-ndb-Denim);
+  color: var(--color-ndb-White);
+}
 /* Slider principal (video) */
 .slider {
   position: relative;
