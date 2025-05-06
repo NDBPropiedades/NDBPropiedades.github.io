@@ -407,7 +407,7 @@ h3,
 
 /* Botón Tasá tu inmueble */
 .tasa-btn {
-  background-color: var(--color-ndb-Denim);
+  background-color: var(--color-ndb-Malibu);
   color: var(--color-ndb-White);
   padding: 0.6rem 1.2rem;
   border-radius: 5px;
@@ -420,8 +420,8 @@ h3,
 }
 
 .tasa-btn:hover {
-  background-color: var(--color-ndb-Cobalt);
-  color: var(--color-ndb-Black);
+  background-color: var(--color-ndb-Madison);
+  color: var(--color-ndb-White);
 }
 
 /* Navegación */

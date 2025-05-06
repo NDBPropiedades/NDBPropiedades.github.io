@@ -31,19 +31,21 @@ body {
 }
 
 .btn-primary {
-  background-color: var(--color-ndb-Cobalt);
+  background-color: var(--color-ndb-Madison);
   color: var(--color-ndb-White);
+  border-radius: 25px;
 }
 .btn-primary:hover {
-  background-color: var(--color-ndb-Denim);
+  background-color: var(--color-ndb-Malibu);
 }
 
 .btn-secondary {
-  background-color: var(--color-ndb-Malibu);
-  color: var(--color-ndb-Black);
+  background-color: var(--color-ndb-Madison);
+  color: var(--color-ndb-white);
+  border-radius: 25px;
 }
 .btn-secondary:hover {
-  background-color: var(--color-ndb-Denim);
+  background-color: var(--color-ndb-Malibu);
   color: var(--color-ndb-White);
 }
 /* Slider principal (video) */
@@ -223,7 +225,7 @@ body {
 }
 
 .acerca-texto h2 span {
-  color: var(--color-ndb-Denim);
+  color: var(--color-ndb-Malibu);
 }
 
 .acerca-texto p {
