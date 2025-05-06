@@ -179,7 +179,6 @@ h3,
 .footer-container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
   flex-wrap: wrap;
 }
 
@@ -187,13 +186,12 @@ h3,
 .footer-center,
 .footer-right {
   flex: 1 1 30%;
-}
-
-.footer-right {
-  position: relative;
   display: flex;
-  align-items: center;
+  flex-wrap: nowrap;
+  align-content: center;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .footer-logo {

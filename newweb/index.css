@@ -219,9 +219,16 @@ body {
 
 .acerca-texto h2 {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 400;
   margin-bottom: 1rem;
   color: white;
+}
+
+.acerca-texto .acerca-logo {
+  display: block;
+  margin: 0 auto 1.5rem; /* centra y añade espacio abajo */
+  max-width: 180px;       /* ajusta según convenga */
+  height: auto;
 }
 
 .acerca-texto h2 span {
