@@ -47,7 +47,7 @@ h3,
   left: 0;
   width: 100%;
   height: 85px;
-  background-color: rgb(23, 23, 23);
+  background-color: var(--color-ndb-Madison);
   color: #fff;
   padding: 1rem 0;
   z-index: 1000;
@@ -152,7 +152,7 @@ h3,
 
 /* Footer */
 .footer {
-  background-color: rgb(23, 23, 23);
+  background-color: var(--color-ndb-Madison);
   color: var(--color-ndb-White);
   text-align: center;
   padding: 2rem 1rem;

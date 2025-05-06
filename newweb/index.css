@@ -192,7 +192,7 @@ body {
 }
 
 .acerca-section {
-  background: rgb(23, 23, 23);
+  background: var(--color-ndb-Madison);
   padding: 4rem 1rem;
 }
 
