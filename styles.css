@@ -2,7 +2,7 @@ body, html {
    margin: 0;
    padding: 0;
    height: 100%;
-   font-family: 'sans-serif';
+   font-family: 'Satoshi', sans-serif;
    overflow: hidden;
  }
 
@@ -30,14 +30,14 @@ body, html {
 }
 
 .font-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Satoshi', sans-serif;
 }
 .subtitulo{
   font-size: 2rem;
 }
 
 .font-subtitle {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Satoshi', sans-serif;
 }
 
 #preloader {
