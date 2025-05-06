@@ -241,7 +241,7 @@ body {
   font-size: 2rem;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 3px solid var(--color-ndb-Denim); /* cursor */
+  border-right: 3px solid var(--color-ndb-Malibu); /* cursor */
   width: 0;
   animation: typing 3s steps(40, end) forwards, blink 0.7s step-end infinite;
 }
