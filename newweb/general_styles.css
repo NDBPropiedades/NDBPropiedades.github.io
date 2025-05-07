@@ -225,7 +225,7 @@ h3,
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.3rem;
+  gap: 0.2rem;
 }
 
 .footer-right li {
@@ -410,16 +410,18 @@ h3,
   padding: 0.6rem 1.2rem;
   border-radius: 5px;
   border: none;
-  font-weight: bold;
+  font-weight: bold  !important;
   font-size: 1rem;
   text-decoration: none;
   white-space: nowrap;
   transition: background-color 0.3s ease, color 0.3s ease;
+  margin-top: 10px;
 }
 
 .tasa-btn:hover {
   background-color: var(--color-ndb-Denim);
   color: var(--color-ndb-White);
+  text-decoration: none !important;
 }
 
 /* Navegación */
@@ -546,6 +548,12 @@ h3,
 
   .footer-menu a {
     color: white;
+  }
+  .footer-menu a:hover{
+    text-decoration: underline;
+    text-underline-offset: 10px; 
+    text-decoration-color: var(--color-ndb-White);
+    text-decoration-thickness: 1.5px;  
   }
 
   .footer-menu-toggle {
