@@ -202,7 +202,7 @@ h3,
 .footer-center h4 {
   font-size: 1rem;
   margin-bottom: 0.5rem;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .footer-center p,
@@ -235,7 +235,7 @@ h3,
 .footer-right a {
   color: var(--color-ndb-Black);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .footer-right a:hover {
@@ -314,7 +314,7 @@ h3,
 
   .nav li a {
     color: var(--color-ndb-Black) !important;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 1.2rem;
   }
 
@@ -380,7 +380,7 @@ h3,
 
   .footer-menu a {
     color: var(--color-ndb-White) !important;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 1.2rem;
   }
 }
@@ -439,7 +439,7 @@ h3,
 .nav li a {
   color: #fff;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 1.1rem;
 }
 
@@ -449,7 +449,7 @@ h3,
 
 /* Logo */
 .logo img {
-  height: 40px;
+  height: 60px;
   width: auto;
   display: block;
 }
