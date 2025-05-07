@@ -418,7 +418,7 @@ h3,
 }
 
 .tasa-btn:hover {
-  background-color: var(--color-ndb-Madison);
+  background-color: var(--color-ndb-Denim);
   color: var(--color-ndb-White);
 }
 
@@ -440,11 +440,14 @@ h3,
   color: #fff;
   text-decoration: none;
   font-weight: 400;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .nav a:hover {
   text-decoration: underline;
+  text-underline-offset: 15px; 
+  text-decoration-color: var(--color-ndb-White);
+  text-decoration-thickness: 1.5px;  
 }
 
 /* Logo */
