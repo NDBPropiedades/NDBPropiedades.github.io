@@ -173,7 +173,7 @@ h3,
 }
 
 .footer .redes a:hover {
-  color: #aaa;
+  color: var(--color-ndb-Malibu);
 }
 
 .footer-container {
@@ -379,9 +379,18 @@ h3,
   }
 
   .footer-menu a {
-    color: var(--color-ndb-White) !important;
+    color: var(--color-ndb-Black);
     font-weight: 400;
     font-size: 1.2rem;
+  }
+  .footer-menu a:hover {
+    color: var(--color-ndb-Black);
+    font-weight: 400;
+    font-size: 1.2rem;
+    text-decoration: underline;
+    text-underline-offset: 15px; 
+    text-decoration-color: var(--color-ndb-Malibu);
+    text-decoration-thickness: 1.5px;  
   }
 }
 
@@ -406,7 +415,7 @@ h3,
 /* Botón Tasá tu inmueble */
 .tasa-btn {
   background-color: var(--color-ndb-Malibu);
-  color: var(--color-ndb-White);
+  color: var(--color-ndb-White) !important;
   padding: 0.6rem 1.2rem;
   border-radius: 5px;
   border: none;
@@ -442,13 +451,13 @@ h3,
   color: #fff;
   text-decoration: none;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .nav a:hover {
   text-decoration: underline;
   text-underline-offset: 15px; 
-  text-decoration-color: var(--color-ndb-White);
+  text-decoration-color: var(--color-ndb-Malibu);
   text-decoration-thickness: 1.5px;  
 }
 
@@ -552,7 +561,7 @@ h3,
   .footer-menu a:hover{
     text-decoration: underline;
     text-underline-offset: 10px; 
-    text-decoration-color: var(--color-ndb-White);
+    text-decoration-color: var(--color-ndb-Malibu);
     text-decoration-thickness: 1.5px;  
   }
 
