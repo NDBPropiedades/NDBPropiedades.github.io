@@ -13,12 +13,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 2000);
 });
 
-  /**
-   * Preloader
-   */
-  const preloader = document.querySelector("#preloader");
-  if (preloader) {
-    window.addEventListener("load", () => {
+/**
+ * Preloader
+ */
+const preloader = document.querySelector("#preloader");
+if (preloader) {
+  window.addEventListener("load", () => {
+    setTimeout(() => {
       preloader.remove();
-    });
-  }
+    }, 500); // espera 300ms luego del load
+  });
+}

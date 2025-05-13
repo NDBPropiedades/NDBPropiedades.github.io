@@ -22,10 +22,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
@@ -35,14 +31,17 @@
   >
     <!-- Preloader -->
     <div id="preloader">
-      <img src="assets/img/favicon/android-chrome-512x512.png" alt="Loading..." />
+      <img
+        src="assets/img/img/Nicolas De Brasi - Icono Negativo RGB.png"
+        alt="Loading..."
+      />
     </div>
     <!-- Video de fondo -->
     <video autoplay muted loop playsinline class="bg-video">
       <source src="assets/video/casas.mp4" type="video/mp4" />
       Tu navegador no soporta video HTML5.
     </video>
-
+    <div class="video-overlay"></div>
     <!-- WhatsApp botón flotante -->
     <div class="wasap" style="animation-name: tada">
       <a
@@ -61,10 +60,18 @@
     <div
       class="relative z-10 text-center px-4 backdrop-blur-sm bg-black/50 py-8 rounded-xl"
     >
-      <h1 class="font-title text-5xl">Nicolás De Brasi</h1>
-      <span class="subtitulo text-1xl">Propiedades</span>
-      <br />
-      <br />
+      <!-- <h1 class="font-title text-5xl">Nicolás De Brasi</h1>
+      <span class="subtitulo text-1xl">Propiedades</span> -->
+      <img
+        src="assets/img/img/Nicolas De Brasi - Logo Negativo RGB.png"
+        fetchpriority="low"
+        decoding="async"
+        loading="lazy"
+        width="600"
+        height="400"
+        alt="nicolas de brasi propiedades"
+      />
+        
       <h2 class="font-subtitle text-2xl">
         Se vienen c<span
           id="changing-letter"
@@ -72,7 +79,7 @@
           >o</span
         >sitas...
       </h2>
-      <br />
+
       <div class="text-sm mb-4 text-gray-300">info@ndbpropiedades.com.ar</div>
 
       <!-- Íconos sociales -->

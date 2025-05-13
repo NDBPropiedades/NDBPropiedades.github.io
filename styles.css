@@ -1,3 +1,27 @@
+
+:root {
+  --color-ndb-Madison: #0e246a;
+  --color-ndb-BlackPearl: #03246a;
+  --color-ndb-Cobalt: #003eb0;
+  --color-ndb-Malibu: #7eccff;
+  --color-ndb-Sail: #b9e5fb;
+  --color-ndb-Denim: #1663bf;
+  --color-ndb-White: #ffffff;
+  --color-ndb-Mercury: #e3e3e3;
+  --color-ndb-Gray: #8a8a8a;
+  --color-ndb-Black: #000000;
+  --font-titulos: "Satoshi", sans-serif;
+  --font-texto: "Satoshi", sans-serif;
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-bold: 700;
+  --font-size86: 5.5rem;
+  --font-size60: 4rem;
+  --font-size36: 2.5rem;
+  --font-size20: 1.3rem;
+}
+
 body, html {
    margin: 0;
    padding: 0;
@@ -46,7 +70,7 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  background: black; /* o el color que combine con tu marca */
+  background:var(--color-ndb-BlackPearl); /* o el color que combine con tu marca */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,3 +96,17 @@ body, html {
   animation: animate-preloader 4s linear infinite;
 }
 
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(14, 36, 106, 0.65),
+    rgba(0, 0, 0, 0.6)
+  ); /* de Madison a negro */
+  z-index: 1; /* entre el video y el contenido */
+  pointer-events: none;
+}
