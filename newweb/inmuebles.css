@@ -34,7 +34,7 @@
 
 .frase-buscador h2 {
   font-weight: var(--font-light);
-font-size: clamp(1.8rem, 5.5vw, 3.5rem);
+  font-size: clamp(1.8rem, 5.5vw, 3.5rem);
   line-height: 1.2;
 }
 
@@ -61,11 +61,9 @@ font-size: clamp(1.8rem, 5.5vw, 3.5rem);
   margin-top: 30px;
 }
 
-
-
 .buscador select {
   padding: 0.75rem 2.5rem 0.75rem 1rem;
-font-size: clamp(0.9rem, 2.5vw, 1.2rem); 
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
   border-radius: 5px;
   border: none;
   min-width: unset;
@@ -158,10 +156,10 @@ select::-ms-expand {
     align-items: center;
   }
   .buscador form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;   /* 👈 Centra horizontalmente */
-  justify-content: center; /* 👈 Centra verticalmente si hay espacio */
-  gap: 1rem;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 👈 Centra horizontalmente */
+    justify-content: center; /* 👈 Centra verticalmente si hay espacio */
+    gap: 1rem;
+  }
 }
