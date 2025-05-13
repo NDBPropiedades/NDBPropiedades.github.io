@@ -34,6 +34,8 @@
 
 .frase-buscador h2 {
   font-weight: var(--font-light);
+font-size: clamp(1.8rem, 5.5vw, 3.5rem);
+  line-height: 1.2;
 }
 
 .frase-buscador p {
@@ -48,10 +50,10 @@
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.4);
+  /* background-color: rgba(0, 0, 0, 0.4); */
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); */
   animation: fadeIn 1.5s ease-out forwards;
   opacity: 0; /* empieza invisible */
   position: relative !important;
