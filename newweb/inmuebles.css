@@ -65,7 +65,7 @@ font-size: clamp(1.8rem, 5.5vw, 3.5rem);
 
 .buscador select {
   padding: 0.75rem 2.5rem 0.75rem 1rem;
-  font-size: var(--font-size20);
+font-size: clamp(0.9rem, 2.5vw, 1.2rem); 
   border-radius: 5px;
   border: none;
   min-width: unset;
