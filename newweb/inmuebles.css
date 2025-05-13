@@ -1,17 +1,45 @@
 :root {
-  --color-ndb-Cobalt: #003eb0;
-  --color-ndb-Denim: #1663bf;
-  --color-ndb-Malibu: #7eccff;
   --color-ndb-Madison: #0e246a;
+  --color-ndb-BlackPearl: #03246a;
+  --color-ndb-Cobalt: #003eb0;
+  --color-ndb-Malibu: #7eccff;
+  --color-ndb-Sail: #b9e5fb;
+  --color-ndb-Denim: #1663bf;
   --color-ndb-White: #ffffff;
+  --color-ndb-Mercury: #e3e3e3;
+  --color-ndb-Gray: #8a8a8a;
   --color-ndb-Black: #000000;
-  --font-titulos: 'Satoshi', sans-serif;
-  --font-texto: 'Satoshi', sans-serif;
+  --font-titulos: "Satoshi", sans-serif;
+  --font-texto: "Satoshi", sans-serif;
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-bold: 700;
+  --font-size86: 5.5rem;
+  --font-size60: 4rem;
+  --font-size36: 2.5rem;
+  --font-size20: 1.3rem;
+}
+/* 86pt */
+h1 {
+  font-size: var(--font-size86);
+}
+/* 60pt */
+h2 {
+  font-size: var(--font-size60);
+}
+/* 36pt */
+h3 {
+  font-size: var(--font-size36);
+}
+/* 20pt */
+h4 {
+  font-size: var(--font-size20);
 }
 
 /* ------ Buscador Section ------ */
 .buscador-section {
- position: relative;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,21 +64,20 @@
 .frase-buscador {
   text-align: center;
   margin-bottom: 2rem;
-  color: white;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+  color: var(--color-ndb-Mercury);
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
   animation: fadeIn 1s ease-out forwards;
   opacity: 0; /* empieza invisible */
   z-index: 1; /* 👈 Esto asegura que el texto y los filtros estén por arriba del video */
 }
 
 .frase-buscador h2 {
-  font-size: 2.5rem;
-  font-weight: 400;
+  font-weight: var(--font-light);
 }
 
 .frase-buscador p {
-  font-size: 1.3rem;
-  font-weight: 400;
+  font-size: var(--font-size20);
+  font-weight: var(--font-light);
   margin-top: 0.5rem;
 }
 
@@ -63,37 +90,38 @@
   background-color: rgba(0, 0, 0, 0.4);
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   animation: fadeIn 1.5s ease-out forwards;
   opacity: 0; /* empieza invisible */
   position: relative !important;
   z-index: 2;
-margin-top: 30px;
+  margin-top: 30px;
 }
 
 .buscador select {
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  font-size: var(--font-size20);
   border-radius: 5px;
   border: none;
-  min-width: 160px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  min-width: unset;
+  width: auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   background-color: #fff;
   color: #333;
   cursor: pointer;
   font-family: var(--font-texto);
   appearance: none;
 }
-.buscador select:focus{
+.buscador select:focus {
   outline: none;
   box-shadow: 0 0 0 2px #38b6a3;
 }
 
 select {
   -webkit-appearance: none;
-  -moz-appearance:    none;
-  appearance:         none;
-  background:         none; /* opcional si tienes un background propio */
+  -moz-appearance: none;
+  appearance: none;
+  background: none; /* opcional si tienes un background propio */
 }
 .custom-select-fa {
   position: relative; /* para posicionar el icono */
@@ -106,7 +134,7 @@ select {
   right: 1rem;
   transform: translateY(-50%);
   pointer-events: none; /* para que no interfiera al abrir el menú */
-  font-size: 1rem;
+  font-size: var(--font-size20);
   color: #666;
 }
 
@@ -122,7 +150,8 @@ select::-ms-expand {
 }
 
 /* ------ Propiedades Section ------ */
-.propiedades-grid, .lista-propiedades {
+.propiedades-grid,
+.lista-propiedades {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
@@ -158,14 +187,13 @@ select::-ms-expand {
 }
 
 .card-content h3 {
-  font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
 
 .card-content p {
   margin-bottom: 0.5rem;
   color: #666;
-  font-size: 0.9rem;
+  font-size: var(--font-size20);
 }
 
 /* Iconos dentro de la card */
@@ -173,7 +201,7 @@ select::-ms-expand {
   display: flex;
   gap: 1rem;
   margin-top: 0.5rem;
-  font-size: 0.9rem;
+  font-size: var(--font-size20);
   color: #666;
 }
 
@@ -186,10 +214,10 @@ select::-ms-expand {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: var(--color-ndb-azul);
+  background-color: var(--color-ndb-Malibu);
   color: white;
   padding: 0.3rem 0.7rem;
-  font-size: 0.7rem;
+  font-size: var(--font-size20);
   font-weight: bold;
   text-transform: uppercase;
   border-radius: 5px;
@@ -201,7 +229,7 @@ select::-ms-expand {
 .loader {
   text-align: center;
   padding: 2rem;
-  font-size: 1.2rem;
+  font-size: var(--font-size20);
   color: #666;
 }
 
@@ -210,7 +238,7 @@ select::-ms-expand {
   display: block;
   margin: 2rem auto;
   padding: 0.75rem 2rem;
-  background-color: var(--color-ndb-azul);
+  background-color: var(--color-ndb-Malibu);
   color: white;
   border: none;
   border-radius: 5px;
@@ -220,7 +248,7 @@ select::-ms-expand {
 }
 
 .load-more:hover {
-  background-color: var(--color-ndb-azul-hover);
+  background-color: var(--color-ndb-Denim);
 }
 
 /* ------ Responsive ------ */

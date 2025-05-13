@@ -1,12 +1,74 @@
+/* 1. Carga de fuentes */
+@font-face {
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-Light.woff2") format("woff2"),
+    url("assets/fonts/satoshi/Satoshi-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-Regular.woff2") format("woff2"),
+    url("assets/fonts/satoshi/Satoshi-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-Medium.woff2") format("woff2"),
+    url("assets/fonts/satoshi/Satoshi-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-Bold.woff2") format("woff2"),
+    url("assets/fonts/satoshi/Satoshi-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
 :root {
-  --color-ndb-Cobalt: #003eb0;
-  --color-ndb-Denim: #1663bf;
-  --color-ndb-Malibu: #7eccff;
   --color-ndb-Madison: #0e246a;
+  --color-ndb-BlackPearl: #03246a;
+  --color-ndb-Cobalt: #003eb0;
+  --color-ndb-Malibu: #7eccff;
+  --color-ndb-Sail: #b9e5fb;
+  --color-ndb-Denim: #1663bf;
   --color-ndb-White: #ffffff;
+  --color-ndb-Mercury: #e3e3e3;
+  --color-ndb-Gray: #8a8a8a;
   --color-ndb-Black: #000000;
   --font-titulos: "Satoshi", sans-serif;
   --font-texto: "Satoshi", sans-serif;
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-bold: 700;
+  --font-size86: 5.5rem;
+  --font-size60: 4rem;
+  --font-size36: 2.5rem;
+  --font-size20: 1.3rem;
+}
+
+/* 86pt */
+h1 {
+  font-size: var(--font-size86);
+}
+/* 60pt */
+h2 {
+  font-size: var(--font-size60);
+}
+/* 36pt */
+h3 {
+  font-size: var(--font-size36);
+}
+/* 20pt */
+h4 {
+  font-size: var(--font-size20);
 }
 /* Reset básico */
 * {
@@ -22,10 +84,10 @@ body {
 }
 
 body {
-  background-color: var(--color-ndb-White);
+  background-color: var(--color-ndb-Mercury);
   font-family: var(--font-texto);
   line-height: 1.6;
-  padding-top: 85px; /* ajuste para header fijo */
+  padding-top: 100px; /* ajuste para header fijo */
 }
 
 .container {
@@ -46,9 +108,8 @@ h3,
   top: 0;
   left: 0;
   width: 100%;
-  height: 85px;
-  background-color: var(--color-ndb-Madison);
-  color: #fff;
+  height: 100px;
+  background-color: var(--color-ndb-Mercury);
   padding: 1rem 0;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
@@ -152,8 +213,8 @@ h3,
 
 /* Footer */
 .footer {
-  background-color: var(--color-ndb-Madison);
-  color: var(--color-ndb-White);
+  background-color: var(--color-ndb-Mercury);
+  color: var(--color-ndb-BlackPearl);
   text-align: center;
   padding: 2rem 1rem;
   margin-top: 4rem;
@@ -167,8 +228,8 @@ h3,
 }
 
 .footer .redes a {
-  color: var(--color-ndb-White);
-  font-size: 1.5rem;
+  color: var(--color-ndb-BlackPearl);
+  font-size: var(--font-size20);
   transition: color 0.3s ease;
 }
 
@@ -195,21 +256,20 @@ h3,
 }
 
 .footer-logo {
-  width: 180px;
+  width: 200px;
   height: auto;
 }
 
 .footer-center h4 {
-  font-size: 1rem;
   margin-bottom: 0.5rem;
-  font-weight: 400;
+  font-weight: var(--font-light);
 }
 
 .footer-center p,
 .footer-center a {
-  font-size: 0.9rem;
+  font-size: var(--font-size20);
   margin: 0.2rem 0;
-  color: white;
+  color: var(--color-ndb-BlackPearl);
   text-decoration: none;
 }
 
@@ -235,7 +295,7 @@ h3,
 .footer-right a {
   color: var(--color-ndb-Black);
   text-decoration: none;
-  font-weight: 400;
+  font-weight: var(--font-medium);
 }
 
 .footer-right a:hover {
@@ -250,7 +310,7 @@ h3,
   position: absolute;
   bottom: 100%;
   right: 0;
-  background-color: var(--color-ndb-White);
+  background-color: var(--color-ndb-Mercury);
   padding: 1rem;
   border-radius: 5px;
   flex-direction: column;
@@ -272,8 +332,8 @@ h3,
   display: none;
   background: none;
   border: none;
-  color: var(--color-ndb-White);
-  font-size: 2rem;
+  color: var(--color-ndb-Mercury);
+  font-size: var(--font-size36);
   cursor: pointer;
 }
 
@@ -294,7 +354,7 @@ h3,
     right: 0;
     left: 0; /* 👈 Hacemos que vaya de borde a borde */
     width: 100%; /* 👈 Forzamos ancho completo */
-    background-color: var(--color-ndb-White);
+    background-color: var(--color-ndb-Mercury);
     flex-direction: column;
     padding: 1rem 0;
     display: none;
@@ -314,8 +374,8 @@ h3,
 
   .nav li a {
     color: var(--color-ndb-Black) !important;
-    font-weight: 400;
-    font-size: 1.2rem;
+    font-weight: var(--font-light);
+    font-size: var(--font-size20);
   }
 
   .footer-container {
@@ -354,7 +414,7 @@ h3,
     bottom: 100%;
     left: 0;
     width: 100%;
-    background-color: var(--color-ndb-White);
+    background-color: var(--color-ndb-Mercury);
     padding: 1rem 0;
     display: none;
     flex-direction: column;
@@ -380,17 +440,17 @@ h3,
 
   .footer-menu a {
     color: var(--color-ndb-Black);
-    font-weight: 400;
-    font-size: 1.2rem;
+    font-weight: var(--font-light);
+    font-size: var(--font-size20);
   }
   .footer-menu a:hover {
     color: var(--color-ndb-Black);
-    font-weight: 400;
-    font-size: 1.2rem;
+    font-weight: var(--font-light);
+    font-size: var(--font-size20);
     text-decoration: underline;
-    text-underline-offset: 15px; 
+    text-underline-offset: 15px;
     text-decoration-color: var(--color-ndb-Malibu);
-    text-decoration-thickness: 1.5px;  
+    text-decoration-thickness: 1.5px;
   }
 }
 
@@ -403,8 +463,8 @@ h3,
   display: none;
   background: none;
   border: none;
-  color: var(--color-ndb-White);
-  font-size: 2rem;
+  color: var(--color-ndb-Mercury);
+  font-size: var(--font-size36);
   cursor: pointer;
 }
 
@@ -415,12 +475,12 @@ h3,
 /* Botón Tasá tu inmueble */
 .tasa-btn {
   background-color: var(--color-ndb-Malibu);
-  color: var(--color-ndb-White) !important;
+  color: var(--color-ndb-BlackPearl);
   padding: 0.6rem 1.2rem;
   border-radius: 5px;
   border: none;
-  font-weight: bold  !important;
-  font-size: 1rem;
+  font-weight: var(--font-light) !important;
+  font-size: var(--font-size20);
   text-decoration: none;
   white-space: nowrap;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -428,7 +488,7 @@ h3,
 
 .tasa-btn:hover {
   background-color: var(--color-ndb-Denim);
-  color: var(--color-ndb-White);
+  color: var(--color-ndb-Mercury);
   text-decoration: none !important;
 }
 
@@ -447,23 +507,22 @@ h3,
 }
 
 .nav li a {
-  color: #fff;
+  color: var(--color-ndb-Madison);
   text-decoration: none;
-  font-weight: 400;
-  font-size: 1.2rem;
+  font-weight: var(--font-medium);
 }
 
 .nav a:hover {
   text-decoration: underline;
-  text-underline-offset: 15px; 
+  text-underline-offset: 15px;
   text-decoration-color: var(--color-ndb-Malibu);
-  text-decoration-thickness: 1.5px;  
+  text-decoration-thickness: 1.5px;
 }
 
 /* Logo */
 .logo img {
-  height: 60px;
-  width: auto;
+  height: auto;
+  width: 200px;
   display: block;
 }
 
@@ -531,7 +590,7 @@ h3,
     margin-top: 0.5rem;
     margin-bottom: 1rem;
     padding: 0.6rem 1.2rem;
-    font-size: 1rem;
+    font-size: var(--font-size20);
     text-align: center;
   }
 }
@@ -555,13 +614,13 @@ h3,
   }
 
   .footer-menu a {
-    color: white;
+    color: var(--color-ndb-BlackPearl);
   }
-  .footer-menu a:hover{
+  .footer-menu a:hover {
     text-decoration: underline;
-    text-underline-offset: 10px; 
+    text-underline-offset: 10px;
     text-decoration-color: var(--color-ndb-Malibu);
-    text-decoration-thickness: 1.5px;  
+    text-decoration-thickness: 1.5px;
   }
 
   .footer-menu-toggle {
@@ -573,10 +632,10 @@ h3,
   padding: 2rem 0;
 }
 
-.propiedades h2 {
+.propiedades h3 {
   text-align: center;
   margin-bottom: 2rem;
-  font-size: 2rem;
+  font-weight: var(--font-light);
 }
 
 /* Swiper general de propiedades */
@@ -629,7 +688,6 @@ h3,
 
 /* Información de cada propiedad */
 .card h3 {
-  font-size: 1.2rem;
   margin: 1rem;
 }
 
@@ -646,7 +704,7 @@ h3,
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  font-size: 1rem;
+  font-size: var(--font-size20);
 }
 
 .swiper-pagination-bullet {
@@ -660,8 +718,8 @@ h3,
   background-color: #000; /* Fondo negro */
   color: white;
   padding: 0.3rem 0.7rem;
-  font-size: 0.7rem;
-  font-weight: bold;
+  font-size: var(--font-size20);
+  font-weight: var(--font-light);
   text-transform: uppercase;
   border-radius: 5px;
   z-index: 10;
@@ -673,11 +731,25 @@ h3,
   align-items: center;
   gap: 1rem;
   margin: 0 1rem 1rem;
-  font-size: 0.9rem;
+  font-size: var(--font-size20);
   color: #666;
 }
 
 .iconos-card i {
   margin-right: 0.3rem;
   color: #666; /* mismo verde que el botón, o poné #0099cc si querés */
+}
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(14, 36, 106, 0.65),
+    rgba(0, 0, 0, 0.6)
+  ); /* de Madison a negro */
+  z-index: 1; /* entre el video y el contenido */
+  pointer-events: none;
 }

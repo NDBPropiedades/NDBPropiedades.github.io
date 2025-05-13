@@ -1,16 +1,44 @@
 :root {
-  --color-ndb-Cobalt: #003eb0;
-  --color-ndb-Denim: #1663bf;
-  --color-ndb-Malibu: #7eccff;
   --color-ndb-Madison: #0e246a;
+  --color-ndb-BlackPearl: #03246a;
+  --color-ndb-Cobalt: #003eb0;
+  --color-ndb-Malibu: #7eccff;
+  --color-ndb-Sail: #b9e5fb;
+  --color-ndb-Denim: #1663bf;
   --color-ndb-White: #ffffff;
+  --color-ndb-Mercury: #e3e3e3;
+  --color-ndb-Gray: #8a8a8a;
   --color-ndb-Black: #000000;
   --font-titulos: "Satoshi", sans-serif;
   --font-texto: "Satoshi", sans-serif;
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-bold: 700;
+  --font-size86: 5.5rem;
+  --font-size60: 4rem;
+  --font-size36: 2.5rem;
+  --font-size20: 1.3rem;
+}
+/* 86pt */
+h1 {
+  font-size: var(--font-size86);
+}
+/* 60pt */
+h2 {
+  font-size: var(--font-size60);
+}
+/* 36pt */
+h3 {
+  font-size: var(--font-size36);
+}
+/* 20pt */
+h4 {
+  font-size: var(--font-size20);
 }
 
 body {
-  color: #333;
+  color: var(--color-ndb-BlackPearl);
 }
 
 .frase-buscador .frase-btns {
@@ -25,28 +53,29 @@ body {
   padding: 0.8rem 1.6rem;
   border-radius: 5px;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: var(--font-light);
   text-decoration: none;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .btn-primary {
-  background-color: var(--color-ndb-Madison);
-  color: var(--color-ndb-White);
+  background-color: var(--color-ndb-Malibu);
+  color: var(--color-ndb-BlackPearl);
   border-radius: 25px;
 }
 .btn-primary:hover {
-  background-color: var(--color-ndb-Malibu);
+  background-color: var(--color-ndb-Denim);
+  color: var(--color-ndb-Mercury);
 }
 
 .btn-secondary {
-  background-color: var(--color-ndb-Madison);
-  color: var(--color-ndb-white);
+  background-color: var(--color-ndb-Malibu);
+  color: var(--color-ndb-BlackPearl);
   border-radius: 25px;
 }
 .btn-secondary:hover {
-  background-color: var(--color-ndb-Malibu);
-  color: var(--color-ndb-White);
+  background-color: var(--color-ndb-Denim);
+  color: var(--color-ndb-Mercury);
 }
 /* Slider principal (video) */
 .slider {
@@ -89,8 +118,7 @@ body {
 }
 .frase-buscador h2 {
   font-family: var(--font-titulos);
-  font-size: 2.5rem;
-  font-weight: 400;
+  font-weight: var(--font-light);
   padding: 0.5rem 1rem;
   /* background-color: rgba(23, 23, 23, 0.671); */
   color: #fff;
@@ -99,11 +127,10 @@ body {
 }
 
 .frase-buscador p {
-  font-size: 1.3rem;
-  font-weight: 400;
+  font-size: var(--font-size20);
+  font-weight: var(--font-light);
   margin-top: 0.5rem;
   color: white;
-  /* background-color: var(--color-ndb-azul); */
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
@@ -120,14 +147,14 @@ body {
 
 .buscador-avanzado select,
 .buscador-avanzado button {
-  font-size: 1rem;
+  font-size: var(--font-size20);
   border-radius: 5px;
   border: none;
 }
 
 .buscador-avanzado select {
   padding: 0.75rem 1rem;
-  font-size: 1rem;
+  font-size: var(--font-size20);
   background-color: #fff;
   border-radius: 5px;
   color: #333;
@@ -168,7 +195,7 @@ body {
   background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 1.25rem;
+  font-size: var(--font-size20);
   color: #333;
   transition: color 0.2s;
 }
@@ -192,15 +219,18 @@ body {
 }
 
 .acerca-section {
-  background: var(--color-ndb-Madison);
+  background: var(--color-ndb-BlackPearl);
   padding: 4rem 1rem;
 }
 
 .acerca-container {
   display: flex;
-  flex-wrap: wrap;
   gap: 2rem;
   align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
 }
 
 .acerca-imagen {
@@ -218,8 +248,8 @@ body {
 }
 
 .acerca-texto h2 {
-  font-size: 2rem;
-  font-weight: 400;
+  font-size: var(--font-size36);
+  font-weight: var(--font-light);
   margin-bottom: 1rem;
   color: white;
 }
@@ -245,7 +275,7 @@ body {
 
 .typewriter {
   font-family: var(--font-titulos);
-  font-size: 2rem;
+  font-size: var(--font-size36);
   white-space: nowrap;
   overflow: hidden;
   border-right: 3px solid var(--color-ndb-Malibu); /* cursor */
@@ -273,24 +303,25 @@ body {
   padding: 0.75rem 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: var(--font-size20);
 }
 
 /* Tasa tu inmueble – Estilos base */
 .tasa-section {
-  background-color: #f9f9f9;
+  background-color: var(--color-ndb-BlackPearl);
   padding: 4rem 1rem;
   text-align: center;
 }
 
 .tasa-title {
-  font-size: 2.5rem;
+  color: var(--color-ndb-Mercury);
+  font-size: var(--font-size36);
   margin-bottom: 0.5rem;
   font-family: var(--font-titulos);
 }
 
 .tasa-subtitle {
-  font-size: 1.2rem;
+  font-size: var(--font-size20);
   margin-bottom: 2rem;
   font-family: var(--font-texto);
   color: #666;
@@ -316,7 +347,7 @@ body {
 .tasa-form textarea {
   flex: 1;
   padding: 0.75rem 1rem;
-  font-size: 1rem;
+  font-size: var(--font-size20);
   border-radius: 5px;
   border: 1px solid #ccc;
   font-family: var(--font-texto);
@@ -327,7 +358,7 @@ body {
 .tasa-form input:focus,
 .tasa-form select:focus,
 .tasa-form textarea:focus {
-  border-color: var(--color-ndb-azul);
+  border-color: var(--color-ndb-Malibu);
   outline: none;
 }
 
@@ -440,7 +471,7 @@ body {
 
 .steps-title {
   font-family: var(--font-titulos);
-  font-size: 2rem;
+  font-size: var(--font-size36);
 }
 /* Animación de aparición */
 @keyframes stepIn {
@@ -527,8 +558,8 @@ body {
 
 .circle span {
   font-family: var(--font-titulos);
-  font-size: 1.5rem;
-  color: var(--color-ndb-White);
+  font-size: var(--font-size20);
+  color: var(--color-ndb-Mercury);
   z-index: 1;
 }
 
@@ -536,7 +567,7 @@ body {
   max-width: 140px;
   font-family: var(--font-texto);
   color: var(--color-ndb-Madison);
-  font-size: 0.9rem;
+  font-size: var(--font-size20);
   line-height: 1.4;
   text-align: center;
 }
@@ -564,7 +595,7 @@ body {
     height: 72px;
   }
   .circle span {
-    font-size: 1.2rem;
+    font-size: var(--font-size20);
   }
 }
 

@@ -73,7 +73,7 @@ function crearCardHTML(p, index) {
             <div class="swiper-button-prev"></div>
           </div>
   
-          <h3>${p.tipoPropiedad} en ${p.localidad}</h3>
+          <h4>${p.tipoPropiedad} en ${p.localidad}</h4>
           <p>${p.descripcion}</p>
           <p><strong>${p.valor}</strong></p>
   
