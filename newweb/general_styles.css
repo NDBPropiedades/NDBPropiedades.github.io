@@ -296,7 +296,7 @@ h3,
 .footer-right a {
   color: var(--color-ndb-Black);
   text-decoration: none;
-  font-weight: var(--font-medium);
+  font-weight: var(--font-regular);
 }
 
 .footer-right a:hover {
