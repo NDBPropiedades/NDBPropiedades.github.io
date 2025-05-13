@@ -228,7 +228,7 @@ h3,
 }
 
 .footer .redes a {
-  color: var(--color-ndb-BlackPearl);
+  color: var(--color-ndb-Madison);
   font-size: var(--font-size20);
   transition: color 0.3s ease;
 }
@@ -249,14 +249,21 @@ h3,
   flex: 1 1 30%;
   display: flex;
   flex-wrap: nowrap;
-  align-content: center;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
+}
+.footer-left{
+  align-items: center;
+  align-content: center;
+}
+
+.footer-center{
+  align-items: flex-end;
+  align-content: flex-end;
 }
 
 .footer-logo {
-  width: 200px;
+  width: 250px;
   height: auto;
 }
 
@@ -267,9 +274,9 @@ h3,
 
 .footer-center p,
 .footer-center a {
-  font-size: var(--font-size20);
+  font-size: 1rem;
   margin: 0.2rem 0;
-  color: var(--color-ndb-BlackPearl);
+  color: var(--color-ndb-Madison);
   text-decoration: none;
 }
 
@@ -283,7 +290,7 @@ h3,
   margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 0.2rem;
 }
@@ -293,7 +300,6 @@ h3,
 }
 
 .footer-right a {
-  color: var(--color-ndb-Black);
   text-decoration: none;
   font-weight: var(--font-regular);
 }
@@ -332,7 +338,7 @@ h3,
   display: none;
   background: none;
   border: none;
-  color: var(--color-ndb-BlackPearl);
+  color: var(--color-ndb-Madison);
   font-size: var(--font-size36);
   cursor: pointer;
 }
@@ -390,6 +396,11 @@ h3,
     flex: 1 1 100%;
   }
 
+   .footer-center{
+    align-items: center;
+    align-content: center;
+   }
+
   .footer-right {
     margin-top: 30px;
     position: relative; /* 👈 Esto es clave */
@@ -436,15 +447,16 @@ h3,
     transform: translateY(0);
     pointer-events: auto;
     border-radius: 25px;
+    align-items: center;
   }
 
   .footer-menu a {
-    color: var(--color-ndb-BlackPearl);
-    font-weight: var(--font-medium);
-    font-size: var(--font-size20);
+    color: var(--color-ndb-Madison);
+    font-weight: var(--font-regular);
+    font-size: 1rem;
   }
   .footer-menu a:hover {
-    color: var(--color-ndb-BlackPearl);
+    color: var(--color-ndb-Madison);
     font-weight: var(--font-medium);
     font-size: var(--font-size20);
     text-decoration: underline;
@@ -463,7 +475,7 @@ h3,
   display: none;
   background: none;
   border: none;
-  color: var(--color-ndb-BlackPearl);
+  color: var(--color-ndb-Madison);
   font-size: var(--font-size36);
   cursor: pointer;
 }
@@ -488,7 +500,7 @@ h3,
 
 .tasa-btn:hover {
   background-color: var(--color-ndb-Denim);
-  color: var(--color-ndb-Mercury);
+  color: var(--color-ndb-white);
   text-decoration: none !important;
 }
 
@@ -514,6 +526,8 @@ h3,
 }
 
 .nav a:hover {
+  color: var(--color-ndb-Madison);
+  font-weight: var(--font-medium);
   text-decoration: underline;
   text-underline-offset: 15px;
   text-decoration-color: var(--color-ndb-Malibu);
@@ -580,7 +594,7 @@ h3,
   }
 
   .nav li a {
-    color: var(--color-ndb-BlackPearl) !important;
+    color: var(--color-ndb-Madison) !important;
   }
 
   .card {
@@ -615,7 +629,7 @@ h3,
   }
 
   .footer-menu a {
-    color: var(--color-ndb-BlackPearl);
+    color: var(--color-ndb-Madison);
   }
   .footer-menu a:hover {
     text-decoration: underline;
@@ -747,7 +761,9 @@ h3,
 
 .iconos-card i {
   margin-right: 0.3rem;
-  color: var(--color-ndb-Gray); /* mismo verde que el botón, o poné #0099cc si querés */
+  color: var(
+    --color-ndb-Gray
+  ); /* mismo verde que el botón, o poné #0099cc si querés */
 }
 .video-overlay {
   position: absolute;
