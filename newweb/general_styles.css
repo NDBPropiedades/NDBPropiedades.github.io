@@ -88,6 +88,7 @@ body {
   font-family: var(--font-texto);
   line-height: 1.6;
   padding-top: 100px; /* ajuste para header fijo */
+  color: var(--color-ndb-BlackPearl);
 }
 
 .container {
@@ -643,7 +644,7 @@ h3,
   text-align: left;
   font-size: var(--font-size20);
   margin-bottom: 2rem;
-  font-weight: var(--font-light);
+  font-weight: var(--font-regular);
 }
 
 /* Swiper general de propiedades */
@@ -701,7 +702,8 @@ h3,
 
 .card p {
   margin: 0 1rem 1rem;
-  color: #666;
+  color: var(--color-ndb-Gray);
+  font-weight: var(--font-regular);
 }
 
 /* Swiper flechas y bullets */
@@ -740,12 +742,12 @@ h3,
   gap: 1rem;
   margin: 0 1rem 1rem;
   font-size: var(--font-size20);
-  color: #666;
+  color: var(--color-ndb-Gray);
 }
 
 .iconos-card i {
   margin-right: 0.3rem;
-  color: #666; /* mismo verde que el botón, o poné #0099cc si querés */
+  color: var(--color-ndb-Gray); /* mismo verde que el botón, o poné #0099cc si querés */
 }
 .video-overlay {
   position: absolute;

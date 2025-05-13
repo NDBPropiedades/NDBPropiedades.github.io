@@ -6,62 +6,67 @@ const filtroZona = document.getElementById("filtro-zona");
 const filtroPartido = document.getElementById("filtro-partido");
 const filtroLocalidad = document.getElementById("filtro-localidad");
 const ordenSelect = document.getElementById("filtro-orden");
-const contenedorPropiedades = document.getElementById('lista-propiedades');
+const contenedorPropiedades = document.getElementById("lista-propiedades");
 
 let paginaActual = 1;
 const propiedadesPorPagina = 9;
 let propiedadesFiltradasGlobal = []; // Para infinite scroll
 
 // --- Preprocesar propiedades ---
-const propiedadesConDatos = propiedades.map(p => ({
+const propiedadesConDatos = propiedades.map((p) => ({
   ...p,
   zona: p.zona || "Zona Norte",
   partido: p.partido || "San Isidro",
-  localidad: p.localidad || "San Isidro"
+  localidad: p.localidad || "San Isidro",
 }));
 
 // --- 0) Crear dinámicamente el contenedor de "no results" ---
-let noResults = document.getElementById('no-results');
+let noResults = document.getElementById("no-results");
 if (!noResults) {
-  noResults = document.createElement('div');
-  noResults.id = 'no-results';
-  noResults.textContent = 'Lo siento, no encontramos propiedades disponibles.';
+  noResults = document.createElement("div");
+  noResults.id = "no-results";
+  noResults.textContent = "Lo siento, no encontramos propiedades disponibles.";
   Object.assign(noResults.style, {
-    display: 'none',
-    textAlign: 'center',
-    padding: '2rem',
-    fontSize: '1.25rem',
-    color: '#666'
+    display: "none",
+    textAlign: "center",
+    padding: "2rem",
+    fontSize: "1.25rem",
+    color: "#666",
   });
-  contenedorPropiedades.parentNode.insertBefore(noResults, contenedorPropiedades.nextSibling);
+  contenedorPropiedades.parentNode.insertBefore(
+    noResults,
+    contenedorPropiedades.nextSibling
+  );
 }
 
 // --- 1) Función para leer URL y poblar selects ---
 function poblarFiltrosDesdeURL() {
   const params = new URLSearchParams(window.location.search);
-  if (params.get('operacion'))    filtroOperacion.value  = params.get('operacion');
-  if (params.get('tipologia'))    filtroTipologia.value  = params.get('tipologia');
-  if (params.get('zona'))         filtroZona.value       = params.get('zona');
-  if (params.get('partido'))      filtroPartido.value    = params.get('partido');
-  if (params.get('localidad'))    filtroLocalidad.value  = params.get('localidad');
-  if (params.get('orden'))        ordenSelect.value      = params.get('orden');
+  if (params.get("operacion")) filtroOperacion.value = params.get("operacion");
+  if (params.get("tipologia")) filtroTipologia.value = params.get("tipologia");
+  if (params.get("zona")) filtroZona.value = params.get("zona");
+  if (params.get("partido")) filtroPartido.value = params.get("partido");
+  if (params.get("localidad")) filtroLocalidad.value = params.get("localidad");
+  if (params.get("orden")) ordenSelect.value = params.get("orden");
 }
 
 poblarFiltrosDesdeURL();
-    
+
 // --- Función: Crear HTML de cada card ---
 function crearCardHTML(p, index) {
-    const colorTag = p.tipoTransaccion === "Venta" ? "#38b6a3" : "#0099cc";
-  
-    const slidesHTML = (p.imagenes || []).map(
+  const colorTag = p.tipoTransaccion === "Venta" ? "#38b6a3" : "#0099cc";
+
+  const slidesHTML = (p.imagenes || [])
+    .map(
       (img) => `
         <div class="swiper-slide">
           <img src="${img}" alt="${p.tipoPropiedad} en ${p.localidad}">
         </div>
       `
-    ).join("");
-  
-    return `
+    )
+    .join("");
+
+  return `
       <div class="swiper-slide">
         <div class="card">
           <div class="swiper mySwiper" id="swiper-${index}" style="position: relative;">
@@ -73,7 +78,7 @@ function crearCardHTML(p, index) {
             <div class="swiper-button-prev"></div>
           </div>
   
-          <h4>${p.tipoPropiedad} en ${p.localidad}</h4>
+          <h3>${p.tipoPropiedad} en ${p.localidad}</h3>
           <p>${p.descripcion}</p>
           <p><strong>${p.valor}</strong></p>
   
@@ -85,29 +90,30 @@ function crearCardHTML(p, index) {
         </div>
       </div>
     `;
-  }
+}
 // --- Función: Cargar propiedades ---
 function cargarPropiedades(lista) {
-    const inicio = (paginaActual - 1) * propiedadesPorPagina;
-    const fin = inicio + propiedadesPorPagina;
-    const propsParaMostrar = lista.slice(inicio, fin);
-  
-    // const loader = document.getElementById("loader");
-    // loader.style.display = "block";
-  
-    propsParaMostrar.forEach((propiedad, index) => {
-      const cardHTML = crearCardHTML(propiedad, index);
-      contenedorPropiedades.insertAdjacentHTML('beforeend', cardHTML);
-    });
-  
-    inicializarSwipers();
-    // loader.style.display = "none";
-  }
+  const inicio = (paginaActual - 1) * propiedadesPorPagina;
+  const fin = inicio + propiedadesPorPagina;
+  const propsParaMostrar = lista.slice(inicio, fin);
+
+  // const loader = document.getElementById("loader");
+  // loader.style.display = "block";
+
+  propsParaMostrar.forEach((propiedad, index) => {
+    const cardHTML = crearCardHTML(propiedad, index);
+    contenedorPropiedades.insertAdjacentHTML("beforeend", cardHTML);
+  });
+
+  inicializarSwipers();
+  // loader.style.display = "none";
+}
 
 // --- Función: Inicializar todos los Swipers de las propiedades ---
 function inicializarSwipers() {
-  document.querySelectorAll(".mySwiper").forEach(swiper => {
-    if (!swiper.swiper) { // Evitar reinicializar
+  document.querySelectorAll(".mySwiper").forEach((swiper) => {
+    if (!swiper.swiper) {
+      // Evitar reinicializar
       new Swiper(swiper, {
         loop: true,
         pagination: {
@@ -117,7 +123,7 @@ function inicializarSwipers() {
         autoplay: {
           delay: 4000,
           disableOnInteraction: false,
-        }
+        },
       });
     }
   });
@@ -128,24 +134,22 @@ function aplicarFiltros() {
   let filtradas = [...propiedadesConDatos];
 
   // FILTRAR OPERACIÓN sólo si NO es la opción default
-  if (filtroOperacion.value && filtroOperacion.value !== 'default') {
+  if (filtroOperacion.value && filtroOperacion.value !== "default") {
     filtradas = filtradas.filter(
-      p => p.tipoTransaccion === filtroOperacion.value
+      (p) => p.tipoTransaccion === filtroOperacion.value
     );
   }
 
   // FILTRAR TIPOLOGÍA
-  if (filtroTipologia.value && filtroTipologia.value !== 'default') {
+  if (filtroTipologia.value && filtroTipologia.value !== "default") {
     filtradas = filtradas.filter(
-      p => p.tipoPropiedad === filtroTipologia.value
+      (p) => p.tipoPropiedad === filtroTipologia.value
     );
   }
 
   // FILTRAR ZONA
-  if (filtroZona.value && filtroZona.value !== 'default') {
-    filtradas = filtradas.filter(
-      p => p.zona === filtroZona.value
-    );
+  if (filtroZona.value && filtroZona.value !== "default") {
+    filtradas = filtradas.filter((p) => p.zona === filtroZona.value);
   }
 
   // FILTRAR PARTIDO
@@ -163,7 +167,7 @@ function aplicarFiltros() {
   // }
 
   // ORDENAR sólo si NO es default
-  if (ordenSelect.value && ordenSelect.value !== 'default') {
+  if (ordenSelect.value && ordenSelect.value !== "default") {
     filtradas = ordenarPropiedades(filtradas, ordenSelect.value);
   }
 
@@ -173,24 +177,29 @@ function aplicarFiltros() {
 
   if (filtradas.length === 0) {
     // si no hay coincidencias, muestro mensaje y me voy
-    noResults.style.display = 'block';
+    noResults.style.display = "block";
     return;
   } else {
     // oculto el mensaje y cargo normalmente
-    noResults.style.display = 'none';
+    noResults.style.display = "none";
     cargarPropiedades(propiedadesFiltradasGlobal);
   }
 }
 
 // --- Función: Ordenar propiedades ---
 function ordenarPropiedades(lista, criterio) {
-  const extraccionNumero = (valor) => Number(valor.replace(/[^0-9.-]+/g, "")) || 0;
+  const extraccionNumero = (valor) =>
+    Number(valor.replace(/[^0-9.-]+/g, "")) || 0;
 
   switch (criterio) {
     case "precio-desc":
-      return lista.sort((a, b) => extraccionNumero(b.valor) - extraccionNumero(a.valor));
+      return lista.sort(
+        (a, b) => extraccionNumero(b.valor) - extraccionNumero(a.valor)
+      );
     case "precio-asc":
-      return lista.sort((a, b) => extraccionNumero(a.valor) - extraccionNumero(b.valor));
+      return lista.sort(
+        (a, b) => extraccionNumero(a.valor) - extraccionNumero(b.valor)
+      );
     case "titulo-asc":
       return lista.sort((a, b) => a.descripcion.localeCompare(b.descripcion));
     case "titulo-desc":
@@ -213,7 +222,14 @@ window.addEventListener("scroll", () => {
 });
 
 // --- Eventos de filtros ---
-[filtroOperacion, filtroTipologia, filtroZona, filtroPartido, filtroLocalidad, ordenSelect].forEach(el => {
+[
+  filtroOperacion,
+  filtroTipologia,
+  filtroZona,
+  filtroPartido,
+  filtroLocalidad,
+  ordenSelect,
+].forEach((el) => {
   if (el) {
     el.addEventListener("change", aplicarFiltros);
   }
