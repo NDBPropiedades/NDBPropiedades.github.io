@@ -324,7 +324,7 @@ body {
   font-size: var(--font-size20);
   margin-bottom: 2rem;
   font-family: var(--font-texto);
-  color: #666;
+  color: var(--color-ndb-Sail);
 }
 
 .tasa-form {
@@ -470,8 +470,9 @@ body {
 }
 
 .steps-title {
-  font-family: var(--font-titulos);
-  font-size: var(--font-size36);
+    text-align: center;
+    font-size: var(--font-size36);
+    font-weight: var(--font-light);
 }
 /* Animación de aparición */
 @keyframes stepIn {
