@@ -33,7 +33,7 @@
 
 :root {
   --color-ndb-Madison: #0e246a;
-  --color-ndb-BlackPearl: #03246a;
+  --color-ndb-BlackPearl: rgb(7, 19, 53);
   --color-ndb-Cobalt: #003eb0;
   --color-ndb-Malibu: #7eccff;
   --color-ndb-Sail: #b9e5fb;
