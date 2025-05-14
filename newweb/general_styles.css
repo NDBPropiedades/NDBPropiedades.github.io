@@ -777,7 +777,7 @@ h3,
   height: 100%;
   background: linear-gradient(
     to bottom,
-    rgba(14, 36, 106, 0.65),
+    rgba(14, 35, 106, 0.402),
     rgba(0, 0, 0, 0.6)
   ); /* de Madison a negro */
   z-index: 1; /* entre el video y el contenido */
