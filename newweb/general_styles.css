@@ -783,3 +783,13 @@ h3,
   z-index: 1; /* entre el video y el contenido */
   pointer-events: none;
 }
+.slider-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+}
