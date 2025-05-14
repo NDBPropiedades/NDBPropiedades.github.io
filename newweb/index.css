@@ -420,7 +420,7 @@
 
 .steps-title {
   text-align: center;
-  font-size: var(--font-size36);
+font-size: clamp(1.8rem, 6vw, 3rem);
   font-weight: var(--font-light);
 }
 /* Animación de aparición */
