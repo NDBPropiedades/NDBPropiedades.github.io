@@ -15,25 +15,18 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.btn-primary {
-  background-color: var(--color-ndb-Malibu);
-  color: var(--color-ndb-BlackPearl);
-  border-radius: 25px;
-}
-.btn-primary:hover {
-  background-color: var(--color-ndb-Denim);
-  color: var(--color-ndb-Mercury);
-}
-
+.btn-primary,
 .btn-secondary {
   background-color: var(--color-ndb-Malibu);
   color: var(--color-ndb-BlackPearl);
   border-radius: 25px;
 }
+.btn-primary:hover,
 .btn-secondary:hover {
   background-color: var(--color-ndb-Denim);
   color: var(--color-ndb-Mercury);
 }
+
 /* Slider principal (video) */
 .slider {
   position: relative;
@@ -57,7 +50,7 @@
 }
 
 .slider-content {
-  position: relative !important;
+  position: relative;
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.4);
   padding: 2rem;
@@ -66,12 +59,8 @@
 }
 
 .frase-buscador {
-  position: relative !important;
-  left: 50%;
-  transform: translateX(-50%);
   text-align: center;
-  color: #fff; /* o el color que uses */
-  z-index: 2; /* para que quede sobre el video */
+  margin: 0 auto;
 }
 .frase-buscador h2 {
   font-family: var(--font-titulos);
@@ -420,6 +409,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
+    margin-top: 90px;
   }
 
   /* 2) Separación entre texto y filtros */
