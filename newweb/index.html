@@ -219,269 +219,121 @@
       </div>
     </section>
 
-    <section class="steps-section" id="proceso-compra">
-      <div class="containers" style="margin-top: 50px">
-        <h2 class="steps-title">Nuestro proceso para vender tu casa</h2>
-      </div>
+ <section class="steps-section" id="proceso-compra">
+  <div class="containers" style="margin-top: 50px">
+    <h2 class="steps-title">Nuestro proceso para vender tu casa</h2>
+  </div>
 
-      <div class="steps-svg-wrapper">
-        <svg
-          width="600"
-          height="700"
-          viewBox="0 0 400 400"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <!-- Opcional: círculo guía -->
-          <circle
-            cx="200"
-            cy="200"
-            r="150"
-            fill="none"
-            stroke="#ddd"
-            stroke-dasharray="4 4"
-          />
+  <div class="steps-svg-wrapper">
+    <svg
+      viewBox="0 0 400 400"
+      preserveAspectRatio="xMidYMid meet"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="200"
+        cy="200"
+        r="150"
+        fill="none"
+        stroke="#ddd"
+        stroke-dasharray="4 4"
+      />
 
-          <!-- 360/7 ≈ 51.4286° -->
-          <!-- Paso 1 -->
-          <g transform="translate(200,200) rotate(-90)">
-            <g transform="translate(150,0) rotate(90)">
-              <circle r="28" fill="var(--color-ndb-Malibu)" />
-              <circle
-                r="33"
-                fill="none"
-                stroke="var(--color-ndb-Denim)"
-                stroke-dasharray="4 4"
-              />
-              <text
-                x="0"
-                y="5"
-                text-anchor="middle"
-                font-family="Satoshi, sans-serif"
-                font-size="18"
-                fill="var(--color-ndb-White)"
-              >
-                1
-              </text>
-              <text
-                x="0"
-                y="48"
-                text-anchor="middle"
-                font-family="Satoshi, sans-serif"
-                font-size="12"
-                fill="var(--color-ndb-Madison)"
-              >
-                <tspan x="0" dy="0">Coordina visita</tspan>
-                <tspan x="0" dy="1.2em">a tu propiedad</tspan>
-              </text>
-            </g>
-          </g>
+      <!-- Pasos con animación por clase .step -->
+      <!-- 360 / 7 = 51.4286 grados por paso -->
+      <!-- Paso 1 -->
+      <g class="step paso-1" transform="translate(200,200) rotate(-90)">
+        <g transform="translate(150,0) rotate(90)">
+          <circle r="28" class="circle-bg" />
+          <circle r="33" class="circle-outline" />
+          <text x="0" y="5" class="circle-number">1</text>
+          <text x="0" y="48" class="circle-text">
+            <tspan x="0" dy="0">Coordina visita</tspan>
+            <tspan x="0" dy="1.2em">a tu propiedad</tspan>
+          </text>
+        </g>
+      </g>
 
-          <!-- Paso 2 -->
-          <g transform="translate(200,200) rotate(-38.5714)">
-            <g transform="translate(150,0) rotate(38.5714)">
-              <circle r="28" fill="var(--color-ndb-Malibu)" />
-              <circle
-                r="33"
-                fill="none"
-                stroke="var(--color-ndb-Denim)"
-                stroke-dasharray="4 4"
-              />
-              <text
-                x="0"
-                y="5"
-                text-anchor="middle"
-                font-family="Satoshi, sans-serif"
-                font-size="18"
-                fill="var(--color-ndb-White)"
-              >
-                2
-              </text>
-              <text
-                x="0"
-                y="48"
-                text-anchor="middle"
-                font-family="Satoshi, sans-serif"
-                font-size="12"
-                fill="var(--color-ndb-Madison)"
-              >
-                <tspan x="0" dy="0">Tasación a valor</tspan>
-                <tspan x="0" dy="1.2em">de mercado</tspan>
-              </text>
-            </g>
-          </g>
+      <!-- Paso 2 -->
+      <g class="step paso-2" transform="translate(200,200) rotate(-38.5714)">
+        <g transform="translate(150,0) rotate(38.5714)">
+          <circle r="28" class="circle-bg" />
+          <circle r="33" class="circle-outline" />
+          <text x="0" y="5" class="circle-number">2</text>
+          <text x="0" y="48" class="circle-text">
+            <tspan x="0" dy="0">Tasación a valor</tspan>
+            <tspan x="0" dy="1.2em">de mercado</tspan>
+          </text>
+        </g>
+      </g>
 
-          <!-- Paso 3 -->
-          <g transform="translate(200,200) rotate(12.8572)">
-            <g transform="translate(150,0) rotate(-12.8572)">
-              <circle r="28" fill="var(--color-ndb-Malibu)" />
-              <circle
-                r="33"
-                fill="none"
-                stroke="var(--color-ndb-Denim)"
-                stroke-dasharray="4 4"
-              />
-              <text
-                x="0"
-                y="5"
-                text-anchor="middle"
-                font-family="Satoshi, sans-serif"
-                font-size="18"
-                fill="var(--color-ndb-White)"
-              >
-                3
-              </text>
-              <text
-                x="0"
-                y="48"
-                text-anchor="middle"
-                font-family="Satoshi, sans-serif"
-                font-size="12"
-                fill="var(--color-ndb-Madison)"
-              >
-                <tspan x="0" dy="0">Destacamos</tspan>
-                <tspan x="0" dy="1.2em">tu propiedad</tspan>
-              </text>
-            </g>
-          </g>
+      <!-- Paso 3 -->
+      <g class="step paso-3" transform="translate(200,200) rotate(12.8572)">
+        <g transform="translate(150,0) rotate(-12.8572)">
+          <circle r="28" class="circle-bg" />
+          <circle r="33" class="circle-outline" />
+          <text x="0" y="5" class="circle-number">3</text>
+          <text x="0" y="48" class="circle-text">
+            <tspan x="0" dy="0">Destacamos</tspan>
+            <tspan x="0" dy="1.2em">tu propiedad</tspan>
+          </text>
+        </g>
+      </g>
 
-          <!-- Paso 4 -->
-          <g transform="translate(200,200) rotate(64.2858)">
-            <g transform="translate(150,0) rotate(-64.2858)">
-              <circle r="28" fill="var(--color-ndb-Malibu)" />
-              <circle
-                r="33"
-                fill="none"
-                stroke="var(--color-ndb-Denim)"
-                stroke-dasharray="4 4"
-              />
-              <text
-                x="0"
-                y="5"
-                text-anchor="middle"
-                font-family="Satoshi, sans-serif"
-                font-size="18"
-                fill="var(--color-ndb-White)"
-              >
-                4
-              </text>
-              <text
-                x="0"
-                y="48"
-                text-anchor="middle"
-                font-family="Satoshi, sans-serif"
-                font-size="12"
-                fill="var(--color-ndb-Madison)"
-              >
-                <tspan x="0" dy="0">Publicamos en</tspan>
-                <tspan x="0" dy="1.2em">portales y redes</tspan>
-              </text>
-            </g>
-          </g>
+      <!-- Paso 4 -->
+      <g class="step paso-4" transform="translate(200,200) rotate(64.2858)">
+        <g transform="translate(150,0) rotate(-64.2858)">
+          <circle r="28" class="circle-bg" />
+          <circle r="33" class="circle-outline" />
+          <text x="0" y="5" class="circle-number">4</text>
+          <text x="0" y="48" class="circle-text">
+            <tspan x="0" dy="0">Publicamos en</tspan>
+            <tspan x="0" dy="1.2em">portales y redes</tspan>
+          </text>
+        </g>
+      </g>
 
-          <!-- Paso 5 -->
-          <g transform="translate(200,200) rotate(115.7142)">
-            <g transform="translate(150,0) rotate(-115.7142)">
-              <circle r="28" fill="var(--color-ndb-Malibu)" />
-              <circle
-                r="33"
-                fill="none"
-                stroke="var(--color-ndb-Denim)"
-                stroke-dasharray="4 4"
-              />
-              <text
-                x="0"
-                y="5"
-                text-anchor="middle"
-                font-family="Satoshi, sans-serif"
-                font-size="18"
-                fill="var(--color-ndb-White)"
-              >
-                5
-              </text>
-              <text
-                x="0"
-                y="48"
-                text-anchor="middle"
-                font-family="Satoshi, sans-serif"
-                font-size="12"
-                fill="var(--color-ndb-Madison)"
-              >
-                <tspan x="0" dy="0">Te informamos de</tspan>
-                <tspan x="0" dy="1.2em">visitas y ofertas</tspan>
-              </text>
-            </g>
-          </g>
+      <!-- Paso 5 -->
+      <g class="step paso-5" transform="translate(200,200) rotate(115.7142)">
+        <g transform="translate(150,0) rotate(-115.7142)">
+          <circle r="28" class="circle-bg" />
+          <circle r="33" class="circle-outline" />
+          <text x="0" y="5" class="circle-number">5</text>
+          <text x="0" y="48" class="circle-text">
+            <tspan x="0" dy="0">Te informamos de</tspan>
+            <tspan x="0" dy="1.2em">visitas y ofertas</tspan>
+          </text>
+        </g>
+      </g>
 
-          <!-- Paso 6 -->
-          <g transform="translate(200,200) rotate(167.1426)">
-            <g transform="translate(150,0) rotate(-167.1426)">
-              <circle r="28" fill="var(--color-ndb-Malibu)" />
-              <circle
-                r="33"
-                fill="none"
-                stroke="var(--color-ndb-Denim)"
-                stroke-dasharray="4 4"
-              />
-              <text
-                x="0"
-                y="5"
-                text-anchor="middle"
-                font-family="Satoshi, sans-serif"
-                font-size="18"
-                fill="var(--color-ndb-White)"
-              >
-                6
-              </text>
-              <text
-                x="0"
-                y="48"
-                text-anchor="middle"
-                font-family="Satoshi, sans-serif"
-                font-size="12"
-                fill="var(--color-ndb-Madison)"
-              >
-                <tspan x="0" dy="0">Asesoría</tspan>
-                <tspan x="0" dy="1.2em">profesional</tspan>
-              </text>
-            </g>
-          </g>
+      <!-- Paso 6 -->
+      <g class="step paso-6" transform="translate(200,200) rotate(167.1426)">
+        <g transform="translate(150,0) rotate(-167.1426)">
+          <circle r="28" class="circle-bg" />
+          <circle r="33" class="circle-outline" />
+          <text x="0" y="5" class="circle-number">6</text>
+          <text x="0" y="48" class="circle-text">
+            <tspan x="0" dy="0">Asesoría</tspan>
+            <tspan x="0" dy="1.2em">profesional</tspan>
+          </text>
+        </g>
+      </g>
 
-          <!-- Paso 7 -->
-          <g transform="translate(200,200) rotate(218.5714)">
-            <g transform="translate(150,0) rotate(-218.5714)">
-              <circle r="28" fill="var(--color-ndb-Malibu)" />
-              <circle
-                r="33"
-                fill="none"
-                stroke="var(--color-ndb-Denim)"
-                stroke-dasharray="4 4"
-              />
-              <text
-                x="0"
-                y="5"
-                text-anchor="middle"
-                font-family="Satoshi, sans-serif"
-                font-size="18"
-                fill="var(--color-ndb-White)"
-              >
-                7
-              </text>
-              <text
-                x="0"
-                y="48"
-                text-anchor="middle"
-                font-family="Satoshi, sans-serif"
-                font-size="12"
-                fill="var(--color-ndb-Madison)"
-              >
-                <tspan x="0" dy="0">Hacemos realidad</tspan>
-                <tspan x="0" dy="1.2em">tu sueño</tspan>
-              </text>
-            </g>
-          </g>
-        </svg>
-      </div>
-    </section>
+      <!-- Paso 7 -->
+      <g class="step paso-7" transform="translate(200,200) rotate(218.5714)">
+        <g transform="translate(150,0) rotate(-218.5714)">
+          <circle r="28" class="circle-bg" />
+          <circle r="33" class="circle-outline" />
+          <text x="0" y="5" class="circle-number">7</text>
+          <text x="0" y="48" class="circle-text">
+            <tspan x="0" dy="0">Hacemos realidad</tspan>
+            <tspan x="0" dy="1.2em">tu sueño</tspan>
+          </text>
+        </g>
+      </g>
+    </svg>
+  </div>
+</section>
 
     <section class="tasa-section" id="tasa">
       <div class="containers">

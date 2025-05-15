@@ -422,145 +422,20 @@
 
 .steps-title {
   text-align: center;
-font-size: clamp(1.8rem, 6vw, 3rem);
+  font-size: clamp(1.8rem, 6vw, 3rem);
   font-weight: var(--font-light);
 }
-/* Animación de aparición */
-@keyframes stepIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
 
-/* Cada paso en posición de reloj (sentido horario) */
-.step {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  animation: stepIn 0.5s ease-out forwards;
-}
 
-.step:nth-child(1) {
-  top: 10%;
-  left: 50%;
-  animation-delay: 0s;
-}
-.step:nth-child(2) {
-  top: 25.1%;
-  left: 81.3%;
-  animation-delay: 0.2s;
-}
-.step:nth-child(3) {
-  top: 58.9%;
-  left: 89%;
-  animation-delay: 0.4s;
-}
-.step:nth-child(4) {
-  top: 86%;
-  left: 67.4%;
-  animation-delay: 0.6s;
-}
-.step:nth-child(5) {
-  top: 86%;
-  left: 32.6%;
-  animation-delay: 0.8s;
-}
-.step:nth-child(6) {
-  top: 58.9%;
-  left: 11%;
-  animation-delay: 1s;
-}
-.step:nth-child(7) {
-  top: 25.1%;
-  left: 18.7%;
-  animation-delay: 1.2s;
-}
-
-/* Estilo del círculo y hover */
-.circle {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: var(--color-ndb-Malibu);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.75rem;
-  transition: transform 0.3s ease;
-}
-
-.circle::after {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: -8px;
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  border: 4px dashed var(--color-ndb-Denim);
-}
-
-.circle span {
-  font-family: var(--font-titulos);
-  font-size: var(--font-size20);
-  color: var(--color-ndb-Mercury);
-  z-index: 1;
-}
-
-.step p {
-  max-width: 140px;
-  font-family: var(--font-texto);
-  color: var(--color-ndb-Madison);
-  font-size: var(--font-size20);
-  line-height: 1.4;
-  text-align: center;
-}
-
-/* Hover escala el círculo */
-.step:hover .circle {
-  transform: scale(1.2);
-  z-index: 2;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .steps-container {
-    width: 300px;
-    height: 300px;
-  }
-  .circle {
-    width: 60px;
-    height: 60px;
-  }
-  .circle::after {
-    top: -6px;
-    left: -6px;
-    width: 72px;
-    height: 72px;
-  }
-  .circle span {
-    font-size: var(--font-size20);
-  }
-}
-
+/* === Contenedor del SVG en forma circular y responsiva === */
 .steps-svg-wrapper {
   position: relative;
   width: 100%;
-  max-width: 600px; /* o lo que necesites como máximo */
-  margin: 2rem auto;
-  padding-top: 50%; /* fuerza que el alto = ancho */
-  overflow: visible; /* que nada se corte */
-  margin-bottom: 80px !important;
+  max-width: 600px;
+  aspect-ratio: 1 / 1; /* ✅ cuadrado perfecto */
+  margin: 2rem auto 80px auto;
+  overflow: visible;
 }
-
 .steps-svg-wrapper svg {
   position: absolute;
   top: 0;
@@ -568,4 +443,28 @@ font-size: clamp(1.8rem, 6vw, 3rem);
   width: 100%;
   height: 100%;
   display: block;
+}
+
+.circle-bg {
+  fill: var(--color-ndb-Malibu);
+}
+
+.circle-outline {
+  fill: none;
+  stroke: var(--color-ndb-Denim);
+  stroke-dasharray: 4 4;
+}
+
+.circle-number {
+  fill: var(--color-ndb-White);
+  font-family: var(--font-titulos, 'Satoshi', sans-serif);
+  font-size: 18px;
+  text-anchor: middle;
+}
+
+.circle-text {
+  fill: var(--color-ndb-Madison);
+  font-family: var(--font-texto, 'Satoshi', sans-serif);
+  font-size: 12px;
+  text-anchor: middle;
 }

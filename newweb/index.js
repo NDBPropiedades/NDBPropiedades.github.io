@@ -97,34 +97,35 @@ cargarPropiedades();
 
 const animables = document.querySelectorAll(".fade-in");
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target); // solo una vez
-    }
-  });
-}, {
-  threshold: 0.2
-});
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target); // solo una vez
+      }
+    });
+  },
+  {
+    threshold: 0.2,
+  }
+);
 
-animables.forEach(el => observer.observe(el));
+animables.forEach((el) => observer.observe(el));
 
-document
-.getElementById("contactForm")
-.addEventListener("submit", function (e) {
+document.getElementById("contactForm").addEventListener("submit", function (e) {
   // 1) Obtén los valores de los campos extra
   const localidad = this.localidad.value.trim();
   const operacion = this.tipo_operacion.value.trim();
-  const telefono   = this.telefono.value.trim();
-  const inmueble   = this.tipo_inmueble.value.trim();
+  const telefono = this.telefono.value.trim();
+  const inmueble = this.tipo_inmueble.value.trim();
 
   // 2) Construye un bloque de texto con ellos
   let extras = "";
   if (localidad) extras += `Localidad: ${localidad}\n`;
   if (operacion) extras += `Operación: ${operacion}\n`;
-  if (telefono)  extras += `Teléfono: ${telefono}\n`;
-  if (inmueble)  extras += `Tipo de Inmueble: ${inmueble}\n`;
+  if (telefono) extras += `Teléfono: ${telefono}\n`;
+  if (inmueble) extras += `Tipo de Inmueble: ${inmueble}\n`;
 
   // 3) Si hay extras, los añades debajo del mensaje original
   const msgEl = document.getElementById("message");
@@ -139,3 +140,4 @@ document
 //     .querySelectorAll('.buscador-avanzado select')
 //     .forEach(sel => sel.selectedIndex = 0);
 // });
+
