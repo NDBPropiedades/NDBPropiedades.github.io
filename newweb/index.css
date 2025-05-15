@@ -477,6 +477,18 @@
   100% { transform: scale(1); }
 }
 
+@keyframes fadeZoom {
+  0%   { opacity: 0.5; transform: scale(0.9); }
+  50%  { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes textGlow {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+
+
 .step .circle-bg {
   transform-origin: center;
   transform-box: fill-box;
@@ -486,4 +498,23 @@
 .step.active .circle-bg {
   animation: pulseTwice 1.4s ease-in-out;
   filter: drop-shadow(0 0 6px var(--color-ndb-Malibu));
+}
+
+.step .circle-number {
+  transition: opacity 0.3s ease;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.step.active .circle-number {
+  animation: fadeZoom 1.2s ease-in-out;
+}
+
+.step .circle-text {
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.step.active .circle-text {
+  animation: textGlow 1.4s ease-in-out;
 }
