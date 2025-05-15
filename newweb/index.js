@@ -140,4 +140,16 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
 //     .querySelectorAll('.buscador-avanzado select')
 //     .forEach(sel => sel.selectedIndex = 0);
 // });
+ const pasos = document.querySelectorAll(".step");
+  let pasoActual = 0;
 
+  function activarPaso() {
+    pasos.forEach((p, i) => {
+      p.classList.toggle("active", i === pasoActual);
+    });
+
+    pasoActual = (pasoActual + 1) % pasos.length;
+  }
+
+  activarPaso(); // activa el primero al cargar
+  setInterval(activarPaso, 1800); // cada 1.8 segundos

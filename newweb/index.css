@@ -468,3 +468,22 @@
   font-size: 12px;
   text-anchor: middle;
 }
+
+@keyframes pulseTwice {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(1.25); }
+  50%  { transform: scale(1); }
+  75%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+.step .circle-bg {
+  transform-origin: center;
+  transform-box: fill-box;
+  transition: filter 0.4s ease;
+}
+
+.step.active .circle-bg {
+  animation: pulseTwice 1.4s ease-in-out;
+  filter: drop-shadow(0 0 6px var(--color-ndb-Malibu));
+}
