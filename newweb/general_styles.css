@@ -239,8 +239,11 @@ h3,
 
 .footer-container {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  gap: 2rem;
 }
 
 .footer-left,
@@ -354,12 +357,13 @@ h3,
 
 /* Responsive para móviles */
 @media (max-width: 768px) {
+   /* NAV MOBILE */
   .nav {
     position: absolute;
     top: 100%;
     right: 0;
-    left: 0; /* 👈 Hacemos que vaya de borde a borde */
-    width: 100%; /* 👈 Forzamos ancho completo */
+    left: 0;
+    width: 100%;
     background-color: var(--color-ndb-Mercury);
     flex-direction: column;
     padding: 1rem 0;
@@ -367,7 +371,7 @@ h3,
     text-align: center;
     gap: 1.5rem;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 0 0 25px 25px; /* 👈 SOLO esquinas de abajo redondeadas */
+    border-radius: 0 0 25px 25px;
   }
 
   .nav.active {
@@ -384,29 +388,43 @@ h3,
     font-size: var(--font-size20);
   }
 
+  /* FOOTER MOBILE */
   .footer-container {
+    display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+
+  .footer-left {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-center {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-right {
+    order: 3;
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    justify-content: center;
   }
 
   .footer-left,
   .footer-center,
   .footer-right {
     flex: 1 1 100%;
-  }
-
-  .footer-center {
-    align-items: center;
-    align-content: center;
-  }
-
-  .footer-right {
-    margin-top: 30px;
-    position: relative; /* 👈 Esto es clave */
-    width: 100%; /* 👈 Hacemos que ocupe todo el ancho */
-    display: flex;
-    justify-content: center;
   }
 
   .footer-right a {
@@ -417,6 +435,7 @@ h3,
 
   .footer-menu-toggle {
     display: block;
+    margin-top: 1rem;
   }
 
   /* FOOTER MENU FULL WIDTH */
@@ -447,7 +466,6 @@ h3,
     transform: translateY(0);
     pointer-events: auto;
     border-radius: 25px;
-    align-items: center;
   }
 
   .footer-menu a {
@@ -455,6 +473,7 @@ h3,
     font-weight: var(--font-regular);
     font-size: 1rem;
   }
+
   .footer-menu a:hover {
     color: var(--color-ndb-Madison);
     font-weight: var(--font-medium);
