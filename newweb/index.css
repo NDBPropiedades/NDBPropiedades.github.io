@@ -204,11 +204,11 @@
 
 .acerca-texto .acerca-logo {
   display: flex;
-  margin: 0 auto ; /* centra y añade espacio abajo */
+  margin: 0 auto; /* centra y añade espacio abajo */
   max-width: 200px; /* ajusta según convenga */
   height: auto;
-      align-content: center;
-    justify-content: center;
+  align-content: center;
+  justify-content: center;
 }
 
 .acerca-texto h2 span {
@@ -426,7 +426,6 @@
   font-weight: var(--font-light);
 }
 
-
 /* === Contenedor del SVG en forma circular y responsiva === */
 .steps-svg-wrapper {
   position: relative;
@@ -457,37 +456,60 @@
 
 .circle-number {
   fill: var(--color-ndb-White);
-  font-family: var(--font-titulos, 'Satoshi', sans-serif);
+  font-family: var(--font-titulos, "Satoshi", sans-serif);
   font-size: 18px;
   text-anchor: middle;
 }
 
 .circle-text {
   fill: var(--color-ndb-Madison);
-  font-family: var(--font-texto, 'Satoshi', sans-serif);
+  font-family: var(--font-texto, "Satoshi", sans-serif);
   font-size: 12px;
   text-anchor: middle;
 }
 
 @keyframes pulseTwice {
-  0%   { transform: scale(1); }
-  25%  { transform: scale(1.25); }
-  50%  { transform: scale(1); }
-  75%  { transform: scale(1.25); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.25);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes fadeZoom {
-  0%   { opacity: 0.5; transform: scale(0.9); }
-  50%  { opacity: 1; transform: scale(1.1); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes textGlow {
-  0%, 100% { opacity: 0.6; }
-  50%      { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
 }
-
 
 .step .circle-bg {
   transform-origin: center;
@@ -511,10 +533,14 @@
 }
 
 .step .circle-text {
-  opacity: 0.6;
+  opacity: 1;
   transition: opacity 0.3s ease;
 }
 
 .step.active .circle-text {
   animation: textGlow 1.4s ease-in-out;
+}
+
+#snake-trail {
+  transition: stroke-dashoffset 0.5s ease;
 }

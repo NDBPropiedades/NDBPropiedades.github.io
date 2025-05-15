@@ -140,16 +140,41 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
 //     .querySelectorAll('.buscador-avanzado select')
 //     .forEach(sel => sel.selectedIndex = 0);
 // });
- const pasos = document.querySelectorAll(".step");
-  let pasoActual = 0;
+const pasos = document.querySelectorAll(".step");
+const path = document.getElementById("snake-path");
+const trail = document.getElementById("snake-trail");
 
-  function activarPaso() {
-    pasos.forEach((p, i) => {
-      p.classList.toggle("active", i === pasoActual);
-    });
+const totalLength = path.getTotalLength();
+const pasosCount = pasos.length;
+const stepLength = totalLength / pasosCount;
 
-    pasoActual = (pasoActual + 1) % pasos.length;
-  }
+let pasoActual = 0;
 
-  activarPaso(); // activa el primero al cargar
-  setInterval(activarPaso, 1800); // cada 1.8 segundos
+function moverCabeza(pasoIndex) {
+  const len = stepLength * pasoIndex - 5;
+
+  const pos = path.getPointAtLength(len);
+  const next = path.getPointAtLength(len + 5);
+
+  const dx = next.x - pos.x;
+  const dy = next.y - pos.y;
+  // const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+  const offset = totalLength - (stepLength * pasoIndex - 5);
+  // Posiciona y rota la flecha
+
+  // Extiende el trail
+  trail.setAttribute("stroke-dashoffset", offset);
+}
+
+function activarPaso() {
+  pasos.forEach((p, i) => {
+    p.classList.toggle("active", i === pasoActual);
+  });
+
+  moverCabeza(pasoActual);
+
+  pasoActual = (pasoActual + 1) % pasosCount;
+}
+
+activarPaso();
+setInterval(activarPaso, 1800);
