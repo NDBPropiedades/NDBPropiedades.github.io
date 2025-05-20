@@ -1,3 +1,7 @@
+var currentYear = new Date().getFullYear();
+document.getElementById("copyright").innerHTML =
+  currentYear +
+  " © Copyright NDB Propiedades. Todos los derechos reservados. Argentina, Buenos Aires.";
 // --- Variables globales ---
 const inmueblesContainer = document.getElementById("inmuebles-list");
 const filtroOperacion = document.getElementById("filtro-operacion");

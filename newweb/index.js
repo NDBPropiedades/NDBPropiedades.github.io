@@ -1,3 +1,7 @@
+var currentYear = new Date().getFullYear();
+document.getElementById("copyright").innerHTML =
+  currentYear +
+  " © Copyright NDB Propiedades. Todos los derechos reservados. Argentina, Buenos Aires.";
 // --- Código de propiedades con Swiper general + sliders por card ---
 const contenedorCards = document.getElementById("propiedades-list");
 const allProps = propiedades; // Importado desde propiedades.js
