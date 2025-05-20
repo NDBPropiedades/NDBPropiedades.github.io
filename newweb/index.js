@@ -42,7 +42,8 @@ function cargarPropiedades() {
         <p><strong>${p.valor}</strong></p>
        <div class="iconos-card">
           <span><i class="fas fa-bed"></i> ${p.dormitorios}</span>
-          <span><i class="fas fa-shower"></i> ${p.baños}</span>
+          <span><i class="fas fa-bath"></i> ${p.baños}</span>
+          <span><i class="fas fa-toilet"></i> ${p.toilet}</span>
           <span><i class="fas fa-ruler-combined"></i> ${p.tamaño} m²</span>
         </div>
       </div>
