@@ -466,6 +466,7 @@ h3,
     transform: translateY(0);
     pointer-events: auto;
     border-radius: 25px;
+    align-items: center;
   }
 
   .footer-menu a {
