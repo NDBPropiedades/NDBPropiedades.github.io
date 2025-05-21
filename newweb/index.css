@@ -87,7 +87,18 @@
     text-shadow: none;
   }
 }
-
+body > header > div > nav > ul > li:nth-child(5) > a:hover {
+  color: white;
+}
+body
+  > footer
+  > div.containers.footer-container
+  > div.footer-right
+  > ul
+  > li:nth-child(5)
+  > a:hover {
+  color: white;
+}
 .frase-buscador .frase-btns {
   margin-top: 1.5rem;
   display: flex;

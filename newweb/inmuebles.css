@@ -1,3 +1,15 @@
+body > header > div > nav > ul > li:nth-child(5) > a:hover {
+  color: white;
+}
+body
+  > footer
+  > div.containers.footer-container
+  > div.footer-right
+  > ul
+  > li:nth-child(5)
+  > a:hover {
+  color: white;
+}
 /* ------ Buscador Section ------ */
 .buscador-section {
   position: relative;
