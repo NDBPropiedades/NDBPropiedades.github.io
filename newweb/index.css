@@ -99,6 +99,9 @@ body
   > a:hover {
   color: white;
 }
+#contactForm > button:hover{
+  color: white;
+}
 .frase-buscador .frase-btns {
   margin-top: 1.5rem;
   display: flex;
