@@ -1,3 +1,93 @@
+@keyframes pulseTwice {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.25);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeZoom {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes textGlow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes textFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes fancyTextReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(10%);
+    clip-path: inset(100% 0 0 0);
+    text-shadow: none;
+  }
+  40% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    transform: translateY(0);
+    clip-path: inset(0 0 0 0);
+    text-shadow: none;
+  }
+}
+
 .frase-buscador .frase-btns {
   margin-top: 1.5rem;
   display: flex;
@@ -233,21 +323,6 @@
   animation: typing 3s steps(40, end) forwards, blink 0.7s step-end infinite;
 }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes blink {
-  50% {
-    border-color: transparent;
-  }
-}
-
 .form-row input {
   flex: 1 1 45%;
   padding: 0.75rem 1rem;
@@ -468,49 +543,6 @@
   text-anchor: middle;
 }
 
-@keyframes pulseTwice {
-  0% {
-    transform: scale(1);
-  }
-  25% {
-    transform: scale(1.25);
-  }
-  50% {
-    transform: scale(1);
-  }
-  75% {
-    transform: scale(1.25);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes fadeZoom {
-  0% {
-    opacity: 0.5;
-    transform: scale(0.9);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes textGlow {
-  0%,
-  100% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
 .step .circle-bg {
   transform-origin: center;
   transform-box: fill-box;
@@ -538,7 +570,7 @@
 }
 
 .step.active .circle-text {
-  animation: textGlow 1.4s ease-in-out;
+  animation: fancyTextReveal 1.4s cubic-bezier(0.25, 1.5, 0.5, 1) forwards;
 }
 
 #snake-trail {
