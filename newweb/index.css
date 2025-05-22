@@ -598,3 +598,16 @@ body
   padding: 0.5rem;
   color: #333;
 }
+.sobre-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.sobre-svg {
+  width: 100%;
+  max-width: 500px;
+  height: 150px;
+  overflow: visible;
+  background-color: transparent; /* o dark si querés que destaque más */
+}

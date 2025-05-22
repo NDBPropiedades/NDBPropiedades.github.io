@@ -176,6 +176,7 @@
       </div>
     </section>
 
+    <!-- Nosotros -->
     <section class="acerca-section fade-in" id="nosotros">
       <div class="acerca-container containers">
         <div class="acerca-imagen fade-in">
@@ -219,6 +220,7 @@
       </div>
     </section>
 
+    <!-- Proceso de venta -->
     <section class="steps-section" id="proceso-compra">
       <div class="containers" style="margin-top: 50px">
         <h2 class="steps-title">Querés vender? Nosotros te acompañamos</h2>
@@ -378,6 +380,34 @@
 
     <section class="tasa-section" id="tasa">
       <div class="containers">
+        <div class="sobre-wrapper">
+          <svg viewBox="0 0 600 300" class="sobre-svg">
+            <!-- Trayectoria fluida -->
+            <path
+              id="flightPath"
+              d="M0,180 C100,120 200,240 300,180 C400,120 500,240 600,180"
+              fill="transparent"
+              stroke="white"
+              stroke-dasharray="5,5"
+              stroke-width="1"
+            />
+
+            <!-- Grupo que contiene el sobre, centrado con transform -->
+            <g>
+              <animateMotion dur="6s" repeatCount="indefinite" rotate="auto">
+                <mpath href="#flightPath" />
+              </animateMotion>
+              <image
+                href="https://cdn-icons-png.flaticon.com/512/561/561127.png"
+                width="50"
+                height="50"
+                x="-25"
+                y="-25"
+                style="filter: brightness(0) invert(1)"
+              />
+            </g>
+          </svg>
+        </div>
         <h2 class="tasa-title">Tasá tu inmueble en línea</h2>
         <p class="tasa-subtitle">
           Completá el formulario y te contactaremos a la brevedad
