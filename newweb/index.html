@@ -393,20 +393,25 @@
               stroke-width="1"
             />
 
-            <!-- Grupo que contiene el sobre, centrado con transform -->
-            <g>
-              <animateMotion dur="6s" repeatCount="indefinite" rotate="auto">
+            <!-- Sobre animado correctamente sin aparición inicial -->
+            <image
+              href="https://cdn-icons-png.flaticon.com/512/561/561127.png"
+              width="50"
+              height="50"
+              x="-25"
+              y="-25"
+              style="filter: brightness(0) invert(1); visibility: hidden"
+            >
+              <animateMotion
+                dur="6s"
+                repeatCount="indefinite"
+                rotate="auto"
+                begin="0.1s"
+              >
                 <mpath href="#flightPath" />
               </animateMotion>
-              <image
-                href="https://cdn-icons-png.flaticon.com/512/561/561127.png"
-                width="50"
-                height="50"
-                x="-25"
-                y="-25"
-                style="filter: brightness(0) invert(1)"
-              />
-            </g>
+              <set attributeName="visibility" to="visible" begin="0.1s" />
+            </image>
           </svg>
         </div>
         <p class="tasa-subtitle">
