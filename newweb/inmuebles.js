@@ -129,6 +129,10 @@ function inicializarSwipers() {
           delay: 4000,
           disableOnInteraction: false,
         },
+        navigation: {
+          nextEl: swiper.querySelector(".swiper-button-next"),
+          prevEl: swiper.querySelector(".swiper-button-prev"),
+        },
       });
     }
   });
