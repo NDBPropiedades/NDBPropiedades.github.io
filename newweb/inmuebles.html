@@ -76,63 +76,107 @@
         <div class="video-overlay"></div>
         <div class="frase-buscador">
           <h2>Es lindo llegar a casa. <br />Mejor es encontrarla.</h2>
-          <!-- <p>Más que propiedades, construimos historias.</p> -->
         </div>
+
         <div class="buscador">
           <form>
+            <!-- Operación -->
             <div class="custom-select-fa">
               <select id="filtro-operacion">
                 <option value="default" disabled selected>Operación</option>
                 <option value="Venta">Venta</option>
                 <option value="Alquiler">Alquiler</option>
-                <option value="Alquiler">Alquiler Temporal</option>
-              </select>
-              <div class="select-icons">
-                <i class="fas fa-chevron-down"></i>
-              </div>
-            </div>
-            <div class="custom-select-fa">
-              <select id="filtro-tipologia">
-                <option value="default" disabled selected>
-                  Tipo de propiedad
-                </option>
-                <option value="Departamento">Departamento</option>
-                <option value="Casa">Casa</option>
-                <option value="PH">PH</option>
-                <option value="Local">Local</option>
-              </select>
-              <div class="select-icons">
-                <i class="fas fa-chevron-down"></i>
-              </div>
-            </div>
-            <div class="custom-select-fa">
-              <select id="filtro-zona">
-                <option value="default" selected>Zona</option>
-                <option value="Acassuso">Acassuso</option>
-                <option value="Beccar">Beccar</option>
-                <option value="Boulogne">Boulogne</option>
-                <option value="Del Viso">Del Viso</option>
-                <option value="Don Torcuato">Don Torcuato</option>
-                <option value="Florida">Florida</option>
-                <option value="General Pacheco">General Pacheco</option>
-                <option value="Ingeniero Maschwitz">Ingeniero Maschwitz</option>
-                <option value="La Lucila">La Lucila</option>
-                <option value="Martínez">Martínez</option>
-                <option value="Nordelta">Nordelta</option>
-                <option value="Olivos">Olivos</option>
-                <option value="Pilar">Pilar</option>
-                <option value="San Fernando">San Fernando</option>
-                <option value="San Isidro">San Isidro</option>
-                <option value="Tigre">Tigre</option>
-                <option value="Tortuguitas">Tortuguitas</option>
-                <option value="Vicente López">Vicente López</option>
-                <option value="Villa Adelina">Villa Adelina</option>
+                <option value="Alquiler Temporal">Alquiler Temporal</option>
               </select>
               <div class="select-icons">
                 <i class="fas fa-chevron-down"></i>
               </div>
             </div>
 
+            <!-- Tipo de propiedad (multiselect con checkboxes) -->
+            <div class="custom-select-fa multiselect-wrapper">
+              <div
+                class="multiselect-title"
+                onclick="toggleDropdown('tipologia')"
+              >
+                Tipo de propiedad <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="multiselect-options" id="dropdown-tipologia">
+                <label
+                  ><input type="checkbox" value="Departamento" />
+                  Departamento</label
+                >
+                <label><input type="checkbox" value="Casa" /> Casa</label>
+                <label><input type="checkbox" value="PH" /> PH</label>
+                <label><input type="checkbox" value="Local" /> Local</label>
+              </div>
+            </div>
+
+            <!-- Zona (multiselect con checkboxes) -->
+            <div class="custom-select-fa multiselect-wrapper">
+              <div class="multiselect-title" onclick="toggleDropdown('zona')">
+                Zona <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="multiselect-options" id="dropdown-zona">
+                <label
+                  ><input type="checkbox" value="Acassuso" /> Acassuso</label
+                >
+                <label><input type="checkbox" value="Beccar" /> Beccar</label>
+                <label
+                  ><input type="checkbox" value="Boulogne" /> Boulogne</label
+                >
+                <label
+                  ><input type="checkbox" value="Del Viso" /> Del Viso</label
+                >
+                <label
+                  ><input type="checkbox" value="Don Torcuato" /> Don
+                  Torcuato</label
+                >
+                <label><input type="checkbox" value="Florida" /> Florida</label>
+                <label
+                  ><input type="checkbox" value="General Pacheco" /> General
+                  Pacheco</label
+                >
+                <label
+                  ><input type="checkbox" value="Ingeniero Maschwitz" />
+                  Ingeniero Maschwitz</label
+                >
+                <label
+                  ><input type="checkbox" value="La Lucila" /> La Lucila</label
+                >
+                <label
+                  ><input type="checkbox" value="Martínez" /> Martínez</label
+                >
+                <label
+                  ><input type="checkbox" value="Nordelta" /> Nordelta</label
+                >
+                <label><input type="checkbox" value="Olivos" /> Olivos</label>
+                <label><input type="checkbox" value="Pilar" /> Pilar</label>
+                <label
+                  ><input type="checkbox" value="San Fernando" /> San
+                  Fernando</label
+                >
+                <label
+                  ><input type="checkbox" value="San Isidro" /> San
+                  Isidro</label
+                >
+                <label><input type="checkbox" value="Tigre" /> Tigre</label>
+                <label
+                  ><input type="checkbox" value="Tortuguitas" />
+                  Tortuguitas</label
+                >
+                <label
+                  ><input type="checkbox" value="Vicente López" /> Vicente
+                  López</label
+                >
+                <label
+                  ><input type="checkbox" value="Villa Adelina" /> Villa
+                  Adelina</label
+                >
+              </div>
+            </div>
+
+            <!-- Ordenar -->
             <div class="custom-select-fa">
               <select id="filtro-orden">
                 <option value="default" disabled selected>Ordenar</option>
@@ -216,33 +260,22 @@
     </footer>
 
     <!-- Scripts -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const params = new URLSearchParams(window.location.search);
 
-        // 1) Poblar cada select
-        const campos = ["operacion", "tipologia", "zona"];
-        campos.forEach((name) => {
-          const val = params.get(name);
-          if (val) {
-            const sel = document.querySelector(`select[name="${name}"]`);
-            if (sel) sel.value = val;
+    <script>
+      function toggleDropdown(id) {
+        const dropdown = document.getElementById("dropdown-" + id);
+        dropdown.style.display =
+          dropdown.style.display === "block" ? "none" : "block";
+      }
+
+      // Cerrar dropdown si se hace click afuera
+      document.addEventListener("click", function (event) {
+        document.querySelectorAll(".multiselect-wrapper").forEach((wrapper) => {
+          if (!wrapper.contains(event.target)) {
+            wrapper.querySelector(".multiselect-options").style.display =
+              "none";
           }
         });
-
-        // 2) Llamar al filtrado automático si hubo parámetros
-        if (
-          params.has("operacion") ||
-          params.has("tipologia") ||
-          params.has("zona")
-        ) {
-          // Asume que tu función de filtrado se llama filterProperties()
-          if (typeof filterProperties === "function") {
-            filterProperties();
-          }
-          // O dispara el click del botón buscar:
-          // document.querySelector('.btn-buscar').click();
-        }
       });
     </script>
     <script src="navbar.js"></script>

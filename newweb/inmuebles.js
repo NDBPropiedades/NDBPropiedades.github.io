@@ -145,18 +145,27 @@ function aplicarFiltros() {
     );
   }
 
-  // FILTRAR TIPOLOGÍA
-  if (filtroTipologia.value && filtroTipologia.value !== "default") {
-    filtradas = filtradas.filter(
-      (p) => p.tipoPropiedad === filtroTipologia.value
+  // Obtener múltiples valores seleccionados en Tipología
+  const tipologiasSeleccionadas = Array.from(
+    document.querySelectorAll(
+      '#dropdown-tipologia input[type="checkbox"]:checked'
+    )
+  ).map((el) => el.value);
+
+  if (tipologiasSeleccionadas.length > 0) {
+    filtradas = filtradas.filter((p) =>
+      tipologiasSeleccionadas.includes(p.tipoPropiedad)
     );
   }
 
-  // FILTRAR ZONA
-  if (filtroZona.value && filtroZona.value !== "default") {
-    filtradas = filtradas.filter((p) => p.zona === filtroZona.value);
-  }
+  // Obtener múltiples valores seleccionados en Zona
+  const zonasSeleccionadas = Array.from(
+    document.querySelectorAll('#dropdown-zona input[type="checkbox"]:checked')
+  ).map((el) => el.value);
 
+  if (zonasSeleccionadas.length > 0) {
+    filtradas = filtradas.filter((p) => zonasSeleccionadas.includes(p.zona));
+  }
   // FILTRAR PARTIDO
   // if (filtroPartido.value && filtroPartido.value !== 'default') {
   //   filtradas = filtradas.filter(
@@ -242,3 +251,37 @@ window.addEventListener("scroll", () => {
 
 // --- Inicialización ---
 aplicarFiltros();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+
+  // 1) Poblar cada select
+  const campos = ["operacion", "tipologia", "zona"];
+  campos.forEach((name) => {
+    const val = params.get(name);
+    if (val) {
+      const sel = document.querySelector(`select[name="${name}"]`);
+      if (sel) sel.value = val;
+    }
+  });
+
+  // 2) Llamar al filtrado automático si hubo parámetros
+  if (
+    params.has("operacion") ||
+    params.has("tipologia") ||
+    params.has("zona")
+  ) {
+    // Asume que tu función de filtrado se llama filterProperties()
+    if (typeof filterProperties === "function") {
+      filterProperties();
+    }
+    // O dispara el click del botón buscar:
+    // document.querySelector('.btn-buscar').click();
+  }
+});
+
+document
+  .querySelectorAll('.multiselect-options input[type="checkbox"]')
+  .forEach((checkbox) => {
+    checkbox.addEventListener("change", aplicarFiltros);
+  });
