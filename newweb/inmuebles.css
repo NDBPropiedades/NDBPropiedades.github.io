@@ -199,6 +199,11 @@ select::-ms-expand {
   min-width: 200px;
 }
 
+.multiselect-wrapper:hover {
+  outline: none;
+  border: 2px solid var(--color-ndb-Malibu);
+}
+
 .multiselect-title {
   user-select: none;
   display: flex;
