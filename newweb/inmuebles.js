@@ -289,3 +289,21 @@ document
   .forEach((checkbox) => {
     checkbox.addEventListener("change", aplicarFiltros);
   });
+
+function toggleDropdown(id) {
+  const dropdown = document.getElementById("dropdown-" + id);
+  if (dropdown) {
+    dropdown.style.display =
+      dropdown.style.display === "block" ? "none" : "block";
+  }
+}
+
+// Cerrar dropdown si se hace click afuera
+document.addEventListener("click", function (event) {
+  document.querySelectorAll(".multiselect-wrapper").forEach((wrapper) => {
+    const options = wrapper.querySelector(".multiselect-options");
+    if (options && !wrapper.contains(event.target)) {
+      options.style.display = "none";
+    }
+  });
+});
