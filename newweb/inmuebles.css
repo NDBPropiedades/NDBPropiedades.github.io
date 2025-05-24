@@ -235,6 +235,9 @@ select::-ms-expand {
   gap: 8px;
   min-width: 180px;
 }
+.multiselect-title:hover{
+    border: 2px solid var(--color-ndb-Malibu);
+}
 
 .multiselect-options {
   position: absolute;
