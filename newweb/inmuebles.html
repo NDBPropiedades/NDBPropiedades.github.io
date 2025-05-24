@@ -101,7 +101,7 @@
               >
                 Tipo de propiedad <i class="fas fa-chevron-down"></i>
               </div>
-              <div class="multiselect-options" id="dropdown-tipologia">
+              <div class="multiselect-options" id="dropdown-tipologia" style="display: none;">
                 <label
                   ><input type="checkbox" value="Departamento" />
                   Departamento</label
@@ -117,7 +117,7 @@
               <div class="multiselect-title" onclick="toggleDropdown('zona')">
                 Zona <i class="fas fa-chevron-down"></i>
               </div>
-              <div class="multiselect-options" id="dropdown-zona">
+              <div class="multiselect-options" id="dropdown-zona" style="display: none;">
                 <label
                   ><input type="checkbox" value="Acassuso" /> Acassuso</label
                 >
@@ -263,19 +263,32 @@
 
     <script>
       function toggleDropdown(id) {
-        const dropdown = document.getElementById("dropdown-" + id);
-        dropdown.style.display =
-          dropdown.style.display === "block" ? "none" : "block";
+        const current = document.getElementById("dropdown-" + id);
+
+        // Cerrar cualquier otro dropdown abierto
+        document
+          .querySelectorAll(".multiselect-options")
+          .forEach((dropdown) => {
+            if (dropdown !== current) {
+              dropdown.style.display = "none";
+            }
+          });
+
+        // Toggle actual
+        current.style.display =
+          current.style.display === "block" ? "none" : "block";
       }
 
-      // Cerrar dropdown si se hace click afuera
+      // Cerrar todos los dropdowns si se hace clic afuera
       document.addEventListener("click", function (event) {
-        document.querySelectorAll(".multiselect-wrapper").forEach((wrapper) => {
-          if (!wrapper.contains(event.target)) {
-            wrapper.querySelector(".multiselect-options").style.display =
-              "none";
-          }
-        });
+        const isMultiselect = event.target.closest(".multiselect-wrapper");
+        if (!isMultiselect) {
+          document
+            .querySelectorAll(".multiselect-options")
+            .forEach((dropdown) => {
+              dropdown.style.display = "none";
+            });
+        }
       });
     </script>
     <script src="navbar.js"></script>

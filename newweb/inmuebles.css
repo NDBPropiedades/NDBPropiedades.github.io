@@ -19,7 +19,6 @@ body
   justify-content: center; /* 👈 Centra verticalmente también */
   padding: 2rem 1rem;
   min-height: 600px;
-  overflow: hidden; /* 👈 Para que el video no se desborde */
 }
 
 .video-fondo {
@@ -195,7 +194,7 @@ select::-ms-expand {
     gap: 1rem;
   }
 }
-.multiselect-wrapper {
+/* .multiselect-wrapper {
   position: relative;
   display: inline-block;
   font-family: var(--font-texto);
@@ -207,38 +206,70 @@ select::-ms-expand {
   cursor: pointer;
   background-color: transparent;
   min-width: 200px;
+} */
+ .multiselect-wrapper {
+  display: inline-block; /* Evita que se expanda todo el ancho */
+  position: relative;
+  vertical-align: top;
 }
-
-.multiselect-wrapper:hover {
+.multiselect-wrapper {
+  position: relative;
+  z-index: 10;
+}
+/* .multiselect-wrapper:hover {
   outline: none;
   border: 2px solid var(--color-ndb-Malibu);
-}
+} */
 
 .multiselect-title {
-  user-select: none;
+  background-color: transparent;
+  border: 2px solid white;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 30px;
+  cursor: pointer;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 180px;
 }
 
 .multiselect-options {
-  display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 10;
-  background-color: white;
-  color: black;
-  border-radius: 10px;
-  padding: 10px;
   width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 5px;
+  z-index: 9999;
 }
 
 .multiselect-options label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 5px 0;
+  display: block;
+  padding: 8px 16px;
   cursor: pointer;
+  color: var(--color-ndb-Madison);
+  border-radius: 5px;
+   font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  transition: background-color 0.2s, color 0.2s;
+}
+.multiselect-options div {
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  border-radius: 5px;
+}
+
+.multiselect-options label:hover {
+  background-color: #007bff; /* Hover azul */
+  color: white;
+}
+
+.multiselect-options input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: #007bff; /* Color moderno para el checkbox */
 }
