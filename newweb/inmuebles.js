@@ -64,7 +64,7 @@ function crearCardHTML(p, index) {
     .map(
       (img) => `
         <div class="swiper-slide">
-          <img src="${img}" alt="${p.tipoPropiedad} en ${p.localidad}">
+          <img src="${img}" alt="${p.tipoPropiedad} en ${p.localidad}" loading="lazy">
         </div>
       `
     )
