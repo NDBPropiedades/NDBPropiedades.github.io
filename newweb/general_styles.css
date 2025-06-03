@@ -682,7 +682,7 @@ h3,
   text-align: left;
   font-size: var(--font-size20);
   margin-bottom: 2rem;
-  font-weight: var(--font-regular);
+  font-weight: var(--font-medium);
 }
 
 /* Swiper general de propiedades */
