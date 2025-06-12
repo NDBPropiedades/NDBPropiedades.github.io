@@ -163,6 +163,15 @@
   .detalle-header h1 {
     font-size: 22px;
   }
+  
+  .descripcion-propiedad {
+    padding: 0 15px; /* le da margen a todo el bloque */
+  }
+
+  .descripcion-propiedad p {
+    margin-bottom: 15px; /* mantener margen entre párrafos */
+    line-height: 1.6; /* asegurar legibilidad */
+  }
 
   .descripcion-propiedad h2 {
     font-size: 20px;
