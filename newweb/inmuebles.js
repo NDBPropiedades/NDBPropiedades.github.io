@@ -58,9 +58,9 @@ poblarFiltrosDesdeURL();
 
 // --- Función: Crear HTML de cada card ---
 function crearCardHTML(p, index) {
-  const colorTag = p.tipoTransaccion === "Venta" ? "#38b6a3" : "#0099cc";
+  const colorTag = p.tipoTransaccion === "Venta" ? "#0e246a" : "#7eccff";
 
-  const slidesHTML = (p.imagenes || [])
+  const slidesHTML = (p.imagenes_slider || [])
     .map(
       (img) => `
         <div class="swiper-slide">
@@ -82,7 +82,11 @@ function crearCardHTML(p, index) {
             <div class="swiper-button-prev"></div>
           </div>
   
-          <h3>${p.tipoPropiedad} en ${p.localidad}</h3>
+            <h3>
+              <a href="${p.html}" style="text-decoration: none; color: inherit;">
+                ${p.tipoPropiedad} en ${p.localidad}
+              </a>
+            </h3>
           <p>${p.descripcion}</p>
           <p><strong>${p.valor}</strong></p>
   
