@@ -264,3 +264,20 @@
 .swiper-button-prev:hover::after {
   color:  #0e246a; /* un azul un poco más fuerte al hover (opcional) */
 }
+.titulo-interes {
+  font-size: 2rem; /* tamaño base */
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .titulo-interes {
+    font-size: 1.5rem; /* un poco más chico en pantallas medianas */
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo-interes {
+    font-size: 1.2rem; /* más chico en móviles */
+  }
+}
