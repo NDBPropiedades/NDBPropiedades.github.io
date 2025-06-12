@@ -521,7 +521,7 @@ h3,
 
 .tasa-btn:hover {
   background-color: var(--color-ndb-Denim);
-  color: var(--color-ndb-white) !important;
+  color: var(--color-ndb-White) !important;
   text-decoration: none !important;
 }
 
@@ -627,7 +627,7 @@ h3,
     margin-top: 0.5rem;
     margin-bottom: 1rem;
     padding: 0.6rem 1.2rem;
-    font-size: var(--font-size20);
+    font-size: 1rem;
     text-align: center;
   }
 }
