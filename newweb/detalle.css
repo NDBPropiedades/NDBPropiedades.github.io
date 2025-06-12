@@ -242,3 +242,25 @@
 .tab-content li {
   margin-bottom: 6px;
 }
+.swiper-button-next,
+.swiper-button-prev {
+  color: #0e246a; /* solo color de la flecha */
+  width: auto;
+  height: auto;
+  font-size: 30px; /* tamaño de la flechita */
+  background: none; /* sin fondo */
+  border: none;
+  box-shadow: none;
+  transition: color 0.3s ease;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 30px; /* tamaño */
+  color: #003eb0; /* color blackpearl */
+}
+
+.swiper-button-next:hover::after,
+.swiper-button-prev:hover::after {
+  color:  #0e246a; /* un azul un poco más fuerte al hover (opcional) */
+}
