@@ -478,7 +478,7 @@ h3,
   .footer-menu a:hover {
     color: var(--color-ndb-Madison);
     font-weight: var(--font-medium);
-    font-size: var(--font-size20);
+    font-size: 1.1rem;
     text-decoration: underline;
     text-underline-offset: 15px;
     text-decoration-color: var(--color-ndb-Malibu);
@@ -549,7 +549,7 @@ h3,
   color: var(--color-ndb-Madison);
   font-weight: var(--font-medium);
   text-decoration: underline;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   text-underline-offset: 15px;
   text-decoration-color: var(--color-ndb-Malibu);
   text-decoration-thickness: 1.5px;
@@ -655,7 +655,7 @@ h3,
   .footer-menu a:hover {
     color: var(--color-ndb-Madison);
     font-weight: var(--font-medium);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-decoration: underline;
     text-underline-offset: 15px;
     text-decoration-color: var(--color-ndb-Malibu);
