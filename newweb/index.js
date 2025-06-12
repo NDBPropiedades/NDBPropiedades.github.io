@@ -84,11 +84,11 @@ function inicializarSwiperGeneral() {
     slidesPerView: 3, // ✅ 3 casas visibles
     slidesPerGroup: 3, // ✅ pasa de a 3 casas
     spaceBetween: 30, // espacio entre cards
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true,
-    },
+    // autoplay: {
+    //   delay: 5000,
+    //   disableOnInteraction: false,
+    //   pauseOnMouseEnter: true,
+    // },
     // pagination: {
     //   el: '.swiper-pagination',
     //   clickable: true,
