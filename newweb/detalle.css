@@ -281,3 +281,26 @@
     font-size: 1.2rem; /* más chico en móviles */
   }
 }
+.volver-link {
+  margin-bottom: 15px;
+  padding-left: 1rem; /* alinear con el contenido */
+}
+
+.volver-link a {
+  color: var(--color-ndb-Madison);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: var(--font-regular);
+  cursor: pointer;
+  transition: color 0.3s ease, font-size 0.3s ease, text-decoration 0.3s ease;
+}
+
+.volver-link a:hover {
+  color: var(--color-ndb-Madison);
+  font-weight: var(--font-medium);
+  text-decoration: underline;
+  font-size: 1.1rem;
+  text-underline-offset: 15px;
+  text-decoration-color: var(--color-ndb-Malibu);
+  text-decoration-thickness: 1.5px;
+}
