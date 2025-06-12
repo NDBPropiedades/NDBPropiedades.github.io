@@ -422,7 +422,7 @@
     </main>
 
     <!-- Footer igual que en index -->
-      <footer class="footer">
+    <footer class="footer">
       <div class="containers footer-container">
         <div class="footer-right">
           <ul class="footer-menu">
@@ -448,10 +448,7 @@
             height="80"
             loading="lazy"
           />
-          <p style="font-size: 12px; text-align: center" id="copyright">
-            2025 © Copyright NDB Propiedades. Todos los derechos reservados.
-            Argentina, Buenos Aires.
-          </p>
+          <p style="font-size: 12px; text-align: center" id="copyright"></p>
         </div>
 
         <div class="footer-center">
@@ -542,6 +539,11 @@
             .classList.add("active");
         });
       });
+
+      var currentYear = new Date().getFullYear();
+      document.getElementById("copyright").innerHTML =
+        currentYear +
+        " © Copyright NDB Propiedades. Todos los derechos reservados. Argentina, Buenos Aires.";
     </script>
   </body>
 </html>
