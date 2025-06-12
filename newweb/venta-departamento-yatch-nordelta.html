@@ -515,6 +515,10 @@
           prevEl: ".swiper-button-prev",
         },
         loop: true,
+        autoplay: {
+          delay: 4000, // tiempo entre slides en milisegundos (4000 = 4 seg)
+          disableOnInteraction: false, // que siga el autoplay aunque el usuario navegue
+        },
         thumbs: {
           swiper: swiperThumbs,
         },
