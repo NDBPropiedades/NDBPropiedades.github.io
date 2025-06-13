@@ -138,7 +138,7 @@ const propiedades = [
     luminosidad: "",
     amenities: [],
     superficieSemicubierta: 0,
-    html: "venta-departamento-solar-san-isidro-6900805.html",
+    html: "venta-departamento-solar-san-isidro.html",
   },
   {
     id: 6900806,
