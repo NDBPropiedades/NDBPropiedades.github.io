@@ -10,6 +10,7 @@ const propiedades = [
     garage: 2,
     tipoTransaccion: "Venta",
     tipoPropiedad: "Departamento",
+    zona: "Nordelta",
     imagenes: [
       "propiedades/56242734/1.jpg",
       "propiedades/56242734/2.jpg",
@@ -82,6 +83,7 @@ const propiedades = [
     garage: 1,
     tipoTransaccion: "Venta",
     tipoPropiedad: "Departamento",
+    zona: "San Isidro",
     imagenes: [
       "propiedades/6900805/1.jpg",
       "propiedades/6900805/2.jpg",
