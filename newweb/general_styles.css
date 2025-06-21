@@ -342,7 +342,7 @@ h3,
   background: none;
   border: none;
   color: var(--color-ndb-Madison);
-  font-size: var(--font-size36);
+  font-size: 25px;
   cursor: pointer;
 }
 
