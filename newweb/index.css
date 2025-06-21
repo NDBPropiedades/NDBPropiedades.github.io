@@ -99,7 +99,7 @@ body
   > a:hover {
   color: white;
 }
-#contactForm > button:hover{
+#contactForm > button:hover {
   color: white;
 }
 .frase-buscador .frase-btns {
@@ -167,10 +167,13 @@ body
   margin: 0 auto;
 }
 .frase-buscador h2 {
+  white-space: nowrap; /* Fuerza una sola línea */
+  font-size: clamp(1rem, 5vw, 2rem); /* Ajusta el tamaño dinámicamente */
+  text-align: center;
+  padding: 0 1rem; /* Padding lateral para evitar que toque los bordes */
   font-family: var(--font-titulos);
   font-weight: var(--font-light);
-  font-size: clamp(1.5rem, 6vw, 3.5rem);
-  padding: 0.5rem 1rem;
+
   /* background-color: rgba(23, 23, 23, 0.671); */
   color: #fff;
   border-radius: 0.25rem;
@@ -434,6 +437,12 @@ body
   }
 }
 
+@media (min-width: 768px) {
+  .frase-buscador h2 {
+    font-size: 3rem;
+  }
+}
+
 /* Media query para móvil */
 @media (max-width: 768px) {
   /* 1) Pasa la imagen arriba y el texto abajo */
@@ -501,7 +510,9 @@ body
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
-    margin-top: 90px;
+    margin-top: 20px;
+     padding-left: 0;
+  padding-right: 0;
   }
 
   /* 2) Separación entre texto y filtros */
