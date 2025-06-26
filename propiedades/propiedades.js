@@ -234,6 +234,6 @@ const propiedades = [
       "Alarma",
     ],
     superficieSemicubierta: null,
-    html: "venta-casa-4-dorm-pileta-martinez.html",
+    html: "venta-casa-chalet-martinez.html",
   },
 ];
