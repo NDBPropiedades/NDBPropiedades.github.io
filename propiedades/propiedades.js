@@ -168,7 +168,7 @@ const propiedades = [
       "propiedades/56460376/1.jpg",
       "propiedades/56460376/2.jpg",
     ],
-    localidad: "Villa Martelli, Capital Federal",
+    localidad: "Villa Martelli, Vicente López",
     descripcion:
       "Amplio Monoambiente a Estrenar a La Venta en Villa Martelli, Vicente López",
     expensas: 192000,
