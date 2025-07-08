@@ -449,8 +449,6 @@
 
         <form
           id="contactForm"
-          action="https://formspree.io/f/xeogedgn"
-          method="POST"
           class="tasa-form"
         >
           <div class="form-row">
@@ -603,31 +601,11 @@
       </div>
     </footer>
 
-    <!-- Scripts -->
-    <!-- <script>
-      function onSubmitCaptcha() {
-        grecaptcha.ready(() => {
-          grecaptcha
-            .execute("6Lf8RCorAAAAAKHkFqg0E9kAlzjeS7Yl-1Z3n-qz", {
-              action: "submit",
-            })
-            .then((token) => {
-              // inyectás el token en tu form
-              const input = document.createElement("input");
-              input.type = "hidden";
-              input.name = "g-recaptcha-response";
-              input.value = token;
-              document.getElementById("contactForm").appendChild(input);
-              // ahora sí enviás el formulario normalmente
-              document.getElementById("contactForm").submit();
-            });
-        });
-      }
-    </script> -->
     <script src="https://www.google.com/recaptcha/api.js?render=6Lf8RCorAAAAAKHkFqg0E9kAlzjeS7Yl-1Z3n-qz"></script>
     <script src="navbar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="propiedades/propiedades.js"></script>
+    <script src="tasa-tu-inmueble.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
