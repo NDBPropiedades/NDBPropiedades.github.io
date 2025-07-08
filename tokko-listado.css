@@ -1,0 +1,36 @@
+.tokko-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.tokko-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.tokko-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.tokko-card .info {
+  padding: 1rem;
+}
+
+.tokko-card h3 {
+  font-size: 18px;
+  margin-bottom: 0.5rem;
+}
+
+.tokko-card p {
+  margin: 0.25rem 0;
+  font-size: 14px;
+}
