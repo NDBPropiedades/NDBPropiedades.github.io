@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalle de Propiedad | NDB Propiedades</title>
+    <link
+      rel="icon"
+      href="assets/img/favicon/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="general_styles.css" />
+    <link rel="stylesheet" href="detalle.css" />
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container header-container">
+        <a href="index.html" class="logo">
+          <img
+            src="assets/img/img/Nicolas De Brasi - Logo 2 Positivo RGB.png"
+            alt="NDB Propiedades"
+            width="300"
+            height="100"
+            loading="lazy"
+          />
+        </a>
+
+        <nav class="nav-container">
+          <ul class="nav">
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="inmuebles.html">INMUEBLES</a></li>
+            <li><a href="index.html#tasa">CONTACTO</a></li>
+            <li><a href="index.html#nosotros">NOSOTROS</a></li>
+            <li>
+              <a href="index.html#tasa" class="tasa-btn">TASÁ TU INMUEBLE</a>
+            </li>
+          </ul>
+
+          <button class="menu-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+
+    <main class="detalle-propiedad containers">
+      <div class="volver-link" style="margin-bottom: 15px">
+        <a href="inmuebles.html">Ver todas las propiedades</a>
+      </div>
+
+      <!-- Galeria desde JS -->
+      <div id="galeria-propiedad" style="margin-bottom: 40px"></div>
+
+      <div class="detalle-header" id="info-propiedad"></div>
+
+      <div id="mapa-propiedad" class="mapa-propiedad"></div>
+
+      <div class="caracteristicas-propiedad" id="caracteristicas"></div>
+
+      <div class="descripcion-propiedad" id="descripcion"></div>
+
+      <div
+        class="formulario-interes"
+        style="margin: 40px 0; text-align: center"
+      >
+        <h2 class="titulo-interes">¿Te interesa esta propiedad?</h2>
+        <p style="margin-bottom: 15px">
+          Hacé clic en el siguiente botón para pedir más información o coordinar
+          una visita
+        </p>
+        <a href="#" target="_blank" id="formulario-link" class="tasa-btn"
+          >Completar Formulario</a
+        >
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="containers footer-container">
+        <div class="footer-right">
+          <ul class="footer-menu">
+            <li><a href="#">INICIO</a></li>
+            <li><a href="inmuebles.html">INMUEBLES</a></li>
+            <li><a href="#contacto">CONTACTO</a></li>
+            <li><a href="#nosotros">NOSOTROS</a></li>
+            <li><a href="#tasa" class="tasa-btn">TASÁ TU INMUEBLE</a></li>
+          </ul>
+          <button class="footer-menu-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+        <div class="footer-left">
+          <img
+            src="assets/img/img/Nicolas De Brasi - Logo Positivo RGB.png"
+            alt="NDB Propiedades"
+            class="footer-logo"
+            width="200"
+            height="80"
+            loading="lazy"
+          />
+          <p style="font-size: 12px; text-align: center" id="copyright"></p>
+        </div>
+        <div class="footer-center">
+          <div style="height: 50px"></div>
+          <p>Tel: +54 9 11 6407-8491</p>
+          <p>
+            <a href="mailto:info@ndbpropiedades.com.ar"
+              >info@ndbpropiedades.com.ar</a
+            >
+          </p>
+          <p>CMCPSI: 6049</p>
+          <div class="redes">
+            <a href="mailto:info@ndbpropiedades.com.ar"
+              ><i class="fas fa-envelope"></i
+            ></a>
+            <a href="tel:+5491164078491"><i class="fas fa-phone"></i></a>
+            <a href="https://instagram.com/ndbpropiedades" target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <div class="containers">
+        <a
+          href="https://www.raven3.com.ar"
+          style="
+            font-size: 10px;
+            color: var(--color-ndb-Gray);
+            text-decoration: none;
+          "
+          >by <strong>Raven3</strong></a
+        >
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="detalle-propiedad.js"></script>
+    <script src="navbar.js"></script>
+  </body>
+</html>

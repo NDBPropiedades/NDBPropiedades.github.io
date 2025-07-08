@@ -18,7 +18,7 @@ fetch(API_URL)
         <div class="tokko-card">
           <img src="${imagen}" alt="${titulo}" />
           <div class="info">
-            <h3>${titulo}</h3>
+            <h3><a href="propiedad.html?id=${prop.id}">${titulo}</a></h3>
             <p><strong>Zona:</strong> ${zona}</p>
             <p><strong>Precio:</strong> ${precio}</p>
           </div>

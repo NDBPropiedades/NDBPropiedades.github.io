@@ -34,3 +34,19 @@
   margin: 0.25rem 0;
   font-size: 14px;
 }
+
+.tokko-card a {
+  color: inherit; /* Hereda el color del texto del padre */
+  text-decoration: none; /* Quita el subrayado */
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+.tokko-card a:hover {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 2px; /* más grueso */
+  text-underline-offset: 4px; /* más separado del texto */
+  text-decoration-color: var(--color-ndb-Malibu); /* o podés usar #7eccff directamente */
+  cursor: pointer;
+}
