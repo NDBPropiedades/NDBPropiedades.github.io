@@ -6,8 +6,19 @@ fetch(API_URL)
   .then(data => {
     const propiedades = data.objects;
 
-    propiedades.forEach(prop => {
-      const imagen = prop.photos?.[0]?.image || "assets/img/no-image.jpg";
+    propiedades.forEach((prop, index) => {
+      const imagenes = prop.photos?.length
+        ? prop.photos.map(photo => `
+            <div class="swiper-slide">
+              <img src="${photo.image}" alt="Imagen propiedad" loading="lazy" />
+            </div>
+          `).join("")
+        : `
+          <div class="swiper-slide">
+            <img src="assets/img/no-image.jpg" alt="Sin imagen" />
+          </div>
+        `;
+
       const titulo = prop.publication_title || "Sin título";
       const precio = prop.operations?.[0]?.prices?.[0]?.price
         ? `USD ${prop.operations[0].prices[0].price}`
@@ -16,7 +27,13 @@ fetch(API_URL)
 
       const html = `
         <div class="tokko-card">
-          <img src="${imagen}" alt="${titulo}" />
+          <div class="swiper mySwiper" id="swiper-${index}">
+            <div class="swiper-wrapper">
+              ${imagenes}
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
           <div class="info">
             <h3><a href="propiedad.html?id=${prop.id}">${titulo}</a></h3>
             <p><strong>Zona:</strong> ${zona}</p>
@@ -26,6 +43,21 @@ fetch(API_URL)
       `;
 
       contenedor.innerHTML += html;
+    });
+
+    // Inicializar todos los sliders
+    propiedades.forEach((_, index) => {
+      new Swiper(`#swiper-${index}`, {
+        loop: true,
+        navigation: {
+          nextEl: `#swiper-${index} .swiper-button-next`,
+          prevEl: `#swiper-${index} .swiper-button-prev`,
+        },
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+      });
     });
   })
   .catch(err => {
