@@ -9,7 +9,7 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background: white;
   display: flex;
   flex-direction: column;
@@ -47,6 +47,20 @@
   text-decoration: underline;
   text-decoration-thickness: 2px; /* más grueso */
   text-underline-offset: 4px; /* más separado del texto */
-  text-decoration-color: var(--color-ndb-Malibu); /* o podés usar #7eccff directamente */
+  text-decoration-color: var(
+    --color-ndb-Malibu
+  ); /* o podés usar #7eccff directamente */
   cursor: pointer;
+}
+
+.titulo-tokko {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .titulo-tokko {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+  }
 }
