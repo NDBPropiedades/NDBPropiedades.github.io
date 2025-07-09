@@ -4,16 +4,127 @@
     <meta charset="UTF-8" />
     <title>Listado Tokko | NDB Propiedades</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
     <link rel="stylesheet" href="general_styles.css" />
     <link rel="stylesheet" href="tokko-listado.css" />
   </head>
   <body>
-    <h1 class="titulo-tokko">
-      Propiedades desde Tokko Broker
-    </h1>
+    <!-- wasap -->
+    <div class="wasap" style="animation-name: tada">
+      <a
+        href="https://api.whatsapp.com/send?l=es&text=Hola%20NDB%20Propiedades!%20Quiero%20consultarles%20por%20una%20propiedad&phone=+5491164078491"
+        target="_blank"
+        aria-label="Link a WhatsApp NDB Propiedades"
+      >
+        <img
+          src="assets/img/svg/logo-wapp-01.svg"
+          width="50"
+          height="50"
+          style="max-width: 100%; height: auto"
+          alt="NDB Propiedades WhatsApp"
+          loading="lazy"
+        />
+      </a>
+    </div>
+
+      <!-- Header -->
+    <header class="header">
+      <div class="container header-container">
+        <a href="index.html" class="logo">
+          <img
+            src="assets/img/img/Nicolas De Brasi - Logo 2 Positivo RGB.png"
+            alt="NDB Propiedades"
+            width="300"
+            height="100"
+            loading="lazy"
+          />
+        </a>
+
+        <nav class="nav-container">
+          <ul class="nav">
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="inmuebles.html">INMUEBLES</a></li>
+            <li><a href="index.html#tasa">CONTACTO</a></li>
+            <li><a href="index.html#nosotros">NOSOTROS</a></li>
+            <li>
+              <a href="index.html#tasa" class="tasa-btn">TASÁ TU INMUEBLE</a>
+            </li>
+          </ul>
+
+          <button class="menu-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- <h1 class="titulo-tokko">Propiedades desde Tokko Broker</h1> -->
 
     <div class="tokko-container" id="lista-propiedades"></div>
+
+      <!-- Footer -->
+    <footer class="footer">
+      <div class="containers footer-container">
+        <div class="footer-right">
+          <ul class="footer-menu">
+            <li><a href="#">INICIO</a></li>
+            <li><a href="inmuebles.html">INMUEBLES</a></li>
+            <li><a href="#contacto">CONTACTO</a></li>
+            <li><a href="#nosotros">NOSOTROS</a></li>
+            <li><a href="#tasa" class="tasa-btn">TASÁ TU INMUEBLE</a></li>
+          </ul>
+          <button class="footer-menu-toggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+        <div class="footer-left">
+          <img
+            src="assets/img/img/Nicolas De Brasi - Logo Positivo RGB.png"
+            alt="NDB Propiedades"
+            class="footer-logo"
+            width="200"
+            height="80"
+            loading="lazy"
+          />
+          <p style="font-size: 12px; text-align: center" id="copyright"></p>
+        </div>
+        <div class="footer-center">
+          <div style="height: 50px"></div>
+          <p>Tel: +54 9 11 6407-8491</p>
+          <p>
+            <a href="mailto:info@ndbpropiedades.com.ar"
+              >info@ndbpropiedades.com.ar</a
+            >
+          </p>
+          <p>CMCPSI: 6049</p>
+          <div class="redes">
+            <a href="mailto:info@ndbpropiedades.com.ar"
+              ><i class="fas fa-envelope"></i
+            ></a>
+            <a href="tel:+5491164078491"><i class="fas fa-phone"></i></a>
+            <a href="https://instagram.com/ndbpropiedades" target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <div class="containers">
+        <a
+          href="https://www.raven3.com.ar"
+          style="
+            font-size: 10px;
+            color: var(--color-ndb-Gray);
+            text-decoration: none;
+          "
+          >by <strong>Raven3</strong></a
+        >
+      </div>
+    </footer>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="tokko-listado.js"></script>
