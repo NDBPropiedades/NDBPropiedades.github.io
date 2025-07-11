@@ -184,38 +184,56 @@ animables.forEach((el) => observer.observe(el));
 document.getElementById("contactForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const form = this;
+  const name = this.name.value.trim();
+  const cellphone = this.telefono.value.trim();
+  const email = this.email.value.trim();
+  const localidad = this.localidad.value.trim();
+  const operacion = this.tipo_operacion.value.trim();
+  const tipoInmueble = this.tipo_inmueble.value.trim();
+  const mensaje = this.mensaje.value.trim();
 
-  // 1) Construir extras como antes:
-  const localidad = form.localidad.value.trim();
-  const operacion = form.tipo_operacion.value.trim();
-  const telefono = form.telefono.value.trim();
-  const inmueble = form.tipo_inmueble.value.trim();
+  // 🔧 Concatenamos info adicional en `text`
+  const text = `
+    Localidad: ${localidad}
+    Operación: ${operacion}
+    Tipo de Inmueble: ${tipoInmueble}
+    Mensaje: ${mensaje}
+  `.trim();
 
-  let extras = "";
-  if (localidad) extras += `Localidad: ${localidad}\n`;
-  if (operacion) extras += `Operación: ${operacion}\n`;
-  if (telefono) extras += `Teléfono: ${telefono}\n`;
-  if (inmueble) extras += `Tipo de Inmueble: ${inmueble}\n`;
+  const payload = {
+    name: name,
+    cellphone: cellphone,
+    phone: cellphone, // opcional, usamos mismo input
+    email: email,
+    text: text,
+    agent_mail: "info@ndbpropiedades.com.ar"
+    // properties: "[1234]",  // opcional, agregar si querés asociar propiedades
+    // tags: "['Tasacion', 'Web']",  // opcional, agregar etiquetas
+  };
 
-  const msgEl = document.getElementById("message");
-  if (extras) {
-    msgEl.value = msgEl.value.trim() + "\n\n" + extras;
-  }
-
-  // 2) Ejecutar reCAPTCHA antes de enviar
-  grecaptcha.ready(function () {
-    grecaptcha.execute('6LdF438rAAAAADMqPNG0sSTEcwcOOe5RvF9rVZ9u', { action: 'submit' }).then(function (token) {
-      // Agregar token al form
-      let recaptchaInput = document.createElement("input");
-      recaptchaInput.setAttribute("type", "hidden");
-      recaptchaInput.setAttribute("name", "g-recaptcha-response");
-      recaptchaInput.setAttribute("value", token);
-      form.appendChild(recaptchaInput);
-
-      // Ahora sí enviar el form
-      form.submit();
-    });
+  fetch('https://tokkobroker.com/api/v1/webcontact/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Api-Key TU_API_KEY_AQUI'  // 🔑 IMPORTANTE: Colocar tu API Key real aquí
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(response => {
+    if (!response.ok) {
+      console.error('Error en respuesta de la API', response.status, response.statusText);
+      throw new Error('No se pudo enviar el formulario');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('✅ Contacto enviado correctamente a Tokko Broker', data);
+    alert('Gracias por tu consulta, pronto te contactaremos.');
+    this.reset();
+  })
+  .catch(err => {
+    console.error('❌ Error al enviar a Tokko Broker:', err);
+    alert('Ocurrió un error al enviar el formulario. Por favor, intentá nuevamente.');
   });
 });
 // document.querySelector('.btn-reset').addEventListener('click', () => {
