@@ -203,7 +203,7 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
   const payload = {
     name: name,
     cellphone: cellphone,
-    phone: cellphone, // opcional, usamos mismo input
+    phone: cellphone,
     email: email,
     text: text,
     agent_mail: "info@ndbpropiedades.com.ar"
@@ -215,7 +215,7 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Api-Key TU_API_KEY_AQUI'  // 🔑 IMPORTANTE: Colocar tu API Key real aquí
+      'Authorization': '76c2e21bd630d16cfdb33e96f43fc013eafc4173'
     },
     body: JSON.stringify(payload)
   })
