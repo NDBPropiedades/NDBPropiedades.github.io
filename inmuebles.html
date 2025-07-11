@@ -1,34 +1,30 @@
-<!-- inmuebles.html -->
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <title>Inmuebles | NDB Propiedades</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inmuebles - NDB Propiedades</title>
     <link
       rel="icon"
       href="assets/img/favicon/favicon.ico"
       type="image/x-icon"
     />
-
-    <!-- Estilos externos -->
     <link
-      rel="preload"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-      as="style"
-      onload="this.rel='stylesheet'"
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
-    <link
+        <link
       rel="preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       as="style"
       onload="this.rel='stylesheet'"
     />
     <link rel="stylesheet" href="general_styles.css" />
+    <link rel="stylesheet" href="tokko-listado.css" />
     <link rel="stylesheet" href="inmuebles.css" />
   </head>
-
   <body>
+    <!-- wasap -->
     <div class="wasap" style="animation-name: tada">
       <a
         href="https://api.whatsapp.com/send?l=es&text=Hola%20NDB%20Propiedades!%20Quiero%20consultarles%20por%20una%20propiedad&phone=+5491164078491"
@@ -37,11 +33,15 @@
       >
         <img
           src="assets/img/svg/logo-wapp-01.svg"
+          width="50"
+          height="50"
+          style="max-width: 100%; height: auto"
           alt="NDB Propiedades WhatsApp"
           loading="lazy"
         />
       </a>
     </div>
+
     <!-- Header -->
     <header class="header">
       <div class="container header-container">
@@ -49,6 +49,8 @@
           <img
             src="assets/img/img/Nicolas De Brasi - Logo 2 Positivo RGB.png"
             alt="NDB Propiedades"
+            width="300"
+            height="100"
             loading="lazy"
           />
         </a>
@@ -71,152 +73,76 @@
       </div>
     </header>
 
-    <!-- Main -->
-    <main class="main-container">
-      <!-- Filtros de búsqueda -->
-      <section class="buscador-section">
-        <video autoplay muted loop playsinline class="video-fondo">
-          <source
-            src="assets/video/Institucional_Nico_NDB.mp4"
-            type="video/mp4"
-          />
-          Tu navegador no soporta el video HTML5.
-        </video>
-        <div class="video-overlay"></div>
-        <div class="frase-buscador">
-          <h2>Es lindo llegar a casa. <br />Mejor es encontrarla.</h2>
-        </div>
+    <section class="buscador-section">
+      <video autoplay muted loop playsinline class="video-fondo">
+        <source
+          src="assets/video/Institucional_Nico_NDB.mp4"
+          type="video/mp4"
+        />
+        Tu navegador no soporta el video HTML5.
+      </video>
+      <div class="video-overlay"></div>
+      <div class="frase-buscador">
+        <h2>Es lindo llegar a casa. <br />Mejor es encontrarla.</h2>
+      </div>
 
-        <div class="buscador">
-          <form>
-            <!-- Operación -->
-            <div class="custom-select-fa">
-              <select id="filtro-operacion">
-                <option value="default" disabled selected>Operación</option>
-                <option value="Venta">Venta</option>
-                <option value="Alquiler">Alquiler</option>
-                <option value="Alquiler Temporal">Alquiler Temporal</option>
-              </select>
-              <div class="select-icons">
-                <i class="fas fa-chevron-down"></i>
-              </div>
+      <div class="buscador">
+        <form>
+          <!-- Operación -->
+          <div class="custom-select-fa">
+            <select id="filtro-operacion">
+              <option value="default" disabled selected>Operación</option>
+              <option value="Sale">Venta</option>
+              <option value="Rent">Alquiler</option>
+              <option value="Temporary Rent">Alquiler Temporal</option>
+            </select>
+            <div class="select-icons">
+              <i class="fas fa-chevron-down"></i>
             </div>
+          </div>
 
-            <!-- Tipo de propiedad (multiselect con checkboxes) -->
-            <div class="custom-select-fa multiselect-wrapper">
-              <div
-                class="multiselect-title"
-                onclick="toggleDropdown('tipologia')"
-              >
-                Tipo de propiedad <i class="fas fa-chevron-down"></i>
-              </div>
-              <div
-                class="multiselect-options"
-                id="dropdown-tipologia"
-                style="display: none"
-              >
-                <label
-                  ><input type="checkbox" value="Departamento" />
-                  Departamento</label
-                >
-                <label><input type="checkbox" value="Casa" /> Casa</label>
-                <label><input type="checkbox" value="PH" /> PH</label>
-                <label><input type="checkbox" value="Local" /> Local</label>
-              </div>
+          <div class="custom-select-fa multiselect-wrapper">
+            <div class="multiselect-title" data-target="tipologia">
+              Tipo de propiedad <i class="fas fa-chevron-down"></i>
             </div>
+            <div
+              class="multiselect-options"
+              id="dropdown-tipologia"
+              style="display: none"
+            ></div>
+          </div>
 
-            <!-- Zona (multiselect con checkboxes) -->
-            <div class="custom-select-fa multiselect-wrapper">
-              <div class="multiselect-title" onclick="toggleDropdown('zona')">
-                Zona <i class="fas fa-chevron-down"></i>
-              </div>
-              <div
-                class="multiselect-options"
-                id="dropdown-zona"
-                style="display: none"
-              >
-                <label
-                  ><input type="checkbox" value="Acassuso" /> Acassuso</label
-                >
-                <label><input type="checkbox" value="Beccar" /> Beccar</label>
-                <label
-                  ><input type="checkbox" value="Boulogne" /> Boulogne</label
-                >
-                <label
-                  ><input type="checkbox" value="Del Viso" /> Del Viso</label
-                >
-                <label
-                  ><input type="checkbox" value="Don Torcuato" /> Don
-                  Torcuato</label
-                >
-                <label><input type="checkbox" value="Florida" /> Florida</label>
-                <label
-                  ><input type="checkbox" value="General Pacheco" /> General
-                  Pacheco</label
-                >
-                <label
-                  ><input type="checkbox" value="Ingeniero Maschwitz" />
-                  Ingeniero Maschwitz</label
-                >
-                <label
-                  ><input type="checkbox" value="La Lucila" /> La Lucila</label
-                >
-                <label
-                  ><input type="checkbox" value="Martínez" /> Martínez</label
-                >
-                <label
-                  ><input type="checkbox" value="Nordelta" /> Nordelta</label
-                >
-                <label><input type="checkbox" value="Olivos" /> Olivos</label>
-                <label><input type="checkbox" value="Pilar" /> Pilar</label>
-                <label
-                  ><input type="checkbox" value="San Fernando" /> San
-                  Fernando</label
-                >
-                <label
-                  ><input type="checkbox" value="San Isidro" /> San
-                  Isidro</label
-                >
-                <label><input type="checkbox" value="Tigre" /> Tigre</label>
-                <label
-                  ><input type="checkbox" value="Tortuguitas" />
-                  Tortuguitas</label
-                >
-                <label
-                  ><input type="checkbox" value="Vicente López" /> Vicente
-                  López</label
-                >
-                <label
-                  ><input type="checkbox" value="Villa Adelina" /> Villa
-                  Adelina</label
-                >
-              </div>
+          <div class="custom-select-fa multiselect-wrapper">
+            <div class="multiselect-title" data-target="zona">
+              Zona <i class="fas fa-chevron-down"></i>
             </div>
+            <div
+              class="multiselect-options"
+              id="dropdown-zona"
+              style="display: none"
+            ></div>
+          </div>
 
-            <!-- Ordenar -->
-            <div class="custom-select-fa">
-              <select id="filtro-orden">
-                <option value="default" disabled selected>Ordenar</option>
-                <option value="precio-desc">Precio: Alto a Bajo</option>
-                <option value="precio-asc">Precio: Bajo a Alto</option>
-                <option value="titulo-asc">Título: A-Z</option>
-                <option value="titulo-desc">Título: Z-A</option>
-                <option value="fecha-desc">Fecha: Nuevas primero</option>
-                <option value="fecha-asc">Fecha: Antiguas primero</option>
-              </select>
-              <div class="select-icons">
-                <i class="fas fa-chevron-down"></i>
-              </div>
+          <!-- Ordenar -->
+          <div class="custom-select-fa">
+            <select id="filtro-orden">
+              <option value="default" disabled selected>Ordenar</option>
+              <option value="precio-desc">Precio: Alto a Bajo</option>
+              <option value="precio-asc">Precio: Bajo a Alto</option>
+              <option value="titulo-asc">Título: A-Z</option>
+              <option value="titulo-desc">Título: Z-A</option>
+              <option value="fecha-desc">Fecha: Nuevas primero</option>
+              <option value="fecha-asc">Fecha: Antiguas primero</option>
+            </select>
+            <div class="select-icons">
+              <i class="fas fa-chevron-down"></i>
             </div>
-          </form>
-        </div>
-      </section>
+          </div>
+        </form>
+      </div>
+    </section>
 
-      <!-- Grilla de propiedades -->
-      <section class="propiedades">
-        <div id="lista-propiedades" class="lista-propiedades"></div>
-      </section>
-    </main>
+    <div class="tokko-container" id="lista-propiedades"></div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -227,9 +153,8 @@
             <li><a href="inmuebles.html">INMUEBLES</a></li>
             <li><a href="#contacto">CONTACTO</a></li>
             <li><a href="#nosotros">NOSOTROS</a></li>
-            <a href="#tasa" class="tasa-btn">TASÁ TU INMUEBLE</a>
+            <li><a href="#tasa" class="tasa-btn">TASÁ TU INMUEBLE</a></li>
           </ul>
-
           <button class="footer-menu-toggle" aria-label="Abrir menú">
             <i class="fas fa-bars"></i>
           </button>
@@ -238,15 +163,14 @@
           <img
             src="assets/img/img/Nicolas De Brasi - Logo Positivo RGB.png"
             alt="NDB Propiedades"
-            loading="lazy"
             class="footer-logo"
+            width="200"
+            height="80"
+            loading="lazy"
           />
           <p style="font-size: 12px; text-align: center" id="copyright"></p>
         </div>
-
         <div class="footer-center">
-          <!-- <h4>THE OFFICE</h4> -->
-          <!-- <p>Av. Libertador 14102, Martínez, Buenos Aires</p> -->
           <div style="height: 50px"></div>
           <p>Tel: +54 9 11 6407-8491</p>
           <p>
@@ -268,50 +192,20 @@
       </div>
       <br />
       <br />
-      <div class="container">
+      <div class="containers">
         <a
           href="https://www.raven3.com.ar"
-          style="font-size: 10px; color: rgb(78, 78, 78); text-decoration: none"
+          style="
+            font-size: 10px;
+            color: var(--color-ndb-Gray);
+            text-decoration: none;
+          "
           >by <strong>Raven3</strong></a
         >
       </div>
     </footer>
 
-    <!-- Scripts -->
-
-    <script>
-      function toggleDropdown(id) {
-        const current = document.getElementById("dropdown-" + id);
-
-        // Cerrar cualquier otro dropdown abierto
-        document
-          .querySelectorAll(".multiselect-options")
-          .forEach((dropdown) => {
-            if (dropdown !== current) {
-              dropdown.style.display = "none";
-            }
-          });
-
-        // Toggle actual
-        current.style.display =
-          current.style.display === "block" ? "none" : "block";
-      }
-
-      // Cerrar todos los dropdowns si se hace clic afuera
-      document.addEventListener("click", function (event) {
-        const isMultiselect = event.target.closest(".multiselect-wrapper");
-        if (!isMultiselect) {
-          document
-            .querySelectorAll(".multiselect-options")
-            .forEach((dropdown) => {
-              dropdown.style.display = "none";
-            });
-        }
-      });
-    </script>
-    <script src="navbar.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="propiedades/propiedades.js"></script>
-    <script src="inmuebles.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="tokko-listado.js"></script>
   </body>
 </html>
