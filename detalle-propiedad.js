@@ -162,6 +162,22 @@ if (!propiedadId) {
       // Link al formulario
       linkFormulario.href =
         "https://docs.google.com/forms/d/e/1FAIpQLScPwRC1SL82-IPmpWedPcxj-guvqRl-gJj7fK3Ryi6RsHVxnw/viewform?usp=pp_url";
+
+      if (prop.videos && prop.videos.length > 0) {
+        const video = prop.videos[0]; 
+        const videoContainer = document.getElementById("video-propiedad");
+
+        if (videoContainer) {
+          videoContainer.innerHTML = `
+      <h3 style="margin-bottom: 15px;">Video de la propiedad</h3>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+        <iframe src="${video.player_url}" frameborder="0" allowfullscreen
+          style="position:absolute; top:0; left:0; width:100%; height:100%;">
+        </iframe>
+      </div>
+    `;
+        }
+      }
     })
     .catch((err) => {
       infoEl.innerHTML = "<p>Error al cargar la propiedad.</p>";
