@@ -161,3 +161,116 @@ function inicializarSwiperGeneral() {
 document.addEventListener("DOMContentLoaded", () => {
   cargarPropiedades();
 });
+
+
+const animables = document.querySelectorAll(".fade-in");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target); // solo una vez
+      }
+    });
+  },
+  {
+    threshold: 0.2,
+  }
+);
+
+animables.forEach((el) => observer.observe(el));
+
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+  // 1) Obtén los valores de los campos extra
+  const localidad = this.localidad.value.trim();
+  const operacion = this.tipo_operacion.value.trim();
+  const telefono = this.telefono.value.trim();
+  const inmueble = this.tipo_inmueble.value.trim();
+
+  // 2) Construye un bloque de texto con ellos
+  let extras = "";
+  if (localidad) extras += `Localidad: ${localidad}\n`;
+  if (operacion) extras += `Operación: ${operacion}\n`;
+  if (telefono) extras += `Teléfono: ${telefono}\n`;
+  if (inmueble) extras += `Tipo de Inmueble: ${inmueble}\n`;
+
+  // 3) Si hay extras, los añades debajo del mensaje original
+  const msgEl = document.getElementById("message");
+  if (extras) {
+    msgEl.value = msgEl.value.trim() + "\n\n" + extras;
+  }
+  // Dejas que el form siga su curso (POST a Formspree)
+});
+
+// document.querySelector('.btn-reset').addEventListener('click', () => {
+//   document
+//     .querySelectorAll('.buscador-avanzado select')
+//     .forEach(sel => sel.selectedIndex = 0);
+// });
+const pasos = document.querySelectorAll(".step");
+const path = document.getElementById("snake-path");
+const trail = document.getElementById("snake-trail");
+
+const totalLength = path.getTotalLength();
+const pasosCount = pasos.length;
+const stepLength = totalLength / pasosCount;
+
+let pasoActual = 0;
+
+function moverCabeza(pasoIndex) {
+  const len = stepLength * pasoIndex - 5;
+
+  const pos = path.getPointAtLength(len);
+  const next = path.getPointAtLength(len + 5);
+
+  const dx = next.x - pos.x;
+  const dy = next.y - pos.y;
+  // const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+  const offset = totalLength - (stepLength * pasoIndex - 5);
+  // Posiciona y rota la flecha
+
+  // Extiende el trail
+  trail.setAttribute("stroke-dashoffset", offset);
+}
+
+function activarPaso() {
+  pasos.forEach((p, i) => {
+    p.classList.toggle("active", i === pasoActual);
+  });
+
+  moverCabeza(pasoActual);
+
+  pasoActual = (pasoActual + 1) % pasosCount;
+}
+
+activarPaso();
+setInterval(activarPaso, 1800);
+
+document.addEventListener("DOMContentLoaded", () => {
+  function onSubmitCaptcha() {
+    grecaptcha.ready(() => {
+      grecaptcha
+        .execute("6Lf8RCorAAAAAKHkFqg0E9kAlzjeS7Yl-1Z3n-qz", {
+          action: "submit",
+        })
+        .then((token) => {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = "g-recaptcha-response";
+          input.value = token;
+          document.getElementById("contactForm").appendChild(input);
+          document.getElementById("contactForm").submit();
+        });
+    });
+  }
+
+  // Asegurate de que esta función esté atada a un botón, por ejemplo:
+  const btn = document.getElementById("submit-button");
+  if (btn) {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      onSubmitCaptcha();
+    });
+  }
+});
