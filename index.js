@@ -162,7 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarPropiedades();
 });
 
-
 const animables = document.querySelectorAll(".fade-in");
 
 const observer = new IntersectionObserver(
@@ -192,7 +191,6 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
   const tipoInmueble = this.tipo_inmueble.value.trim();
   const mensaje = this.mensaje.value.trim();
 
-  // 🔧 Concatenamos info adicional en `text`
   const text = `
     Localidad: ${localidad}
     Operación: ${operacion}
@@ -236,11 +234,7 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
     alert('Ocurrió un error al enviar el formulario. Por favor, intentá nuevamente.');
   });
 });
-// document.querySelector('.btn-reset').addEventListener('click', () => {
-//   document
-//     .querySelectorAll('.buscador-avanzado select')
-//     .forEach(sel => sel.selectedIndex = 0);
-// });
+
 const pasos = document.querySelectorAll(".step");
 const path = document.getElementById("snake-path");
 const trail = document.getElementById("snake-trail");
@@ -253,17 +247,11 @@ let pasoActual = 0;
 
 function moverCabeza(pasoIndex) {
   const len = stepLength * pasoIndex - 5;
-
   const pos = path.getPointAtLength(len);
   const next = path.getPointAtLength(len + 5);
-
   const dx = next.x - pos.x;
   const dy = next.y - pos.y;
-  // const angle = Math.atan2(dy, dx) * (180 / Math.PI);
   const offset = totalLength - (stepLength * pasoIndex - 5);
-  // Posiciona y rota la flecha
-
-  // Extiende el trail
   trail.setAttribute("stroke-dashoffset", offset);
 }
 
@@ -271,9 +259,7 @@ function activarPaso() {
   pasos.forEach((p, i) => {
     p.classList.toggle("active", i === pasoActual);
   });
-
   moverCabeza(pasoActual);
-
   pasoActual = (pasoActual + 1) % pasosCount;
 }
 
