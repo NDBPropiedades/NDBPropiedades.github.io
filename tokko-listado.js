@@ -190,3 +190,10 @@ document.addEventListener("click", (event) => {
 });
 
 cargarPropiedades();
+
+function toggleDropdown(id) {
+  const dropdown = document.getElementById("dropdown-" + id);
+  if (dropdown) {
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+  }
+}
