@@ -98,19 +98,16 @@ function cargarPropiedades() {
 
       const orden = document.getElementById("filtro-orden").value;
       if (orden && orden !== "default") {
-        if (orden === "precio-asc") {
-          propiedades.sort((a, b) => (a.operations?.[0]?.prices?.[0]?.price || 0) - (b.operations?.[0]?.prices?.[0]?.price || 0));
-        } else if (orden === "precio-desc") {
-          propiedades.sort((a, b) => (b.operations?.[0]?.prices?.[0]?.price || 0) - (a.operations?.[0]?.prices?.[0]?.price || 0));
-        } else if (orden === "titulo-asc") {
-          propiedades.sort((a, b) => (a.publication_title || "").localeCompare(b.publication_title || ""));
-        } else if (orden === "titulo-desc") {
-          propiedades.sort((a, b) => (b.publication_title || "").localeCompare(a.publication_title || ""));
-        } else if (orden === "fecha-asc") {
-          propiedades.sort((a, b) => new Date(a.created_on) - new Date(b.created_on));
-        } else if (orden === "fecha-desc") {
-          propiedades.sort((a, b) => new Date(b.created_on) - new Date(a.created_on));
-        }
+        propiedades.sort((a, b) => {
+          const precioA = a.operations?.[0]?.prices?.[0]?.price || 0;
+          const precioB = b.operations?.[0]?.prices?.[0]?.price || 0;
+          if (orden === "precio-asc") return precioA - precioB;
+          if (orden === "precio-desc") return precioB - precioA;
+          if (orden === "titulo-asc") return (a.publication_title || "").localeCompare(b.publication_title || "");
+          if (orden === "titulo-desc") return (b.publication_title || "").localeCompare(a.publication_title || "");
+          if (orden === "fecha-asc") return new Date(a.created_on) - new Date(b.created_on);
+          if (orden === "fecha-desc") return new Date(b.created_on) - new Date(a.created_on);
+        });
       }
 
       contenedor.innerHTML = "";
@@ -127,6 +124,20 @@ function cargarPropiedades() {
         const precio = prop.operations?.[0]?.prices?.[0]?.price ? `USD ${prop.operations[0].prices[0].price}` : "Consultar";
         const zona = prop.location?.name || "Zona no especificada";
 
+        const tipoPropiedadEN = prop.type?.name || "Propiedad";
+        const tipoPropiedadES = propertyTypeTranslations[tipoPropiedadEN] || tipoPropiedadEN;
+
+        const dormitorios = prop.room_amount || 0;
+        const baños = prop.bathroom_amount || 0;
+        const toiletes = prop.toilet_amount || 0;
+        const tamaño = prop.total_surface || 0;
+
+        let iconosHTML = "";
+        if (dormitorios > 0) iconosHTML += `<span><i class="fas fa-bed"></i> ${dormitorios}</span>`;
+        if (baños > 0) iconosHTML += `<span><i class="fas fa-bath"></i> ${baños}</span>`;
+        if (toiletes > 0) iconosHTML += `<span><i class="fas fa-toilet"></i> ${toiletes}</span>`;
+        if (tamaño > 0) iconosHTML += `<span><i class="fas fa-ruler-combined"></i> ${tamaño} m²</span>`;
+
         const html = `
           <div class="tokko-card">
             <div class="swiper mySwiper" id="swiper-${index}">
@@ -135,10 +146,12 @@ function cargarPropiedades() {
               <div class="swiper-button-prev"></div>
             </div>
             <div class="info">
-              <h3><a href="propiedad.html?id=${prop.id}">${titulo}</a></h3>
-              <p><strong>Zona:</strong> ${zona}</p>
+              <h3><a href="propiedad.html?id=${prop.id}">${tipoPropiedadES} en ${zona}</a></h3>
+                 <p>${prop.publication_title || ""}</p>
+                 <p><strong>Zona:</strong> ${zona}</p>
               <p><strong>Precio:</strong> ${precio}</p>
             </div>
+            ${iconosHTML ? `<div class="iconos-card">${iconosHTML}</div>` : ""}
           </div>`;
 
         contenedor.innerHTML += html;
@@ -161,14 +174,13 @@ function cargarPropiedades() {
     });
 }
 
-function toggleDropdown(id) {
-  const dropdown = document.getElementById("dropdown-" + id);
-  if (dropdown) {
-    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-  }
-}
+document.getElementById("filtro-operacion").addEventListener("change", cargarPropiedades);
+document.getElementById("filtro-orden").addEventListener("change", cargarPropiedades);
 
-document.addEventListener("click", function(event) {
+document.querySelector('.multiselect-title[data-target="tipologia"]').addEventListener('click', () => toggleDropdown('tipologia'));
+document.querySelector('.multiselect-title[data-target="zona"]').addEventListener('click', () => toggleDropdown('zona'));
+
+document.addEventListener("click", (event) => {
   document.querySelectorAll(".multiselect-wrapper").forEach(wrapper => {
     if (!wrapper.contains(event.target)) {
       const options = wrapper.querySelector(".multiselect-options");
@@ -176,11 +188,5 @@ document.addEventListener("click", function(event) {
     }
   });
 });
-
-document.querySelector('.multiselect-title[data-target="tipologia"]').addEventListener('click', () => toggleDropdown('tipologia'));
-document.querySelector('.multiselect-title[data-target="zona"]').addEventListener('click', () => toggleDropdown('zona'));
-
-document.getElementById("filtro-operacion").addEventListener("change", cargarPropiedades);
-document.getElementById("filtro-orden").addEventListener("change", cargarPropiedades);
 
 cargarPropiedades();

@@ -2,26 +2,26 @@ const API_URL = `https://tokkobroker.com/api/v1/property/?key=76c2e21bd630d16cfd
 const contenedorCards = document.getElementById("propiedades-list");
 
 const propertyTypeTranslations = {
-  "Land": "Terreno",
-  "Apartment": "Departamento",
-  "House": "Casa",
+  Land: "Terreno",
+  Apartment: "Departamento",
+  House: "Casa",
   "Weekend House": "Casa de fin de semana",
-  "Office": "Oficina",
-  "Mooring": "Amarra",
+  Office: "Oficina",
+  Mooring: "Amarra",
   "Bussiness Premises": "Local comercial",
   "Commercial Building": "Edificio comercial",
-  "Countryside": "Campo",
-  "Garage": "Cochera",
-  "Hotel": "Hotel",
+  Countryside: "Campo",
+  Garage: "Cochera",
+  Hotel: "Hotel",
   "Industrial Ship": "Nave industrial",
-  "Condo": "PH",
-  "Storage": "Depósito",
+  Condo: "PH",
+  Storage: "Depósito",
   "Bussiness Permit": "Fondo de comercio",
   "Storage room": "Baulera",
   "Wine Cellar": "Bodega",
-  "Farm": "Granja",
-  "Ranch": "Estancia",
-  "Nautical Bed": "Cama náutica"
+  Farm: "Granja",
+  Ranch: "Estancia",
+  "Nautical Bed": "Cama náutica",
 };
 
 var currentYear = new Date().getFullYear();
@@ -53,9 +53,10 @@ function cargarPropiedades() {
           p.operations?.[0]?.operation_type === "Sale" ? "Venta" : "Alquiler";
         const colorTag = tipoTransaccion === "Venta" ? "#0e246a" : "#7eccff";
 
-        const tipoPropiedad = propertyTypeTranslations[p.type?.name] || p.type?.name || "Propiedad";
+        const tipoPropiedad =
+          propertyTypeTranslations[p.type?.name] || p.type?.name || "Propiedad";
         const localidad = p.location?.name || "Ubicación no especificada";
-
+        // const zona = p.location?.name || "Zona no especificada";
         const valor = p.operations?.[0]?.prices?.[0]?.price
           ? `USD ${p.operations[0].prices[0].price}`
           : "Consultar";
@@ -66,10 +67,22 @@ function cargarPropiedades() {
         const tamaño = p.total_surface || 0;
 
         const iconos = `
-        ${dormitorios > 0 ? `<span><i class="fas fa-bed"></i> ${dormitorios}</span>` : ''}
-        ${baños > 0 ? `<span><i class="fas fa-bath"></i> ${baños}</span>` : ''}
-        ${toiletes > 0 ? `<span><i class="fas fa-toilet"></i> ${toiletes}</span>` : ''}
-        ${tamaño > 0 ? `<span><i class="fas fa-ruler-combined"></i> ${tamaño} m²</span>` : ''}
+        ${
+          dormitorios > 0
+            ? `<span><i class="fas fa-bed"></i> ${dormitorios}</span>`
+            : ""
+        }
+        ${baños > 0 ? `<span><i class="fas fa-bath"></i> ${baños}</span>` : ""}
+        ${
+          toiletes > 0
+            ? `<span><i class="fas fa-toilet"></i> ${toiletes}</span>`
+            : ""
+        }
+        ${
+          tamaño > 0
+            ? `<span><i class="fas fa-ruler-combined"></i> ${tamaño} m²</span>`
+            : ""
+        }
       `;
 
         card.innerHTML = `
@@ -87,12 +100,15 @@ function cargarPropiedades() {
           </div>
 
           <h3>
-            <a href="propiedad.html?id=${p.id}" style="text-decoration: none; color: inherit;">
+            <a href="propiedad.html?id=${
+              p.id
+            }" style="text-decoration: none; color: inherit;">
               ${tipoPropiedad} en ${localidad}
             </a>
           </h3>
-          <p><strong>${valor}</strong></p>
           <p>${p.publication_title || ""}</p>
+         
+          <p><strong>Precio:</strong> ${valor}</p>
 
            <div class="iconos-card">
             ${iconos}
