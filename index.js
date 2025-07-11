@@ -213,7 +213,7 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': '76c2e21bd630d16cfdb33e96f43fc013eafc4173'
+      'Authorization': 'Api-Key 76c2e21bd630d16cfdb33e96f43fc013eafc4173'
     },
     body: JSON.stringify(payload)
   })
