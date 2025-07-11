@@ -182,27 +182,42 @@ const observer = new IntersectionObserver(
 animables.forEach((el) => observer.observe(el));
 
 document.getElementById("contactForm").addEventListener("submit", function (e) {
-  // 1) Obtén los valores de los campos extra
-  const localidad = this.localidad.value.trim();
-  const operacion = this.tipo_operacion.value.trim();
-  const telefono = this.telefono.value.trim();
-  const inmueble = this.tipo_inmueble.value.trim();
+  e.preventDefault();
 
-  // 2) Construye un bloque de texto con ellos
+  const form = this;
+
+  // 1) Construir extras como antes:
+  const localidad = form.localidad.value.trim();
+  const operacion = form.tipo_operacion.value.trim();
+  const telefono = form.telefono.value.trim();
+  const inmueble = form.tipo_inmueble.value.trim();
+
   let extras = "";
   if (localidad) extras += `Localidad: ${localidad}\n`;
   if (operacion) extras += `Operación: ${operacion}\n`;
   if (telefono) extras += `Teléfono: ${telefono}\n`;
   if (inmueble) extras += `Tipo de Inmueble: ${inmueble}\n`;
 
-  // 3) Si hay extras, los añades debajo del mensaje original
   const msgEl = document.getElementById("message");
   if (extras) {
     msgEl.value = msgEl.value.trim() + "\n\n" + extras;
   }
-  // Dejas que el form siga su curso (POST a Formspree)
-});
 
+  // 2) Ejecutar reCAPTCHA antes de enviar
+  grecaptcha.ready(function () {
+    grecaptcha.execute('6LdF438rAAAAADMqPNG0sSTEcwcOOe5RvF9rVZ9u', { action: 'submit' }).then(function (token) {
+      // Agregar token al form
+      let recaptchaInput = document.createElement("input");
+      recaptchaInput.setAttribute("type", "hidden");
+      recaptchaInput.setAttribute("name", "g-recaptcha-response");
+      recaptchaInput.setAttribute("value", token);
+      form.appendChild(recaptchaInput);
+
+      // Ahora sí enviar el form
+      form.submit();
+    });
+  });
+});
 // document.querySelector('.btn-reset').addEventListener('click', () => {
 //   document
 //     .querySelectorAll('.buscador-avanzado select')
