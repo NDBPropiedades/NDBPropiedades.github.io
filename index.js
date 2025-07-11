@@ -183,6 +183,14 @@ animables.forEach((el) => observer.observe(el));
 document.getElementById("contactForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
+  // Verificar que el captcha esté completado antes de continuar
+  const captchaResponse = grecaptcha.getResponse();
+  if (!captchaResponse) {
+    alert("Por favor completa el reCAPTCHA antes de enviar.");
+    return;
+  }
+
+  // Capturar valores del formulario
   const name = this.name.value.trim();
   const cellphone = this.telefono.value.trim();
   const email = this.email.value.trim();
@@ -205,8 +213,8 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
     email: email,
     text: text,
     agent_mail: "info@ndbpropiedades.com.ar"
-    // properties: "[1234]",  // opcional, agregar si querés asociar propiedades
-    // tags: "['Tasacion', 'Web']",  // opcional, agregar etiquetas
+    // properties: "[1234]",  // opcional
+    // tags: "['Tasacion', 'Web']",  // opcional
   };
 
   fetch('https://tokkobroker.com/api/v1/webcontact/', {
@@ -228,6 +236,7 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
     console.log('✅ Contacto enviado correctamente a Tokko Broker', data);
     alert('Gracias por tu consulta, pronto te contactaremos.');
     this.reset();
+    grecaptcha.reset(); // 🔔 Importante: resetear el captcha después de enviar correctamente
   })
   .catch(err => {
     console.error('❌ Error al enviar a Tokko Broker:', err);
