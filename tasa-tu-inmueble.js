@@ -1,6 +1,54 @@
-document.getElementById("contactForm").addEventListener("submit",function(e){e.preventDefault();let t=document.getElementById("name")?.value.trim()||"",a=document.getElementById("email")?.value.trim()||"",o=document.querySelector("[name='telefono']")?.value.trim()||"",n=document.getElementById("localidad")?.value.trim()||"",r=document.querySelector("[name='tipo_operacion']")?.value.trim()||"",i=document.querySelector("[name='tipo_inmueble']")?.value.trim()||"",l=document.getElementById("mensaje")?.value.trim()||"",m=`
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  let t = document.getElementById("name")?.value.trim() || "",
+    a = document.getElementById("email")?.value.trim() || "",
+    o = document.querySelector("[name='telefono']")?.value.trim() || "",
+    n = document.getElementById("localidad")?.value.trim() || "",
+    r = document.querySelector("[name='tipo_operacion']")?.value.trim() || "",
+    i = document.querySelector("[name='tipo_inmueble']")?.value.trim() || "",
+    l = document.getElementById("mensaje")?.value.trim() || "",
+    m = `
     Localidad: ${n}
     Operaci\xf3n: ${r}
     Tipo de Inmueble: ${i}
     Mensaje: ${l}
-  `.trim();if(!t||!o&&!a){alert("Complet\xe1 al menos nombre y tel\xe9fono o email.");return}fetch("https://tokkobroker.com/api/v1/webcontact/?key=76c2e21bd630d16cfdb33e96f43fc013eafc4173",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:t,email:a,phone:o,cellphone:o,text:m,tags:["Formulario Web","Tasacion"],agent_mail:"info@ndbpropiedades.com.ar"})}).then(e=>{if(!e.ok)throw Error(`Error en el env\xedo (${e.status})`);window.location.href="https://ndbpropiedades.com.ar/gracias.html"}).catch(e=>{console.error("❌ Error al enviar:",e)})});
+  `.trim();
+  if (!t || (!o && !a)) {
+    alert("Complet\xe1 al menos nombre y tel\xe9fono o email.");
+    return;
+  }
+  fetch(
+    "https://tokkobroker.com/api/v1/webcontact/?key=76c2e21bd630d16cfdb33e96f43fc013eafc4173",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: t,
+        email: a,
+        phone: o,
+        cellphone: o,
+        text: m,
+        tags: ["Formulario Web", "Tasacion"],
+        agent_mail: "info@ndbpropiedades.com.ar",
+      }),
+    }
+  )
+    .then((e) => {
+      if (!e.ok) throw Error(`Error en el env\xedo (${e.status})`);
+      window.location.href = "https://ndbpropiedades.com.ar/gracias.html";
+    })
+    .catch((e) => {
+      console.error("❌ Error al enviar:", e);
+    });
+});
+
+document.getElementById("contactForm").addEventListener("focusin", () => {
+  if (!window.recaptchaScriptLoaded) {
+    const script = document.createElement('script');
+    script.src = 'https://www.google.com/recaptcha/api.js';
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+    window.recaptchaScriptLoaded = true;
+  }
+});
