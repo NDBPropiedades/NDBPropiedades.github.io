@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ndbpropiedades.com.ar/sitemap.xml
