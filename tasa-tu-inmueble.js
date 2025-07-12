@@ -43,11 +43,9 @@ const payload = {
   })
   .then((res) => {
     if (!res.ok) throw new Error(`Error en el envío (${res.status})`);
-    alert("Formulario enviado correctamente.");
     window.location.href = "https://ndbpropiedades.com.ar/gracias.html";
   })
   .catch((err) => {
     console.error("❌ Error al enviar:", err);
-    alert("Ocurrió un error al enviar el formulario. Por favor, intentá nuevamente.");
   });
 });
