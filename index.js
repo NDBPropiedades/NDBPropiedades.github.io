@@ -1,3 +1,28 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const swiperContainer = document.querySelector(".myMainSwiper");
+  
+  if (swiperContainer) {
+    requestIdleCallback(() => {
+      import("https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js").then((module) => {
+        const Swiper = module.default;
+        new Swiper(".myMainSwiper", {
+          loop: true,
+          slidesPerView: 1,
+          spaceBetween: 10,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+          }
+        });
+      });
+    });
+  }
+});
+
 const API_URL =
     "https://tokkobroker.com/api/v1/property/?key=76c2e21bd630d16cfdb33e96f43fc013eafc4173&format=json&shared=true",
   contenedorCards = document.getElementById("propiedades-list"),
@@ -25,7 +50,7 @@ const API_URL =
   };
 var currentYear = new Date().getFullYear();
 function cargarPropiedades() {
-  return fetch(
+  fetch(
     "https://tokkobroker.com/api/v1/property/?key=76c2e21bd630d16cfdb33e96f43fc013eafc4173&format=json&shared=true"
   )
     .then((e) => e.json())
@@ -102,18 +127,48 @@ function cargarPropiedades() {
         </div>
       `),
             contenedorCards.appendChild(r);
-        });
+        }),
+        inicializarSwipers(),
+        inicializarSwiperGeneral();
     })
     .catch((e) => {
       console.error("Error al cargar propiedades destacadas:", e),
         (contenedorCards.innerHTML = "<p>Error al cargar propiedades.</p>");
     });
 }
-
-document.getElementById("copyright").innerHTML =
+function inicializarSwipers() {
+  let e = document.querySelectorAll(".mySwiper");
+  e.forEach((e) => {
+    new Swiper(e, {
+      loop: !0,
+      autoplay: !1,
+      navigation: {
+        nextEl: e.querySelector(".swiper-button-next"),
+        prevEl: e.querySelector(".swiper-button-prev"),
+      },
+    });
+  });
+}
+function inicializarSwiperGeneral() {
+  new Swiper(".myMainSwiper", {
+    loop: !0,
+    grabCursor: !0,
+    slidesPerView: 3,
+    slidesPerGroup: 3,
+    spaceBetween: 30,
+    breakpoints: {
+      0: { slidesPerView: 1, slidesPerGroup: 1 },
+      768: { slidesPerView: 2, slidesPerGroup: 2 },
+      1024: { slidesPerView: 3, slidesPerGroup: 3 },
+    },
+  });
+}
+(document.getElementById("copyright").innerHTML =
   currentYear +
-  " \xa9 Copyright NDB Propiedades. Todos los derechos reservados. Argentina, Buenos Aires.";
-
+  " \xa9 Copyright NDB Propiedades. Todos los derechos reservados. Argentina, Buenos Aires."),
+  document.addEventListener("DOMContentLoaded", () => {
+    cargarPropiedades();
+  });
 const animables = document.querySelectorAll(".fade-in"),
   observer = new IntersectionObserver(
     (e) => {
@@ -150,51 +205,3 @@ function activarPaso() {
     (pasoActual = (pasoActual + 1) % pasosCount);
 }
 activarPaso(), setInterval(activarPaso, 1800);
-
-document.addEventListener("DOMContentLoaded", () => {
-  cargarPropiedades().then(() => {
-    const swiperElements = document.querySelectorAll(
-      ".mySwiper, .myMainSwiper"
-    );
-
-    if (swiperElements.length > 0) {
-      requestIdleCallback(() => {
-        const script = document.createElement("script");
-        script.src =
-          "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js";
-        script.onload = () => {
-          console.log("Swiper library loaded");
-
-          swiperElements.forEach((el) => {
-            const isMain = el.classList.contains("myMainSwiper");
-            new window.Swiper(el, {
-              loop: true,
-              autoplay: isMain ? false : { delay: 5000 },
-              slidesPerView: isMain ? 3 : 1,
-              slidesPerGroup: isMain ? 3 : 1,
-              spaceBetween: isMain ? 30 : 10,
-              navigation: {
-                nextEl: el.querySelector(".swiper-button-next"),
-                prevEl: el.querySelector(".swiper-button-prev"),
-              },
-              pagination: !isMain
-                ? {
-                    el: el.querySelector(".swiper-pagination"),
-                    clickable: true,
-                  }
-                : undefined,
-              breakpoints: isMain
-                ? {
-                    0: { slidesPerView: 1, slidesPerGroup: 1 },
-                    768: { slidesPerView: 2, slidesPerGroup: 2 },
-                    1024: { slidesPerView: 3, slidesPerGroup: 3 },
-                  }
-                : undefined,
-            });
-          });
-        };
-        document.body.appendChild(script);
-      });
-    }
-  });
-});
