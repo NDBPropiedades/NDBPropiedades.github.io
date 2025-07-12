@@ -1,28 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const swiperContainer = document.querySelector(".myMainSwiper");
-  
-  if (swiperContainer) {
-    requestIdleCallback(() => {
-      import("https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js").then((module) => {
-        const Swiper = module.default;
-        new Swiper(".myMainSwiper", {
-          loop: true,
-          slidesPerView: 1,
-          spaceBetween: 10,
-          pagination: {
-            el: ".swiper-pagination",
-            clickable: true
-          },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev"
-          }
-        });
-      });
-    });
-  }
-});
-
 const API_URL =
     "https://tokkobroker.com/api/v1/property/?key=76c2e21bd630d16cfdb33e96f43fc013eafc4173&format=json&shared=true",
   contenedorCards = document.getElementById("propiedades-list"),
