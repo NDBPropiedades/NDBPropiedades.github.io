@@ -24,14 +24,15 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
     return;
   }
 
-  const payload = {
-    name: name,
-    email: email,
-    phone: phone,
-    text: text,
-    tags: ["Formulario Web", "Tasacion"],
-    agent_mail: "info@ndbpropiedades.com.ar"
-  };
+const payload = {
+  name: name,
+  email: email,
+  phone: phone,        
+  cellphone: phone,    
+  text: text,
+  tags: ["Formulario Web", "Tasacion"],
+  agent_mail: "info@ndbpropiedades.com.ar"
+};
 
   fetch(API_URL, {
     method: "POST",
