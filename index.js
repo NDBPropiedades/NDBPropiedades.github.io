@@ -25,7 +25,7 @@ const API_URL =
   };
 var currentYear = new Date().getFullYear();
 function cargarPropiedades() {
-  fetch(
+  return fetch(
     "https://tokkobroker.com/api/v1/property/?key=76c2e21bd630d16cfdb33e96f43fc013eafc4173&format=json&shared=true"
   )
     .then((e) => e.json())
@@ -109,39 +109,11 @@ function cargarPropiedades() {
         (contenedorCards.innerHTML = "<p>Error al cargar propiedades.</p>");
     });
 }
-function inicializarSwipers() {
-  let e = document.querySelectorAll(".mySwiper");
-  e.forEach((e) => {
-    new Swiper(e, {
-      loop: !0,
-      autoplay: !1,
-      navigation: {
-        nextEl: e.querySelector(".swiper-button-next"),
-        prevEl: e.querySelector(".swiper-button-prev"),
-      },
-    });
-  });
-}
-function inicializarSwiperGeneral() {
-  new Swiper(".myMainSwiper", {
-    loop: !0,
-    grabCursor: !0,
-    slidesPerView: 3,
-    slidesPerGroup: 3,
-    spaceBetween: 30,
-    breakpoints: {
-      0: { slidesPerView: 1, slidesPerGroup: 1 },
-      768: { slidesPerView: 2, slidesPerGroup: 2 },
-      1024: { slidesPerView: 3, slidesPerGroup: 3 },
-    },
-  });
-}
-(document.getElementById("copyright").innerHTML =
+
+document.getElementById("copyright").innerHTML =
   currentYear +
-  " \xa9 Copyright NDB Propiedades. Todos los derechos reservados. Argentina, Buenos Aires."),
-  document.addEventListener("DOMContentLoaded", () => {
-    cargarPropiedades();
-  });
+  " \xa9 Copyright NDB Propiedades. Todos los derechos reservados. Argentina, Buenos Aires.";
+
 const animables = document.querySelectorAll(".fade-in"),
   observer = new IntersectionObserver(
     (e) => {
@@ -180,35 +152,49 @@ function activarPaso() {
 activarPaso(), setInterval(activarPaso, 1800);
 
 document.addEventListener("DOMContentLoaded", () => {
-  const swiperElements = document.querySelectorAll(".mySwiper, .myMainSwiper");
+  cargarPropiedades().then(() => {
+    const swiperElements = document.querySelectorAll(
+      ".mySwiper, .myMainSwiper"
+    );
 
-  if (swiperElements.length > 0) {
-    requestIdleCallback(() => {
-      const script = document.createElement("script");
-      script.src =
-        "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js";
-      script.onload = () => {
-        console.log("Swiper library loaded");
+    if (swiperElements.length > 0) {
+      requestIdleCallback(() => {
+        const script = document.createElement("script");
+        script.src =
+          "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js";
+        script.onload = () => {
+          console.log("Swiper library loaded");
 
-        // Inicializar todos los swipers encontrados:
-        swiperElements.forEach((el) => {
-          new window.Swiper(el, {
-            loop: true,
-            autoplay: { delay: 5000 },
-            slidesPerView: el.classList.contains("myMainSwiper") ? 3 : 1,
-            spaceBetween: 10,
-            navigation: {
-              nextEl: el.querySelector(".swiper-button-next"),
-              prevEl: el.querySelector(".swiper-button-prev"),
-            },
-            pagination: {
-              el: el.querySelector(".swiper-pagination"),
-              clickable: true,
-            },
+          swiperElements.forEach((el) => {
+            const isMain = el.classList.contains("myMainSwiper");
+            new window.Swiper(el, {
+              loop: true,
+              autoplay: isMain ? false : { delay: 5000 },
+              slidesPerView: isMain ? 3 : 1,
+              slidesPerGroup: isMain ? 3 : 1,
+              spaceBetween: isMain ? 30 : 10,
+              navigation: {
+                nextEl: el.querySelector(".swiper-button-next"),
+                prevEl: el.querySelector(".swiper-button-prev"),
+              },
+              pagination: !isMain
+                ? {
+                    el: el.querySelector(".swiper-pagination"),
+                    clickable: true,
+                  }
+                : undefined,
+              breakpoints: isMain
+                ? {
+                    0: { slidesPerView: 1, slidesPerGroup: 1 },
+                    768: { slidesPerView: 2, slidesPerGroup: 2 },
+                    1024: { slidesPerView: 3, slidesPerGroup: 3 },
+                  }
+                : undefined,
+            });
           });
-        });
-      };
-      document.body.appendChild(script);
-    });
-  }
+        };
+        document.body.appendChild(script);
+      });
+    }
+  });
 });
