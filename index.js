@@ -102,9 +102,7 @@ function cargarPropiedades() {
         </div>
       `),
             contenedorCards.appendChild(r);
-        }),
-        inicializarSwipers(),
-        inicializarSwiperGeneral();
+        });
     })
     .catch((e) => {
       console.error("Error al cargar propiedades destacadas:", e),
@@ -182,27 +180,35 @@ function activarPaso() {
 activarPaso(), setInterval(activarPaso, 1800);
 
 document.addEventListener("DOMContentLoaded", () => {
-  const swiperContainer = document.querySelector(".myMainSwiper");
+  const swiperElements = document.querySelectorAll(".mySwiper, .myMainSwiper");
 
-  if (swiperContainer) {
+  if (swiperElements.length > 0) {
     requestIdleCallback(() => {
-      import(
-        "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
-      ).then(() => {
-        new window.Swiper(".myMainSwiper", {
-          loop: true,
-          slidesPerView: 1,
-          spaceBetween: 10,
-          pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-          },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
+      const script = document.createElement("script");
+      script.src =
+        "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js";
+      script.onload = () => {
+        console.log("Swiper library loaded");
+
+        // Inicializar todos los swipers encontrados:
+        swiperElements.forEach((el) => {
+          new window.Swiper(el, {
+            loop: true,
+            autoplay: { delay: 5000 },
+            slidesPerView: el.classList.contains("myMainSwiper") ? 3 : 1,
+            spaceBetween: 10,
+            navigation: {
+              nextEl: el.querySelector(".swiper-button-next"),
+              prevEl: el.querySelector(".swiper-button-prev"),
+            },
+            pagination: {
+              el: el.querySelector(".swiper-pagination"),
+              clickable: true,
+            },
+          });
         });
-      });
+      };
+      document.body.appendChild(script);
     });
   }
 });
