@@ -1,6 +1,6 @@
-
 // tokko-listado.js
-
+let cargando = false;
+let scrollInicializado = false;
 let todasLasPropiedades = [];
 let paginaActual = 1;
 const propiedadesPorPagina = 9;
@@ -132,12 +132,18 @@ function aplicarFiltros(propiedades) {
 }
 
 function renderPagina() {
+  if (cargando) return;
+  cargando = true;
+
   const propiedadesFiltradas = aplicarFiltros(todasLasPropiedades);
   const inicio = (paginaActual - 1) * propiedadesPorPagina;
   const fin = paginaActual * propiedadesPorPagina;
   const propiedades = propiedadesFiltradas.slice(inicio, fin);
 
-  if (propiedades.length === 0) return;
+  if (propiedades.length === 0) {
+    cargando = false;
+    return;
+  }
 
   propiedades.forEach((p, index) => {
     const fotos = p.photos?.length
@@ -209,7 +215,8 @@ function renderPagina() {
       });
     }, 100);
   });
-  paginaActual++; 
+  paginaActual++;
+  cargando = false;
 }
 
 function reiniciarListado() {
@@ -241,6 +248,7 @@ async function cargarPropiedades() {
   poblarTipologiasUnicas(todasLasPropiedades);
   poblarZonasUnicas(todasLasPropiedades);
   renderPagina();
+  inicializarScroll();
 }
 
 document
@@ -274,3 +282,17 @@ function toggleDropdown(target) {
 
 cargarPropiedades();
 
+function inicializarScroll() {
+  if (scrollInicializado) return;
+
+  window.addEventListener("scroll", () => {
+    const nearBottom =
+      window.innerHeight + window.scrollY >= document.body.offsetHeight - 200;
+
+    if (nearBottom && !cargando) {
+      renderPagina();
+    }
+  });
+
+  scrollInicializado = true;
+}
