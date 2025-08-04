@@ -1,12 +1,4 @@
-window.addEventListener("scroll", () => {
-  const nearBottom =
-    window.innerHeight + window.scrollY >= document.body.offsetHeight - 200;
 
-  if (nearBottom) {
-    paginaActual++;
-    renderPagina();
-  }
-});
 // tokko-listado.js
 
 let todasLasPropiedades = [];
