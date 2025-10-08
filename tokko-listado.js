@@ -1,7 +1,7 @@
 let todasLasPropiedades = [];
 let propiedadesFiltradas = [];
 let paginaActual = 1;
-const propiedadesPorPagina = 9;
+const propiedadesPorPagina = 10;
 
 const API_KEY = "76c2e21bd630d16cfdb33e96f43fc013eafc4173";
 const API_URL = "https://tokkobroker.com/api/v1/property/?key=76c2e21bd630d16cfdb33e96f43fc013eafc4173&format=json&shared=true";
