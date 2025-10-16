@@ -8,10 +8,10 @@ const propiedadesPorPagina = 10;
 const API_KEY = "76c2e21bd630d16cfdb33e96f43fc013eafc4173";
 const API_URL = `https://tokkobroker.com/api/v1/property/?key=${API_KEY}&format=json&shared=true`;
 
-const contenedor           = document.getElementById("lista-propiedades");
-const searchInput          = document.getElementById("search-text");
+const contenedor   = document.getElementById("lista-propiedades");
+const searchInput  = document.getElementById("search-text");
 
-// Los <select> reales (Tom Select se monta arriba de estos IDs)
+// <select> reales (Tom Select se monta arriba de estos IDs)
 const selOperacion = document.getElementById("filtro-operacion");
 const selTipologia = document.getElementById("filtro-tipologia");
 const selZona      = document.getElementById("filtro-zona");
@@ -76,8 +76,8 @@ function initTomSelects(){
       plugins: ['remove_button'],
       create: false,
       persist: false,
-      maxItems: null,           
-      closeAfterSelect: true,  
+      maxItems: null,            // multiselect sin límite
+      closeAfterSelect: true,    // cierra al elegir (UX mobile)
       placeholder: el.getAttribute('placeholder') || '',
       ...extra
     });
@@ -87,10 +87,16 @@ function initTomSelects(){
     return ts;
   };
 
+  // destruir si ya existían y montar
+  try { tsOperacion?.destroy(); } catch {}
+  try { tsTipologia?.destroy(); } catch {}
+  try { tsZona?.destroy(); } catch {}
+  try { tsOrden?.destroy(); } catch {}
+
   tsOperacion = makeTS(selOperacion);
   tsTipologia = makeTS(selTipologia);
   tsZona      = makeTS(selZona);
-  tsOrden     = makeTS(selOrden, { searchField:['text','value'] }); // orden también multiselect
+  tsOrden     = makeTS(selOrden, { searchField:['text','value'] });
 }
 
 /* ===== Carga de opciones en los selects desde los datos ===== */
@@ -122,7 +128,7 @@ function cargarOpcionesDesdeDatos(props){
   tsZona?.addOptions(zonaOptions);
   tsZona?.refreshOptions(false);
 
-  // Orden fijo (por si querés asegurar opciones)
+  // Orden fijo
   const ordenOptions = [
     {value:"precio-desc", text:"Precio: Alto a Bajo"},
     {value:"precio-asc",  text:"Precio: Bajo a Alto"},
@@ -200,7 +206,31 @@ function aplicarFiltros(lista){
   return arr;
 }
 
-/* ===== Paginación y render (idéntico a tu lógica con mínimos retoques) ===== */
+/* ===== Helpers para card: elegir operación y precio coherentes ===== */
+function elegirOperacionParaCard(p){
+  const opsStd = (p.operations || []).map(o => opToStd(o.operation_type));
+  const selectedOps = (tsOperacion?.getValue?.() || []).filter(Boolean);
+
+  // 1) Si hay filtro del usuario, mostrar la que matchee
+  let opS = selectedOps.find(op => opsStd.includes(op));
+
+  // 2) Si no hay filtro, priorizar: Temporary > Rent > Sale
+  if (!opS) {
+    if (opsStd.includes('Temporary Rent')) opS = 'Temporary Rent';
+    else if (opsStd.includes('Rent'))      opS = 'Rent';
+    else                                   opS = 'Sale';
+  }
+  return opS;
+}
+
+function precioDeOperacion(p, opS){
+  // busca la operación que matchea opS y toma su primer precio
+  const op = (p.operations || []).find(o => opToStd(o.operation_type) === opS) || (p.operations || [])[0];
+  const price = op?.prices?.[0]?.price;
+  return price ? `USD ${price}` : 'Consultar';
+}
+
+/* ===== Paginación y render ===== */
 function construirControlesPaginacion(total, actual, porPagina){
   paginacionNav.innerHTML = "";
 
@@ -261,9 +291,13 @@ function renderPagina(){
     const tipo = propertyTypeTranslations[p.type?.name] || p.type?.name || "Propiedad";
     const zona = p.location?.name || "Zona no especificada";
 
-    const op0  = p.operations?.[0]?.operation_type || "sale";
-    const opS  = opToStd(op0);
-    const precio = p.operations?.[0]?.prices?.[0]?.price ? `USD ${p.operations[0].prices[0].price}` : "Consultar";
+    // === Operación a mostrar en la card ===
+    const opS    = elegirOperacionParaCard(p);
+    const tagTxt = (opS === 'Sale') ? 'Venta' : 'Alquiler';
+    const tagBg  = (opS === 'Sale') ? '#0e246a' : '#7eccff';
+
+    // Precio coherente con la operación elegida
+    const precio = precioDeOperacion(p, opS);
 
     const swiperId = `swiper-${start + idx}`;
 
@@ -281,8 +315,8 @@ function renderPagina(){
     const card = `
       <div class="tokko-card">
         <div class="swiper mySwiper" id="${swiperId}">
-          <div class="card-tag" style="background-color:${opS==="Sale"?"#0e246a":"#7eccff"};">
-            ${opS==="Sale"?"Venta":(opS==="Temporary Rent"?"Alq. Temp.":"Alquiler")}
+          <div class="card-tag" style="background-color:${tagBg};">
+            ${tagTxt}
           </div>
           <div class="swiper-wrapper">${fotos}</div>
           <div class="swiper-button-next"></div>
@@ -354,6 +388,6 @@ searchInput?.addEventListener("input", ()=>{
 
 /* ===== Boot ===== */
 (function boot(){
-  initTomSelects();  // monta TS y listeners (incluye scroll lock)
-  cargarPropiedades();
+  initTomSelects();     // monta TS y listeners (incluye scroll lock)
+  cargarPropiedades();  // trae data y renderiza
 })();
