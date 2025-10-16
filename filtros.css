@@ -1,0 +1,93 @@
+/* ====== RESET & BASE ====== */
+.ts-wrapper { width: 100%; position: relative; z-index: 1; }
+.ts-wrapper.focus { z-index: 9999; }               /* el control en foco queda arriba */
+
+.ts-control, .ts-dropdown { font-size: 16px; }     /* evita zoom iOS */
+.ts-control {
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid #d9d9e3;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(16,24,40,.06);
+}
+.ts-control:focus,
+.ts-wrapper.focus .ts-control {
+  border-color: #98b1ff;                           /* azulito suave */
+  box-shadow: 0 0 0 3px rgba(0, 60, 255, .10);
+}
+
+/* placeholder */
+.ts-control input::placeholder { color: #9aa4b2; }
+.ts-control input { line-height: 22px; }
+
+/* ====== CHIPS (items seleccionados) ====== */
+.ts-control .item {
+  background: #f3f6ff;
+  color: #223;
+  border-radius: 9999px;
+  padding: 4px 8px;
+  margin: 4px 6px 0 0;
+  border: 1px solid #e4e8ff;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ts-control .item .remove {
+  margin-left: 6px;
+  opacity: .6;
+}
+.ts-control .item .remove:hover { opacity: 1; }
+
+/* que la línea se “rompa” y no desborde */
+.ts-control { flex-wrap: wrap; }
+
+/* ====== DROPDOWN ====== */
+.ts-dropdown {
+  position: absolute;              /* Tom Select usa absolute */
+  z-index: 2147483647 !important;  /* por encima de hero/nav/overlay */
+  max-height: 50vh;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid #d9d9e3;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(16,24,40,.18), 0 2px 6px rgba(16,24,40,.10);
+}
+
+/* contenido del menú */
+.ts-dropdown .option {
+  font-size: 15px;
+  padding: 10px 12px;
+  line-height: 1.2;
+}
+.ts-dropdown .option:not(.selected):hover { background: #f5f7fb; }
+.ts-dropdown .option.selected { background: #eef2ff; }
+
+/* mejor hit area del botón remover dentro del dropdown (plugin remove_button) */
+.ts-dropdown .remove {
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+/* ====== GRID de filtros ====== */
+#filtros {
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+@media (min-width: 768px){
+  #filtros { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ====== BLOQUEAR SCROLL DEL BODY cuando un menu está abierto ====== */
+html.no-scroll, body.no-scroll { height: 100%; overflow: hidden; }
+
+/* ====== SI TENÉS HERO CON OVERLAY QUE TAPA CLICS ====== */
+/* ajustá el z-index del contenedor del formulario si hace falta */
+.hero .buscador, .hero .filtros, .hero #filtros { position: relative; z-index: 10; }
+/* si tu overlay es un pseudo ::after que intercepta click: */
+/* .hero::after { pointer-events: none; }  */
