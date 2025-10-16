@@ -78,7 +78,6 @@ function initTomSelects(){
       persist: false,
       maxItems: null,           
       closeAfterSelect: true,  
-       dropdownParent: document.body,
       placeholder: el.getAttribute('placeholder') || '',
       ...extra
     });
