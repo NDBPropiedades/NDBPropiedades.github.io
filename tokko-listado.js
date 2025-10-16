@@ -1,19 +1,360 @@
-let todasLasPropiedades=[],propiedadesFiltradas=[],paginaActual=1;const propiedadesPorPagina=10,API_KEY="76c2e21bd630d16cfdb33e96f43fc013eafc4173",API_URL="https://tokkobroker.com/api/v1/property/?key=76c2e21bd630d16cfdb33e96f43fc013eafc4173&format=json&shared=true",contenedor=document.getElementById("lista-propiedades"),contenedorZonas=document.getElementById("dropdown-zona"),contenedorTipologias=document.getElementById("dropdown-tipologia"),searchInput=document.getElementById("search-text"),selectOperacion=document.getElementById("filtro-operacion"),selectOrden=document.getElementById("filtro-orden"),paginacionNav=document.getElementById("paginacion"),propertyTypeTranslations={Land:"Terreno",Apartment:"Departamento",House:"Casa","Weekend House":"Casa de fin de semana",Office:"Oficina",Mooring:"Amarra","Bussiness Premises":"Local comercial","Commercial Building":"Edificio comercial",Countryside:"Campo",Garage:"Cochera",Hotel:"Hotel","Industrial Ship":"Nave industrial",Condo:"PH",Storage:"Dep\xf3sito","Bussiness Permit":"Fondo de comercio","Storage room":"Baulera","Wine Cellar":"Bodega",Farm:"Granja",Ranch:"Estancia","Nautical Bed":"Cama n\xe1utica"},normalizar=e=>(e||"").toString().toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu,"");function getCheckedValues(e){return Array.from(document.querySelectorAll(`${e} input:checked`)).map(e=>e.value)}function opToStd(e){let a=(e||"").toString().toLowerCase();return a.includes("temporary")?"Temporary Rent":a.includes("rent")||"alquiler"===a?"Rent":"Sale"}function poblarTipologiasUnicas(e){let a=new Set;e.forEach(e=>e.type?.name&&a.add(e.type.name)),contenedorTipologias.innerHTML="",[...a].sort().forEach(e=>{let a=document.createElement("label");a.innerHTML=`<input type="checkbox" value="${e}" /> ${propertyTypeTranslations[e]||e}`,contenedorTipologias.appendChild(a)}),contenedorTipologias.querySelectorAll("input").forEach(e=>e.addEventListener("change",reiniciarListado))}function poblarZonasUnicas(e){let a=new Set;e.forEach(e=>e.location?.name&&a.add(e.location.name)),contenedorZonas.innerHTML="",[...a].sort().forEach(e=>{let a=document.createElement("label");a.innerHTML=`<input type="checkbox" value="${e}" /> ${e}`,contenedorZonas.appendChild(a)}),contenedorZonas.querySelectorAll("input").forEach(e=>e.addEventListener("change",reiniciarListado))}function aplicarFiltros(e){let a=[...e],t=selectOperacion?.value&&"default"!==selectOperacion.value?selectOperacion.value:null;t&&(a=a.filter(e=>(e.operations||[]).some(e=>opToStd(e.operation_type)===t)));let n=getCheckedValues("#dropdown-tipologia");n.length&&(a=a.filter(e=>n.includes(e.type?.name)));let o=getCheckedValues("#dropdown-zona");o.length&&(a=a.filter(e=>o.includes(e.location?.name)));let i=normalizar(searchInput?.value);i&&(a=a.filter(e=>{let a=[e.publication_title,e.location?.name,e.address,e.type?.name,e.operations?.[0]?.prices?.[0]?.price&&`USD ${e.operations[0].prices[0].price}`];return a.some(e=>normalizar(e).includes(i))}));let r=selectOrden?.value;return r&&"default"!==r&&a.sort((e,a)=>{let t=e.operations?.[0]?.prices?.[0]?.price||0,n=a.operations?.[0]?.prices?.[0]?.price||0,o=e.publication_title||"",i=a.publication_title||"",s=new Date(e.created_on),c=new Date(a.created_on);switch(r){case"precio-asc":return t-n;case"precio-desc":return n-t;case"titulo-asc":return o.localeCompare(i);case"titulo-desc":return i.localeCompare(o);case"fecha-asc":return s-c;case"fecha-desc":return c-s;default:return 0}}),a}function construirControlesPaginacion(e,a,t){paginacionNav.innerHTML="";let n=(e,a,t=!1,n=!1)=>{let o=document.createElement("button");return o.textContent=e,t&&(o.disabled=!0),n&&o.classList.add("activo"),o.addEventListener("click",()=>{t||n||(paginaActual=a,renderPagina())}),o};paginacionNav.appendChild(n("\xab",Math.max(1,a-1),1===a));let o=Math.max(1,Math.ceil(e/t)),i=new Set([1,2,o,o-1,a,a-1,a+1,a-2,a+2]),r=0;for(let s=1;s<=o;s++)if(i.has(s))paginacionNav.appendChild(n(String(s),s,!1,s===a)),r=s;else if(-1!==r){let c=document.createElement("span");c.className="ellipsis",c.textContent="…",paginacionNav.appendChild(c),r=-1}paginacionNav.appendChild(n("\xbb",Math.min(o,a+1),a===o))}function renderPagina(){if(contenedor.innerHTML="",!propiedadesFiltradas.length){contenedor.innerHTML=`<div id="no-results" style="text-align:center;padding:2rem;color:#666">
+/* TOKKO LISTADO + TOM SELECT (multiselect en todos los filtros) */
+
+let todasLasPropiedades = [],
+    propiedadesFiltradas = [],
+    paginaActual = 1;
+
+const propiedadesPorPagina = 10;
+const API_KEY = "76c2e21bd630d16cfdb33e96f43fc013eafc4173";
+const API_URL = `https://tokkobroker.com/api/v1/property/?key=${API_KEY}&format=json&shared=true`;
+
+const contenedor           = document.getElementById("lista-propiedades");
+const searchInput          = document.getElementById("search-text");
+
+// Los <select> reales (Tom Select se monta arriba de estos IDs)
+const selOperacion = document.getElementById("filtro-operacion");
+const selTipologia = document.getElementById("filtro-tipologia");
+const selZona      = document.getElementById("filtro-zona");
+const selOrden     = document.getElementById("filtro-orden");
+
+const paginacionNav = document.getElementById("paginacion");
+
+const propertyTypeTranslations = {
+  Land:"Terreno", Apartment:"Departamento", House:"Casa", "Weekend House":"Casa de fin de semana",
+  Office:"Oficina", Mooring:"Amarra", "Bussiness Premises":"Local comercial", "Commercial Building":"Edificio comercial",
+  Countryside:"Campo", Garage:"Cochera", Hotel:"Hotel", "Industrial Ship":"Nave industrial", Condo:"PH",
+  Storage:"Depósito", "Bussiness Permit":"Fondo de comercio", "Storage room":"Baulera", "Wine Cellar":"Bodega",
+  Farm:"Granja", Ranch:"Estancia", "Nautical Bed":"Cama náutica"
+};
+
+const normalizar = (v)=>(v||"").toString().toLowerCase()
+  .normalize("NFD").replace(/\p{Diacritic}/gu,"");
+
+function opToStd(v){
+  const a = (v||"").toString().toLowerCase();
+  if (a.includes("temporary")) return "Temporary Rent";
+  if (a.includes("rent") || a === "alquiler") return "Rent";
+  return "Sale";
+}
+
+/* ===== Scroll lock cuando un dropdown está abierto ===== */
+function lockScroll(){
+  const y = window.scrollY || document.documentElement.scrollTop;
+  document.documentElement.dataset.scrollY = y;
+  document.documentElement.classList.add('no-scroll');
+  document.body.classList.add('no-scroll');
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${y}px`;
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+  document.body.style.width = '100%';
+}
+function unlockScroll(){
+  const y = parseInt(document.documentElement.dataset.scrollY || '0', 10);
+  document.documentElement.classList.remove('no-scroll');
+  document.body.classList.remove('no-scroll');
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  document.body.style.width = '';
+  window.scrollTo(0, y);
+}
+
+/* ===== Tom Select: inicializar TODOS como multiselect ===== */
+let tsOperacion, tsTipologia, tsZona, tsOrden;
+
+function initTomSelects(){
+  if(!window.TomSelect){
+    console.error('TomSelect no cargó');
+    return;
+  }
+
+  const makeTS = (el, extra={})=>{
+    if(!el) return null;
+    const ts = new TomSelect(el, {
+      plugins: ['remove_button'],
+      create: false,
+      persist: false,
+      maxItems: null,           
+      closeAfterSelect: true,  
+       dropdownParent: document.body,
+      placeholder: el.getAttribute('placeholder') || '',
+      ...extra
+    });
+    ts.on('dropdown_open', lockScroll);
+    ts.on('dropdown_close', unlockScroll);
+    ts.on('change', reiniciarListado);
+    return ts;
+  };
+
+  tsOperacion = makeTS(selOperacion);
+  tsTipologia = makeTS(selTipologia);
+  tsZona      = makeTS(selZona);
+  tsOrden     = makeTS(selOrden, { searchField:['text','value'] }); // orden también multiselect
+}
+
+/* ===== Carga de opciones en los selects desde los datos ===== */
+function cargarOpcionesDesdeDatos(props){
+  // Operaciones únicas presentes en los datos
+  const ops = new Set();
+  props.forEach(p => (p.operations||[]).forEach(o => ops.add(opToStd(o.operation_type))));
+  const opsOptions = [...ops].map(v=>({value:v, text: v==="Sale"?"Venta":(v==="Rent"?"Alquiler":"Alquiler Temporal")}));
+
+  tsOperacion?.clearOptions();
+  tsOperacion?.addOptions(opsOptions);
+  tsOperacion?.refreshOptions(false);
+
+  // Tipologías únicas (usa p.type.name)
+  const tipos = new Set();
+  props.forEach(p => { const t = p.type?.name; if(t) tipos.add(t); });
+  const tipoOptions = [...tipos].sort().map(v=>({value:v, text: propertyTypeTranslations[v]||v}));
+
+  tsTipologia?.clearOptions();
+  tsTipologia?.addOptions(tipoOptions);
+  tsTipologia?.refreshOptions(false);
+
+  // Zonas únicas (usa p.location.name)
+  const zonas = new Set();
+  props.forEach(p => { const z = p.location?.name; if(z) zonas.add(z); });
+  const zonaOptions = [...zonas].sort().map(v=>({value:v, text:v}));
+
+  tsZona?.clearOptions();
+  tsZona?.addOptions(zonaOptions);
+  tsZona?.refreshOptions(false);
+
+  // Orden fijo (por si querés asegurar opciones)
+  const ordenOptions = [
+    {value:"precio-desc", text:"Precio: Alto a Bajo"},
+    {value:"precio-asc",  text:"Precio: Bajo a Alto"},
+    {value:"titulo-asc",  text:"Título: A-Z"},
+    {value:"titulo-desc", text:"Título: Z-A"},
+    {value:"fecha-desc",  text:"Nuevas primero"},
+    {value:"fecha-asc",   text:"Antiguas primero"},
+  ];
+  tsOrden?.clearOptions();
+  tsOrden?.addOptions(ordenOptions);
+  tsOrden?.refreshOptions(false);
+}
+
+/* ===== Filtro principal (lee valores desde Tom Select) ===== */
+function aplicarFiltros(lista){
+  let arr = [...lista];
+
+  // Operación (array)
+  const operaciones = (tsOperacion?.getValue?.() || []).filter(Boolean); // ['Sale','Rent',...]
+  if (operaciones.length){
+    arr = arr.filter(p => (p.operations||[]).some(o => operaciones.includes(opToStd(o.operation_type))));
+  }
+
+  // Tipología (array)
+  const tipologias = (tsTipologia?.getValue?.() || []).filter(Boolean);
+  if (tipologias.length){
+    arr = arr.filter(p => tipologias.includes(p.type?.name));
+  }
+
+  // Zona (array)
+  const zonas = (tsZona?.getValue?.() || []).filter(Boolean);
+  if (zonas.length){
+    arr = arr.filter(p => zonas.includes(p.location?.name));
+  }
+
+  // Búsqueda libre
+  const q = normalizar(searchInput?.value);
+  if (q){
+    arr = arr.filter(p=>{
+      const price = p.operations?.[0]?.prices?.[0]?.price;
+      const campos = [
+        p.publication_title,
+        p.location?.name,
+        p.address,
+        p.type?.name,
+        price && `USD ${price}`
+      ];
+      return campos.some(v => normalizar(v).includes(q));
+    });
+  }
+
+  // Orden (multiselect, tomamos el PRIMERO si seleccionaron varios)
+  const ordenes = (tsOrden?.getValue?.() || []).filter(Boolean);
+  const orden = ordenes[0] || "";
+  if (orden){
+    arr.sort((a,b)=>{
+      const pa = a.operations?.[0]?.prices?.[0]?.price || 0;
+      const pb = b.operations?.[0]?.prices?.[0]?.price || 0;
+      const ta = a.publication_title || "";
+      const tb = b.publication_title || "";
+      const fa = new Date(a.created_on);
+      const fb = new Date(b.created_on);
+      switch(orden){
+        case "precio-asc":  return pa - pb;
+        case "precio-desc": return pb - pa;
+        case "titulo-asc":  return ta.localeCompare(tb);
+        case "titulo-desc": return tb.localeCompare(ta);
+        case "fecha-asc":   return fa - fb;
+        case "fecha-desc":  return fb - fa;
+        default: return 0;
+      }
+    });
+  }
+
+  return arr;
+}
+
+/* ===== Paginación y render (idéntico a tu lógica con mínimos retoques) ===== */
+function construirControlesPaginacion(total, actual, porPagina){
+  paginacionNav.innerHTML = "";
+
+  const btn = (label, pagina, disabled=false, activo=false)=>{
+    const b = document.createElement("button");
+    b.textContent = label;
+    if (disabled) b.disabled = true;
+    if (activo)   b.classList.add("activo");
+    b.addEventListener("click", ()=>{
+      if (!disabled && !activo){
+        paginaActual = pagina;
+        renderPagina();
+      }
+    });
+    return b;
+  };
+
+  paginacionNav.appendChild(btn("«", Math.max(1, actual-1), actual===1));
+
+  const totalPaginas = Math.max(1, Math.ceil(total / porPagina));
+  const mostrar = new Set([1,2,totalPaginas,totalPaginas-1,actual,actual-1,actual+1,actual-2,actual+2]);
+  let previoMostrado = 0;
+  for (let i=1;i<=totalPaginas;i++){
+    if (mostrar.has(i)){
+      paginacionNav.appendChild(btn(String(i), i, false, i===actual));
+      previoMostrado = i;
+    }else if (previoMostrado !== -1){
+      const sp = document.createElement("span");
+      sp.className = "ellipsis";
+      sp.textContent = "…";
+      paginacionNav.appendChild(sp);
+      previoMostrado = -1;
+    }
+  }
+
+  paginacionNav.appendChild(btn("»", Math.min(totalPaginas, actual+1), actual===totalPaginas));
+}
+
+function renderPagina(){
+  contenedor.innerHTML = "";
+
+  if (!propiedadesFiltradas.length){
+    contenedor.innerHTML = `<div id="no-results" style="text-align:center;padding:2rem;color:#666">
       No encontramos propiedades con esos filtros.
-    </div>`,paginacionNav.innerHTML="";return}let e=(paginaActual-1)*10,a=propiedadesFiltradas.slice(e,e+10);a.forEach((a,t)=>{let n=a.photos?.length?a.photos.map(e=>`<div class="swiper-slide"><img src="${e.image}" loading="lazy" /></div>`).join(""):'<div class="swiper-slide"><img src="assets/img/no-image.jpg" alt="Sin imagen" /></div>',o=propertyTypeTranslations[a.type?.name]||a.type?.name||"Propiedad",i=a.location?.name||"Zona no especificada",r=a.operations?.[0]?.operation_type||"sale",s=opToStd(r),c=a.operations?.[0]?.prices?.[0]?.price?`USD ${a.operations[0].prices[0].price}`:"Consultar",l=`swiper-${e+t}`,d=a.room_amount||0,p=a.bathroom_amount||0,u=a.toilet_amount||0,g=a.total_surface||0,m="";d>0&&(m+=`<span><i class="fas fa-bed"></i> ${d}</span>`),p>0&&(m+=`<span><i class="fas fa-bath"></i> ${p}</span>`),u>0&&(m+=`<span><i class="fas fa-toilet"></i> ${u}</span>`),g>0&&(m+=`<span><i class="fas fa-ruler-combined"></i> ${g} m\xb2</span>`);let f=`
+    </div>`;
+    paginacionNav.innerHTML = "";
+    return;
+  }
+
+  const start = (paginaActual-1) * propiedadesPorPagina;
+  const items = propiedadesFiltradas.slice(start, start + propiedadesPorPagina);
+
+  items.forEach((p, idx)=>{
+    const fotos = p.photos?.length
+      ? p.photos.map(ph => `<div class="swiper-slide"><img src="${ph.image}" loading="lazy" /></div>`).join("")
+      : '<div class="swiper-slide"><img src="assets/img/no-image.jpg" alt="Sin imagen" /></div>';
+
+    const tipo = propertyTypeTranslations[p.type?.name] || p.type?.name || "Propiedad";
+    const zona = p.location?.name || "Zona no especificada";
+
+    const op0  = p.operations?.[0]?.operation_type || "sale";
+    const opS  = opToStd(op0);
+    const precio = p.operations?.[0]?.prices?.[0]?.price ? `USD ${p.operations[0].prices[0].price}` : "Consultar";
+
+    const swiperId = `swiper-${start + idx}`;
+
+    const beds = p.room_amount || 0;
+    const baths = p.bathroom_amount || 0;
+    const toil  = p.toilet_amount || 0;
+    const surf  = p.total_surface || 0;
+
+    let iconos = "";
+    if (beds>0) iconos += `<span><i class="fas fa-bed"></i> ${beds}</span>`;
+    if (baths>0) iconos += `<span><i class="fas fa-bath"></i> ${baths}</span>`;
+    if (toil>0) iconos += `<span><i class="fas fa-toilet"></i> ${toil}</span>`;
+    if (surf>0) iconos += `<span><i class="fas fa-ruler-combined"></i> ${surf} m²</span>`;
+
+    const card = `
       <div class="tokko-card">
-        <div class="swiper mySwiper" id="${l}">
-          <div class="card-tag" style="background-color:${"Sale"===s?"#0e246a":"#7eccff"};">${"Sale"===s?"Venta":"Temporary Rent"===s?"Alq. Temp.":"Alquiler"}</div>
-          <div class="swiper-wrapper">${n}</div>
+        <div class="swiper mySwiper" id="${swiperId}">
+          <div class="card-tag" style="background-color:${opS==="Sale"?"#0e246a":"#7eccff"};">
+            ${opS==="Sale"?"Venta":(opS==="Temporary Rent"?"Alq. Temp.":"Alquiler")}
+          </div>
+          <div class="swiper-wrapper">${fotos}</div>
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
         </div>
         <div class="info">
-          <h3><a href="propiedad.html?id=${a.id}">${o} en ${i}</a></h3>
-          <p>${a.publication_title||""}</p>
-          <p><strong>Zona:</strong> ${i}</p>
-          <p><strong>Precio:</strong> ${c}</p>
+          <h3><a href="propiedad.html?id=${p.id}">${tipo} en ${zona}</a></h3>
+          <p>${p.publication_title || ""}</p>
+          <p><strong>Zona:</strong> ${zona}</p>
+          <p><strong>Precio:</strong> ${precio}</p>
         </div>
-        ${m?`<div class="iconos-card">${m}</div>`:""}
+        ${iconos?`<div class="iconos-card">${iconos}</div>`:""}
       </div>
-    `;contenedor.insertAdjacentHTML("beforeend",f),setTimeout(()=>{new Swiper(`#${l}`,{loop:!0,navigation:{nextEl:`#${l} .swiper-button-next`,prevEl:`#${l} .swiper-button-prev`},autoplay:!1})},0)}),construirControlesPaginacion(propiedadesFiltradas.length,paginaActual,propiedadesPorPagina)}function reiniciarListado(){propiedadesFiltradas=aplicarFiltros(todasLasPropiedades),paginaActual=1,renderPagina()}async function fetchTodasLasPropiedades(){let e=[],a="https://tokkobroker.com/api/v1/property/?key=76c2e21bd630d16cfdb33e96f43fc013eafc4173&format=json&shared=true";for(;a;){let t=await fetch(a.startsWith("http")?a:`https://tokkobroker.com${a}`),n=await t.json();e=e.concat(n.objects||[]),a=n.meta?.next}return e}async function cargarPropiedades(){contenedor.innerHTML="<p>Cargando propiedades...</p>",todasLasPropiedades=await fetchTodasLasPropiedades(),contenedor.innerHTML="",poblarTipologiasUnicas(todasLasPropiedades),poblarZonasUnicas(todasLasPropiedades),reiniciarListado()}function toggleDropdown(e){let a=document.getElementById("dropdown-"+e);a&&(a.style.display="block"===a.style.display?"none":"block")}document.querySelector('.multiselect-title[data-target="tipologia"]').addEventListener("click",()=>toggleDropdown("tipologia")),document.querySelector('.multiselect-title[data-target="zona"]').addEventListener("click",()=>toggleDropdown("zona")),document.addEventListener("click",e=>{document.querySelectorAll(".multiselect-wrapper").forEach(a=>{if(!a.contains(e.target)){let t=a.querySelector(".multiselect-options");t&&(t.style.display="none")}})}),selectOperacion.addEventListener("change",reiniciarListado),selectOrden.addEventListener("change",reiniciarListado);let debounceT;searchInput?.addEventListener("input",()=>{clearTimeout(debounceT),debounceT=setTimeout(reiniciarListado,250)}),cargarPropiedades();
+    `;
+    contenedor.insertAdjacentHTML("beforeend", card);
+
+    setTimeout(()=>{
+      new Swiper(`#${swiperId}`, {
+        loop: true,
+        navigation: {
+          nextEl: `#${swiperId} .swiper-button-next`,
+          prevEl: `#${swiperId} .swiper-button-prev`
+        },
+        autoplay: false
+      });
+    }, 0);
+  });
+
+  construirControlesPaginacion(propiedadesFiltradas.length, paginaActual, propiedadesPorPagina);
+}
+
+function reiniciarListado(){
+  propiedadesFiltradas = aplicarFiltros(todasLasPropiedades);
+  paginaActual = 1;
+  renderPagina();
+}
+
+/* ===== Fetch ===== */
+async function fetchTodasLasPropiedades(){
+  let res = [];
+  let url = API_URL;
+  while (url){
+    const r = await fetch(url.startsWith("http") ? url : `https://tokkobroker.com${url}`);
+    const j = await r.json();
+    res = res.concat(j.objects || []);
+    url = j.meta?.next;
+  }
+  return res;
+}
+
+async function cargarPropiedades(){
+  contenedor.innerHTML = "<p>Cargando propiedades...</p>";
+  todasLasPropiedades = await fetchTodasLasPropiedades();
+  contenedor.innerHTML = "";
+
+  // Poblamos selects con lo que vino de Tokko
+  cargarOpcionesDesdeDatos(todasLasPropiedades);
+
+  // Render inicial
+  reiniciarListado();
+}
+
+/* ===== Listeners ===== */
+let debounceT;
+searchInput?.addEventListener("input", ()=>{
+  clearTimeout(debounceT);
+  debounceT = setTimeout(reiniciarListado, 250);
+});
+
+/* ===== Boot ===== */
+(function boot(){
+  initTomSelects();  // monta TS y listeners (incluye scroll lock)
+  cargarPropiedades();
+})();

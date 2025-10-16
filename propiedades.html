@@ -20,7 +20,7 @@
     />
     <meta
       property="og:image"
-      content="https://ndbpropiedades.com.ar/assets/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.png"
+      content="/assets/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.png"
     />
     <meta
       property="og:url"
@@ -59,9 +59,14 @@
       as="style"
       onload="this.rel='stylesheet'"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css"
+    />
     <link rel="stylesheet" href="general_styles.css" />
     <link rel="stylesheet" href="tokko-listado.css" />
     <link rel="stylesheet" href="inmuebles.css" />
+    <link rel="stylesheet" href="filtros.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -217,7 +222,7 @@
         loop
         playsinline
         class="video-fondo"
-        poster="assets/img/img/Nicolas De Brasi - Logo Negativo RGB.jpg"
+        poster="assets/img/img/FondoAzul.jpg"
         fetchpriority="high"
       >
         <source
@@ -226,67 +231,30 @@
         />
         Tu navegador no soporta el video HTML5.
       </video>
+
       <div class="video-overlay"></div>
+
       <div class="frase-buscador">
         <h2>Es lindo llegar a casa. <br />Mejor es encontrarla.</h2>
       </div>
 
       <div class="buscador">
-        <form>
-          <!-- Operación -->
-          <div class="custom-select-fa">
-            <select id="filtro-operacion">
-              <option value="default" disabled selected>Operación</option>
-              <option value="Sale">Venta</option>
-              <option value="Rent">Alquiler</option>
-              <option value="Temporary Rent">Alquiler Temporal</option>
-            </select>
-            <div class="select-icons">
-              <i class="fas fa-chevron-down"></i>
-            </div>
-          </div>
-
-          <div class="custom-select-fa multiselect-wrapper">
-            <div class="multiselect-title" data-target="tipologia">
-              Tipo de propiedad <i class="fas fa-chevron-down"></i>
-            </div>
-            <div
-              class="multiselect-options"
-              id="dropdown-tipologia"
-              style="display: none"
-            ></div>
-          </div>
-
-          <div class="custom-select-fa multiselect-wrapper">
-            <div class="multiselect-title" data-target="zona">
-              Zona <i class="fas fa-chevron-down"></i>
-            </div>
-            <div
-              class="multiselect-options"
-              id="dropdown-zona"
-              style="display: none"
-            ></div>
-          </div>
-
-          <!-- Ordenar -->
-          <div class="custom-select-fa">
-            <select id="filtro-orden">
-              <option value="default" disabled selected>Ordenar</option>
-              <option value="precio-desc">Precio: Alto a Bajo</option>
-              <option value="precio-asc">Precio: Bajo a Alto</option>
-              <option value="titulo-asc">Título: A-Z</option>
-              <option value="titulo-desc">Título: Z-A</option>
-              <option value="fecha-desc">Fecha: Nuevas primero</option>
-              <option value="fecha-asc">Fecha: Antiguas primero</option>
-            </select>
-            <div class="select-icons">
-              <i class="fas fa-chevron-down"></i>
-            </div>
-          </div>
+        <form id="filtros" novalidate>
+          <select
+            id="filtro-operacion"
+            multiple
+            placeholder="Operación"
+          ></select>
+          <select
+            id="filtro-tipologia"
+            multiple
+            placeholder="Tipo de propiedad"
+          ></select>
+          <select id="filtro-zona" multiple placeholder="Zona"></select>
+          <select id="filtro-orden" multiple placeholder="Ordenar"></select>
         </form>
       </div>
     </section>
-
     <div class="buscador-libre">
       <input
         id="search-text"
@@ -296,7 +264,11 @@
       />
     </div>
     <div class="tokko-container" id="lista-propiedades"></div>
-    <nav class="paginacion" id="paginacion" aria-label="Paginación de propiedades"></nav>
+    <nav
+      class="paginacion"
+      id="paginacion"
+      aria-label="Paginación de propiedades"
+    ></nav>
     <!-- Footer -->
     <footer class="footer">
       <div class="containers footer-container">
@@ -360,7 +332,7 @@
         >
       </div>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
     <script src="navbar.js"></script>
     <script src="tokko-listado.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
