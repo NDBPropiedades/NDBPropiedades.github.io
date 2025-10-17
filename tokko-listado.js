@@ -77,7 +77,7 @@ function initTomSelects(){
       create: false,
       persist: false,
       maxItems: null,            // multiselect sin límite
-      closeAfterSelect: true,    // cierra al elegir (UX mobile)
+      closeAfterSelect: false,    // cierra al elegir (UX mobile)
       placeholder: el.getAttribute('placeholder') || '',
       ...extra
     });
