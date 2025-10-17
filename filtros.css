@@ -1,9 +1,6 @@
 /* ---------- Hero base (z-index ordenado) ---------- */
-.buscador-section { position: relative; }
-.video-fondo     { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
 .video-overlay   { position: absolute; inset: 0; background: rgba(0,0,0,.25); z-index: 1; pointer-events: none; }
-.frase-buscador  { position: relative; z-index: 2; }
-.buscador        { position: relative; z-index: 3; } /* formulario por encima del overlay */
+.buscador        { position: relative; z-index: 3; } 
 
 /* ---------- Layout filtros ---------- */
 #filtros {
