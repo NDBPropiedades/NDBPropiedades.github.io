@@ -32,7 +32,7 @@ const normalizar = (v)=>(v||"").toString().toLowerCase()
 
 function opToStd(v){
   const a = (v||"").toString().toLowerCase();
-  if (a.includes("temporary")) return "Temporary Rent";
+  if (a.includes("temporary")|| a === "alquiler temporal") return "Temporary Rent";
   if (a.includes("rent") || a === "alquiler") return "Rent";
   return "Sale";
 }
