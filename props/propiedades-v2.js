@@ -164,17 +164,13 @@ function initTomSelects() {
 function cargarOpcionesDesdeDatos(props) {
   const ops = new Set();
   props.forEach((p) =>
-    (p.operations || []).forEach((o) => ops.add(opToStd(o.operation_type)))
+    (p.operations || []).forEach((o) => ops.add(opToStd(o.operation_type))),
   );
 
   const opsOptions = [...ops].map((v) => ({
     value: v,
     text:
-      v === "Sale"
-        ? "Venta"
-        : v === "Rent"
-        ? "Alquiler"
-        : "Alquiler Temporal",
+      v === "Sale" ? "Venta" : v === "Rent" ? "Alquiler" : "Alquiler Temporal",
   }));
 
   tsOperacion?.clear();
@@ -247,10 +243,10 @@ function formatearPrecioTokko(priceObj) {
     currency === "ARS"
       ? "$ "
       : currency === "USD"
-      ? "USD "
-      : currency
-      ? `${currency} `
-      : "";
+        ? "USD "
+        : currency
+          ? `${currency} `
+          : "";
 
   return `${symbol}${
     Number.isFinite(n) ? n.toLocaleString("es-AR") : priceObj.price
@@ -300,8 +296,8 @@ function aplicarFiltros(lista) {
   if (operaciones.length) {
     arr = arr.filter((p) =>
       (p.operations || []).some((o) =>
-        operaciones.includes(opToStd(o.operation_type))
-      )
+        operaciones.includes(opToStd(o.operation_type)),
+      ),
     );
   }
 
@@ -435,7 +431,7 @@ function construirControlesPaginacion(total, actual, porPagina) {
   };
 
   paginacionNav.appendChild(
-    crearBoton("‹", Math.max(1, actual - 1), actual === 1)
+    crearBoton("‹", Math.max(1, actual - 1), actual === 1),
   );
 
   const mostrar = new Set([
@@ -466,7 +462,11 @@ function construirControlesPaginacion(total, actual, porPagina) {
   }
 
   paginacionNav.appendChild(
-    crearBoton("›", Math.min(totalPaginas, actual + 1), actual === totalPaginas)
+    crearBoton(
+      "›",
+      Math.min(totalPaginas, actual + 1),
+      actual === totalPaginas,
+    ),
   );
 }
 
@@ -528,11 +528,14 @@ function renderPagina() {
     const opS = elegirOperacionParaCard(p);
 
     const badgeText =
+      opS === "Sale" ? "Venta" : opS === "Rent" ? "Alquiler" : "Temporal";
+
+    const badgeClass =
       opS === "Sale"
-        ? "Venta"
+        ? "badge-sale"
         : opS === "Rent"
-        ? "Alquiler"
-        : "Alquiler temporal";
+          ? "badge-rent"
+          : "badge-temporary";
 
     const precio = precioDeOperacion(p, opS);
     const imagen = obtenerImagenPrincipal(p);
@@ -545,7 +548,7 @@ function renderPagina() {
     const html = `
       <article class="property-card">
         <div class="property-card__media">
-          <span class="property-card__badge">${badgeText}</span>
+          <span class="property-card__badge ${badgeClass}">${badgeText}</span>
           <a href="propiedad.html?id=${p.id}" aria-label="Ver ${titulo}">
             <img
               src="${imagen}"
@@ -606,7 +609,7 @@ function renderPagina() {
   construirControlesPaginacion(
     propiedadesFiltradas.length,
     paginaActual,
-    propiedadesPorPagina
+    propiedadesPorPagina,
   );
 }
 
@@ -628,7 +631,7 @@ async function fetchTodasLasPropiedades() {
 
   while (url) {
     const response = await fetch(
-      url.startsWith("http") ? url : `https://tokkobroker.com${url}`
+      url.startsWith("http") ? url : `https://tokkobroker.com${url}`,
     );
 
     if (!response.ok) {

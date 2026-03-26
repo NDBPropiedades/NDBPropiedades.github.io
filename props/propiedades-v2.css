@@ -1052,3 +1052,17 @@ body {
     width: 100%;
   }
 }
+.property-card__badge.badge-sale {
+  background: rgba(14, 36, 106, 0.92);
+  color: #fff;
+}
+
+.property-card__badge.badge-rent {
+  background: rgba(126, 204, 255, 0.95);
+  color: var(--color-ndb-blue-dark);
+}
+
+.property-card__badge.badge-temporary {
+  background: rgba(21, 32, 51, 0.92);
+  color: #fff;
+}
