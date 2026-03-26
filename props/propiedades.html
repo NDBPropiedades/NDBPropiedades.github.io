@@ -1,14 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Propiedades en Zona Norte - Venta y Alquiler | NDB Propiedades</title>
+    <title>
+      Propiedades en Zona Norte - Venta y Alquiler | NDB Propiedades
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="Encontrá casas, departamentos y terrenos en venta y alquiler en Zona Norte, Buenos Aires. Usá filtros y descubrí tu próxima propiedad con NDB Propiedades."
     />
-    <meta property="og:title" content="Propiedades en Venta y Alquiler - NDB Propiedades" />
+    <meta
+      property="og:title"
+      content="Propiedades en Venta y Alquiler - NDB Propiedades"
+    />
     <meta
       property="og:description"
       content="Descubrí nuestra oferta de propiedades en Zona Norte, Buenos Aires."
@@ -24,7 +29,10 @@
     <meta property="og:type" content="website" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Propiedades en Zona Norte - NDB Propiedades" />
+    <meta
+      name="twitter:title"
+      content="Propiedades en Zona Norte - NDB Propiedades"
+    />
     <meta
       name="twitter:description"
       content="Inmobiliaria en Zona Norte, tasaciones online y asesoramiento personalizado."
@@ -34,7 +42,10 @@
       content="https://ndbpropiedades.com.ar/assets/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.png"
     />
 
-    <link rel="canonical" href="https://ndbpropiedades.com.ar/propiedades.html" />
+    <link
+      rel="canonical"
+      href="https://ndbpropiedades.com.ar/propiedades.html"
+    />
     <link
       rel="icon"
       href="https://ndbpropiedades.com.ar/assets/img/favicon/favicon.ico"
@@ -45,7 +56,7 @@
       rel="preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       as="style"
-      onload="this.rel='stylesheet'"
+      onload="this.rel = 'stylesheet'"
     />
     <link
       rel="stylesheet"
@@ -128,13 +139,31 @@
     </header>
 
     <main class="properties-page">
-      <section class="properties-hero">
-        <div class="container">
-          <p class="eyebrow">NDB Propiedades</p>
-          <h1>Es lindo llegar a casa.
-Mejor es encontrarla.</h1>
+      <section class="properties-hero properties-hero--video">
+        <video
+          class="properties-hero__video"
+          autoplay
+          muted
+          loop
+          playsinline
+          poster="../assets/img/img/Nicolas De Brasi - Logo Negativo RGB.jpg"
+        >
+          <source
+            src="../assets/video/Institucional_Nico_NDB.mp4"
+            type="video/mp4"
+          />
+          Tu navegador no soporta video HTML5.
+        </video>
+
+        <div class="properties-hero__overlay"></div>
+        <div class="properties-hero__fade"></div>
+
+        <div class="container properties-hero__content">
+          <p class="eyebrow">NDB PROPIEDADES</p>
+          <h1>Es lindo llegar a casa. Mejor es encontrarla.</h1>
           <p class="hero-text">
-           Explorá todas las propiedades disponibles de NDB Propiedades con filtros por operación, tipo, zona, precio y ambientes.
+            Explorá todas las propiedades disponibles de NDB Propiedades con
+            filtros por operación, tipo, zona, precio y ambientes.
           </p>
         </div>
       </section>
@@ -178,12 +207,20 @@ Mejor es encontrarla.</h1>
 
             <div class="filter-group">
               <label for="filtro-operacion">Operación</label>
-              <select id="filtro-operacion" multiple placeholder="Operación"></select>
+              <select
+                id="filtro-operacion"
+                multiple
+                placeholder="Operación"
+              ></select>
             </div>
 
             <div class="filter-group">
               <label for="filtro-tipologia">Tipo de propiedad</label>
-              <select id="filtro-tipologia" multiple placeholder="Tipo de propiedad"></select>
+              <select
+                id="filtro-tipologia"
+                multiple
+                placeholder="Tipo de propiedad"
+              ></select>
             </div>
 
             <div class="filter-group">
@@ -198,12 +235,20 @@ Mejor es encontrarla.</h1>
 
             <div class="filter-group">
               <label for="filtro-precio-min">Precio mínimo</label>
-              <input id="filtro-precio-min" type="number" placeholder="Ej: 50000" />
+              <input
+                id="filtro-precio-min"
+                type="number"
+                placeholder="Ej: 50000"
+              />
             </div>
 
             <div class="filter-group">
               <label for="filtro-precio-max">Precio máximo</label>
-              <input id="filtro-precio-max" type="number" placeholder="Ej: 300000" />
+              <input
+                id="filtro-precio-max"
+                type="number"
+                placeholder="Ej: 300000"
+              />
             </div>
 
             <div class="filter-group">
@@ -234,7 +279,11 @@ Mejor es encontrarla.</h1>
             </div>
 
             <div class="results-view">
-              <button class="view-btn active" type="button" aria-label="Vista grilla">
+              <button
+                class="view-btn active"
+                type="button"
+                aria-label="Vista grilla"
+              >
                 <i class="fas fa-border-all"></i>
               </button>
             </div>
@@ -250,7 +299,11 @@ Mejor es encontrarla.</h1>
             <p>Probá ajustando la búsqueda o limpiando los filtros.</p>
           </div>
 
-          <nav class="paginacion" id="paginacion" aria-label="Paginación de propiedades"></nav>
+          <nav
+            class="paginacion"
+            id="paginacion"
+            aria-label="Paginación de propiedades"
+          ></nav>
         </div>
       </section>
     </main>
@@ -264,7 +317,9 @@ Mejor es encontrarla.</h1>
             <li><a href="propiedades.html">PROPIEDADES</a></li>
             <li><a href="index.html#tasa">CONTACTO</a></li>
             <li><a href="index.html#nosotros">NOSOTROS</a></li>
-            <li><a href="index.html#tasa" class="tasa-btn">TASÁ TU INMUEBLE</a></li>
+            <li>
+              <a href="index.html#tasa" class="tasa-btn">TASÁ TU INMUEBLE</a>
+            </li>
           </ul>
           <button class="footer-menu-toggle" aria-label="Abrir menú">
             <i class="fas fa-bars"></i>
@@ -287,11 +342,15 @@ Mejor es encontrarla.</h1>
           <div style="height: 50px"></div>
           <p>Tel: +54 9 11 6407-8491</p>
           <p>
-            <a href="mailto:info@ndbpropiedades.com.ar">info@ndbpropiedades.com.ar</a>
+            <a href="mailto:info@ndbpropiedades.com.ar"
+              >info@ndbpropiedades.com.ar</a
+            >
           </p>
           <p>CMCPSI: 6049</p>
           <div class="redes">
-            <a href="mailto:info@ndbpropiedades.com.ar"><i class="fas fa-envelope"></i></a>
+            <a href="mailto:info@ndbpropiedades.com.ar"
+              ><i class="fas fa-envelope"></i
+            ></a>
             <a href="tel:+5491164078491"><i class="fas fa-phone"></i></a>
             <a
               href="https://instagram.com/ndbpropiedades"
@@ -309,7 +368,11 @@ Mejor es encontrarla.</h1>
       <div class="containers">
         <a
           href="https://www.raven3.com.ar"
-          style="font-size: 10px; color: var(--color-ndb-Gray); text-decoration: none"
+          style="
+            font-size: 10px;
+            color: var(--color-ndb-Gray);
+            text-decoration: none;
+          "
         >
           by <strong>Raven3</strong>
         </a>
