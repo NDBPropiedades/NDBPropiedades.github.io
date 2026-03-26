@@ -164,7 +164,7 @@ function initTomSelects() {
 function cargarOpcionesDesdeDatos(props) {
   const ops = new Set();
   props.forEach((p) =>
-    (p.operations || []).forEach((o) => ops.add(opToStd(o.operation_type))),
+    (p.operations || []).forEach((o) => ops.add(opToStd(o.operation_type)))
   );
 
   const opsOptions = [...ops].map((v) => ({
