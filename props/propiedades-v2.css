@@ -681,10 +681,7 @@ body {
 }
 
 @media (max-width: 640px) {
-  .properties-page {
-    padding-top: 94px;
-  }
-
+ 
   .properties-hero {
     min-height: 440px;
   }
