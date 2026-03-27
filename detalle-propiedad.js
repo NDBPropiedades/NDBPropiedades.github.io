@@ -87,7 +87,6 @@ if (!propiedadId) {
       `;
 
       descripcionEl.innerHTML = `
-        <h2>Descripción</h2>
         <p>${t}</p>
         <p><strong>Expensas:</strong> ${d}</p>
         <p><strong>Estado legal:</strong> ${n}</p>
