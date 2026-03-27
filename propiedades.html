@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -20,13 +20,14 @@
     />
     <meta
       property="og:image"
-      content="/assets/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.png"
+      content="https://ndbpropiedades.com.ar/assets/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.png"
     />
     <meta
       property="og:url"
       content="https://ndbpropiedades.com.ar/propiedades.html"
     />
     <meta property="og:type" content="website" />
+
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
@@ -40,6 +41,7 @@
       name="twitter:image"
       content="https://ndbpropiedades.com.ar/assets/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.png"
     />
+
     <link
       rel="canonical"
       href="https://ndbpropiedades.com.ar/propiedades.html"
@@ -49,24 +51,26 @@
       href="https://ndbpropiedades.com.ar/assets/img/favicon/favicon.ico"
       type="image/x-icon"
     />
-    <link
-      rel="stylesheet"
-      href="https://ndbpropiedades.com.ar/assets/vendor/swiper/swiper-bundle.min.css"
-    />
+
     <link
       rel="preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       as="style"
-      onload="this.rel='stylesheet'"
+      onload="this.rel = 'stylesheet'"
+    />
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+      as="style"
+      onload="this.rel = 'stylesheet'"
     />
     <link
       rel="stylesheet"
       href="https://ndbpropiedades.com.ar/assets/vendor/tomselect/tom-select.css"
     />
-    <link rel="stylesheet" href="https://ndbpropiedades.com.ar/general_styles.css" />
-    <link rel="stylesheet" href="https://ndbpropiedades.com.ar/tokko-listado.css" />
-    <link rel="stylesheet" href="https://ndbpropiedades.com.ar/inmuebles.css" />
-    <link rel="stylesheet" href="https://ndbpropiedades.com.ar/filtros.css" />
+    <link rel="stylesheet" href="/general_styles.css" />
+    <link rel="stylesheet" href="/props/propiedades.css" />
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -88,72 +92,11 @@
         }
       }
     </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "VideoObject",
-        "name": "Video Institucional de NDB Propiedades",
-        "description": "Conocé a Nicolás De Brasi y cómo trabajamos en NDB Propiedades.",
-        "thumbnailUrl": "https://ndbpropiedades.com.ar/assets/img/img-poster.jpg",
-        "uploadDate": "2025-07-20",
-        "contentUrl": "https://ndbpropiedades.com.ar/assets/video/Institucional_Nico_NDB.mp4",
-        "embedUrl": "https://ndbpropiedades.com.ar"
-      }
-    </script>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-CWT3RPZP7V"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-CWT3RPZP7V");
-    </script>
-    <!-- Meta Pixel Code -->
-    <script>
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-          n.callMethod
-            ? n.callMethod.apply(n, arguments)
-            : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = "2.0";
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(
-        window,
-        document,
-        "script",
-        "https://connect.facebook.net/en_US/fbevents.js"
-      );
-      fbq("init", "4030736927138394");
-      fbq("track", "PageView");
-    </script>
-    <noscript
-      ><img
-        height="1"
-        width="1"
-        style="display: none"
-        src="https://www.facebook.com/tr?id=4030736927138394&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
   </head>
+
   <body>
-    <!-- wasap -->
-    <div class="wasap" style="animation-name: tada">
+    <!-- WhatsApp -->
+    <div class="wasap">
       <a
         href="https://api.whatsapp.com/send?l=es&text=Hola%20NDB%20Propiedades!%20Quiero%20consultarles%20por%20una%20propiedad&phone=+5491164078491"
         target="_blank"
@@ -161,10 +104,9 @@
         aria-label="Link a WhatsApp NDB Propiedades"
       >
         <img
-          src="https://ndbpropiedades.com.ar/assets/img/svg/logo-wapp-01.svg"
+          src="/assets/img/svg/logo-wapp-01.svg"
           width="50"
           height="50"
-          style="max-width: 100%; height: auto"
           alt="NDB Propiedades WhatsApp"
           loading="lazy"
         />
@@ -174,9 +116,9 @@
     <!-- Header -->
     <header class="header">
       <div class="container header-container">
-        <a href="index.html" class="logo">
+        <a href="index.html" class="logo" aria-label="Ir al inicio">
           <img
-            src="assets/img/img/Nicolas De Brasi - Logo 2 Positivo RGB.png"
+            src="/assets/img/img/Nicolas De Brasi - Logo 2 Positivo RGB.png"
             alt="NDB Propiedades"
             width="300"
             height="100"
@@ -184,10 +126,10 @@
           />
         </a>
 
-        <nav class="nav-container">
+        <nav class="nav-container" aria-label="Navegación principal">
           <ul class="nav">
             <li><a href="index.html">INICIO</a></li>
-            <li><a href="propiedades.html">PROPIEDADES</a></li>
+            <li><a href="propiedades.html" class="active">PROPIEDADES</a></li>
             <li><a href="index.html#tasa">CONTACTO</a></li>
             <li><a href="index.html#nosotros">NOSOTROS</a></li>
             <li>
@@ -202,83 +144,197 @@
       </div>
     </header>
 
-    <h1
-      style="
-        position: absolute;
-        left: -9999px;
-        top: auto;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-      "
-    >
-      Propiedades disponibles en Zona Norte, Buenos Aires | NDB Propiedades
-    </h1>
+    <main class="properties-page">
+      <section class="properties-hero properties-hero--video">
+        <video
+          class="properties-hero__video"
+          autoplay
+          muted
+          loop
+          playsinline
+          poster="/assets/img/img/Nicolas De Brasi - Logo Negativo RGB.jpg"
+        >
+          <source
+            src="/assets/video/Institucional_Nico_NDB.mp4"
+            type="video/mp4"
+          />
+          Tu navegador no soporta video HTML5.
+        </video>
 
-    <section class="buscador-section">
-      <video
-        autoplay
-        muted
-        loop
-        playsinline
-        class="video-fondo"
-        poster="assets/img/img/Nicolas De Brasi - Logo Negativo RGB.jpg"
-        fetchpriority="high"
-      >
-        <source
-          src="assets/video/Institucional_Nico_NDB.mp4"
-          type="video/mp4"
-        />
-        Tu navegador no soporta el video HTML5.
-      </video>
+        <div class="properties-hero__overlay"></div>
+        <div class="properties-hero__fade"></div>
 
-      <div class="video-overlay"></div>
+        <div class="container properties-hero__content">
+          <!-- <p class="eyebrow">NDB PROPIEDADES</p> -->
+          <h1>Es lindo llegar a casa. Mejor es encontrarla.</h1>
+          <p class="hero-text">
+            Explorá todas las propiedades disponibles de NDB Propiedades con
+            filtros por operación, tipo, zona, precio y ambientes.
+          </p>
+        </div>
+      </section>
 
-      <div class="frase-buscador">
-        <h2>Es lindo llegar a casa. <br />Mejor es encontrarla.</h2>
-      </div>
+      <section class="properties-layout container">
+        <!-- Mobile open filters -->
+        <button
+          class="filters-toggle"
+          id="open-filters"
+          type="button"
+          aria-label="Abrir filtros"
+        >
+          <i class="fas fa-sliders-h"></i>
+          Filtros
+        </button>
 
-      <div class="buscador">
-        <form id="filtros" novalidate>
-          <select id="filtro-operacion" multiple placeholder="Operación"></select>
-          <select id="filtro-tipologia" multiple placeholder="Tipo de propiedad"></select>
-          <select id="filtro-zona" multiple placeholder="Zona"></select>
-          <select id="filtro-orden" multiple placeholder="Ordenar"></select>
-        </form>
-      </div>
-    </section>
-    <div class="buscador-libre">
-      <input
-        id="search-text"
-        type="search"
-        placeholder="Buscar..."
-        aria-label="Buscar propiedades"
-      />
-    </div>
-    <div class="tokko-container" id="lista-propiedades"></div>
-    <nav
-      class="paginacion"
-      id="paginacion"
-      aria-label="Paginación de propiedades"
-    ></nav>
+        <!-- Sidebar -->
+        <aside class="filters-sidebar" id="filters-sidebar">
+          <div class="filters-sidebar__header">
+            <h2>Filtrar propiedades</h2>
+            <button
+              class="filters-close"
+              id="close-filters"
+              type="button"
+              aria-label="Cerrar filtros"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+
+          <form id="filtros" class="filters-form" novalidate>
+            <div class="filter-group">
+              <label for="search-text">Buscar</label>
+              <input
+                id="search-text"
+                type="search"
+                placeholder="Barrio, calle, palabra clave..."
+                aria-label="Buscar propiedades"
+              />
+            </div>
+
+            <div class="filter-group">
+              <label for="filtro-operacion">Operación</label>
+              <select
+                id="filtro-operacion"
+                multiple
+                placeholder="Operación"
+              ></select>
+            </div>
+
+            <div class="filter-group">
+              <label for="filtro-tipologia">Tipo de propiedad</label>
+              <select
+                id="filtro-tipologia"
+                multiple
+                placeholder="Tipo de propiedad"
+              ></select>
+            </div>
+
+            <div class="filter-group">
+              <label for="filtro-zona">Zona</label>
+              <select id="filtro-zona" multiple placeholder="Zona"></select>
+            </div>
+
+            <div class="filter-group">
+              <label for="filtro-orden">Ordenar</label>
+              <select id="filtro-orden" placeholder="Ordenar"></select>
+            </div>
+
+            <div class="filter-group">
+              <label for="filtro-precio-min">Precio mínimo</label>
+              <input
+                id="filtro-precio-min"
+                type="number"
+                placeholder="Ej: 50000"
+              />
+            </div>
+
+            <div class="filter-group">
+              <label for="filtro-precio-max">Precio máximo</label>
+              <input
+                id="filtro-precio-max"
+                type="number"
+                placeholder="Ej: 300000"
+              />
+            </div>
+
+            <div class="filter-group">
+              <label for="filtro-ambientes">Ambientes</label>
+              <select id="filtro-ambientes">
+                <option value="">Todos</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+                <option value="5">5+</option>
+              </select>
+            </div>
+
+            <div class="filter-actions">
+              <button type="button" id="btn-limpiar" class="btn btn-outline">
+                Limpiar
+              </button>
+            </div>
+          </form>
+        </aside>
+
+        <!-- Results -->
+        <div class="properties-content">
+          <div class="results-toolbar">
+            <div class="results-info">
+              <p id="results-count">Cargando propiedades...</p>
+            </div>
+
+            <!-- <div class="results-view">
+              <button
+                class="view-btn active"
+                type="button"
+                aria-label="Vista grilla"
+              >
+                <i class="fas fa-border-all"></i>
+              </button>
+            </div> -->
+          </div>
+
+          <div class="properties-grid" id="lista-propiedades">
+            <!-- Cards dinámicas -->
+          </div>
+
+          <div class="empty-state" id="empty-state" hidden>
+            <i class="fas fa-house-circle-xmark"></i>
+            <h3>No encontramos propiedades con esos filtros</h3>
+            <p>Probá ajustando la búsqueda o limpiando los filtros.</p>
+          </div>
+
+          <nav
+            class="paginacion"
+            id="paginacion"
+            aria-label="Paginación de propiedades"
+          ></nav>
+        </div>
+      </section>
+    </main>
+
     <!-- Footer -->
     <footer class="footer">
       <div class="containers footer-container">
         <div class="footer-right">
           <ul class="footer-menu">
-            <li><a href="#">INICIO</a></li>
+            <li><a href="index.html">INICIO</a></li>
             <li><a href="propiedades.html">PROPIEDADES</a></li>
-            <li><a href="#contacto">CONTACTO</a></li>
-            <li><a href="#nosotros">NOSOTROS</a></li>
-            <li><a href="#tasa" class="tasa-btn">TASÁ TU INMUEBLE</a></li>
+            <li><a href="index.html#tasa">CONTACTO</a></li>
+            <li><a href="index.html#nosotros">NOSOTROS</a></li>
+            <li>
+              <a href="index.html#tasa" class="tasa-btn">TASÁ TU INMUEBLE</a>
+            </li>
           </ul>
           <button class="footer-menu-toggle" aria-label="Abrir menú">
             <i class="fas fa-bars"></i>
           </button>
         </div>
+
         <div class="footer-left">
           <img
-            src="assets/img/img/Nicolas De Brasi - Logo Positivo RGB.png"
+            src="/assets/img/img/Nicolas De Brasi - Logo Positivo RGB.png"
             alt="NDB Propiedades"
             class="footer-logo"
             width="200"
@@ -287,6 +343,7 @@
           />
           <p style="font-size: 12px; text-align: center" id="copyright"></p>
         </div>
+
         <div class="footer-center">
           <div style="height: 50px"></div>
           <p>Tel: +54 9 11 6407-8491</p>
@@ -305,13 +362,15 @@
               href="https://instagram.com/ndbpropiedades"
               target="_blank"
               rel="noopener noreferrer"
-              ><i class="fab fa-instagram"></i
-            ></a>
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
           </div>
         </div>
       </div>
-      <br />
-      <br />
+
+      <br /><br />
+
       <div class="containers">
         <a
           href="https://www.raven3.com.ar"
@@ -320,13 +379,15 @@
             color: var(--color-ndb-Gray);
             text-decoration: none;
           "
-          >by <strong>Raven3</strong></a
         >
+          by <strong>Raven3</strong>
+        </a>
       </div>
     </footer>
-    <script src="assets/vendor/tomselect/tom-select.complete.min.js"></script>
-    <script src="navbar.js"></script>
-    <script src="tokko-listado.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <script src="/assets/vendor/tomselect/tom-select.complete.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/navbar.js"></script>
+    <script src="propiedades.js"></script>
   </body>
 </html>

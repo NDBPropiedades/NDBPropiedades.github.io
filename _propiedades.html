@@ -2,17 +2,13 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <title>
+      Propiedades en Zona Norte - Venta y Alquiler | NDB Propiedades
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NDB Propiedades | Tasaciones en Zona Norte</title>
     <meta
       name="description"
-      content="Explorá nuestras propiedades en venta y alquiler en Zona Norte. NDB Propiedades te acompaña en tu próxima inversión inmobiliaria."
-    />
-
-    <link
-      rel="icon"
-      href="/assets/img/favicon/favicon.ico"
-      type="image/x-icon"
+      content="Encontrá casas, departamentos y terrenos en venta y alquiler en Zona Norte, Buenos Aires. Usá filtros y descubrí tu próxima propiedad con NDB Propiedades."
     />
     <meta
       property="og:title"
@@ -24,14 +20,13 @@
     />
     <meta
       property="og:image"
-      content="https://ndbpropiedades.com.ar/assets/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.png"
+      content="/assets/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.png"
     />
     <meta
       property="og:url"
       content="https://ndbpropiedades.com.ar/propiedades.html"
     />
     <meta property="og:type" content="website" />
-
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
@@ -45,14 +40,18 @@
       name="twitter:image"
       content="https://ndbpropiedades.com.ar/assets/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.png"
     />
-
-    <link rel="stylesheet" href="/general_styles.css" />
-    <link rel="stylesheet" href="/detalle.css" />
     <link
-      rel="preload"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-      as="style"
-      onload="this.rel='stylesheet'"
+      rel="canonical"
+      href="https://ndbpropiedades.com.ar/propiedades.html"
+    />
+    <link
+      rel="icon"
+      href="https://ndbpropiedades.com.ar/assets/img/favicon/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://ndbpropiedades.com.ar/assets/vendor/swiper/swiper-bundle.min.css"
     />
     <link
       rel="preload"
@@ -60,21 +59,45 @@
       as="style"
       onload="this.rel='stylesheet'"
     />
+    <link
+      rel="stylesheet"
+      href="https://ndbpropiedades.com.ar/assets/vendor/tomselect/tom-select.css"
+    />
+    <link rel="stylesheet" href="https://ndbpropiedades.com.ar/general_styles.css" />
+    <link rel="stylesheet" href="https://ndbpropiedades.com.ar/tokko-listado.css" />
+    <link rel="stylesheet" href="https://ndbpropiedades.com.ar/inmuebles.css" />
+    <link rel="stylesheet" href="https://ndbpropiedades.com.ar/filtros.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "RealEstateAgent",
         "name": "NDB Propiedades",
+        "image": "https://ndbpropiedades.com.ar/assets/img/Nicolas De Brasi - Logo 2 Positivo RGB.jpg",
         "url": "https://ndbpropiedades.com.ar",
-        "logo": "https://ndbpropiedades.com.ar/assets/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.png",
-        "image": "https://ndbpropiedades.com.ar/assets/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.png",
-        "description": "Inmobiliaria especializada en Zona Norte. Venta y alquiler de propiedades.",
         "telephone": "+54 9 11 6407-8491",
         "email": "info@ndbpropiedades.com.ar",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "AR",
+          "addressRegion": "Buenos Aires",
+          "addressLocality": "Zona Norte"
+        },
         "areaServed": {
           "@type": "Place",
-          "name": "Zona Norte, Buenos Aires"
+          "name": "Zona Norte, Buenos Aires, Argentina"
         }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "Video Institucional de NDB Propiedades",
+        "description": "Conocé a Nicolás De Brasi y cómo trabajamos en NDB Propiedades.",
+        "thumbnailUrl": "https://ndbpropiedades.com.ar/assets/img/img-poster.jpg",
+        "uploadDate": "2025-07-20",
+        "contentUrl": "https://ndbpropiedades.com.ar/assets/video/Institucional_Nico_NDB.mp4",
+        "embedUrl": "https://ndbpropiedades.com.ar"
       }
     </script>
     <!-- Google tag (gtag.js) -->
@@ -92,33 +115,53 @@
       gtag("config", "G-CWT3RPZP7V");
     </script>
     <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '4030736927138394');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=4030736927138394&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "4030736927138394");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=4030736927138394&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
   </head>
   <body>
+    <!-- wasap -->
     <div class="wasap" style="animation-name: tada">
       <a
         href="https://api.whatsapp.com/send?l=es&text=Hola%20NDB%20Propiedades!%20Quiero%20consultarles%20por%20una%20propiedad&phone=+5491164078491"
         target="_blank"
-        aria-label="Link a WhatsApp NDB Propiedades"
         rel="noopener noreferrer"
+        aria-label="Link a WhatsApp NDB Propiedades"
       >
         <img
-          src="/assets/img/svg/logo-wapp-01.svg"
+          src="https://ndbpropiedades.com.ar/assets/img/svg/logo-wapp-01.svg"
           width="50"
           height="50"
           style="max-width: 100%; height: auto"
@@ -128,11 +171,12 @@ src="https://www.facebook.com/tr?id=4030736927138394&ev=PageView&noscript=1"
       </a>
     </div>
 
+    <!-- Header -->
     <header class="header">
       <div class="container header-container">
         <a href="index.html" class="logo">
           <img
-            src="/assets/img/img/Nicolas De Brasi - Logo 2 Positivo RGB.png"
+            src="assets/img/img/Nicolas De Brasi - Logo 2 Positivo RGB.png"
             alt="NDB Propiedades"
             width="300"
             height="100"
@@ -158,43 +202,65 @@ src="https://www.facebook.com/tr?id=4030736927138394&ev=PageView&noscript=1"
       </div>
     </header>
 
-    <main class="detalle-propiedad containers">
-      <div class="volver-link" style="margin-bottom: 15px">
-        <a href="propiedades.html">Ver todas las propiedades</a>
-      </div>
+    <h1
+      style="
+        position: absolute;
+        left: -9999px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      "
+    >
+      Propiedades disponibles en Zona Norte, Buenos Aires | NDB Propiedades
+    </h1>
 
-      <div id="galeria-propiedad" style="margin-bottom: 40px"></div>
-
-      <div class="detalle-header" id="info-propiedad"></div>
-
-      <div id="mapa-propiedad" class="mapa-propiedad"></div>
-
-      <div class="caracteristicas-propiedad" id="caracteristicas"></div>
-
-      <div class="descripcion-propiedad" id="descripcion"></div>
-
-      <div id="video-propiedad" style="margin-top: 40px"></div>
-
-      <div
-        class="formulario-interes"
-        style="margin: 40px 0; text-align: center"
+    <section class="buscador-section">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="video-fondo"
+        poster="assets/img/img/Nicolas De Brasi - Logo Negativo RGB.jpg"
+        fetchpriority="high"
       >
-        <h2 class="titulo-interes">¿Te interesa esta propiedad?</h2>
-        <p style="margin-bottom: 15px">
-          Hacé clic en el siguiente botón para pedir más información o coordinar
-          una visita
-        </p>
-        <a
-          href="#"
-          target="_blank"
-          id="formulario-link"
-          class="tasa-btn"
-          rel="noopener noreferrer"
-          >Completar Formulario</a
-        >
-      </div>
-    </main>
+        <source
+          src="assets/video/Institucional_Nico_NDB.mp4"
+          type="video/mp4"
+        />
+        Tu navegador no soporta el video HTML5.
+      </video>
 
+      <div class="video-overlay"></div>
+
+      <div class="frase-buscador">
+        <h2>Es lindo llegar a casa. <br />Mejor es encontrarla.</h2>
+      </div>
+
+      <div class="buscador">
+        <form id="filtros" novalidate>
+          <select id="filtro-operacion" multiple placeholder="Operación"></select>
+          <select id="filtro-tipologia" multiple placeholder="Tipo de propiedad"></select>
+          <select id="filtro-zona" multiple placeholder="Zona"></select>
+          <select id="filtro-orden" multiple placeholder="Ordenar"></select>
+        </form>
+      </div>
+    </section>
+    <div class="buscador-libre">
+      <input
+        id="search-text"
+        type="search"
+        placeholder="Buscar..."
+        aria-label="Buscar propiedades"
+      />
+    </div>
+    <div class="tokko-container" id="lista-propiedades"></div>
+    <nav
+      class="paginacion"
+      id="paginacion"
+      aria-label="Paginación de propiedades"
+    ></nav>
     <!-- Footer -->
     <footer class="footer">
       <div class="containers footer-container">
@@ -212,7 +278,7 @@ src="https://www.facebook.com/tr?id=4030736927138394&ev=PageView&noscript=1"
         </div>
         <div class="footer-left">
           <img
-            src="/assets/img/img/Nicolas De Brasi - Logo Positivo RGB.png"
+            src="assets/img/img/Nicolas De Brasi - Logo Positivo RGB.png"
             alt="NDB Propiedades"
             class="footer-logo"
             width="200"
@@ -258,14 +324,9 @@ src="https://www.facebook.com/tr?id=4030736927138394&ev=PageView&noscript=1"
         >
       </div>
     </footer>
-
-    <script
-      rel="preload"
-      src="/assets/vendor/swiper/swiper-bundle.min.js"
-      as="script"
-      defer
-    ></script>
-    <script src="/detalle-propiedad.js" defer as="script"></script>
-    <script src="/navbar.js" defer as="script"></script>
+    <script src="assets/vendor/tomselect/tom-select.complete.min.js"></script>
+    <script src="navbar.js"></script>
+    <script src="tokko-listado.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   </body>
 </html>
