@@ -408,18 +408,18 @@ body > header > div > nav > ul > li:nth-child(5) > a:hover {
 }
 
 .property-card--home .badge-sale {
-  background: rgba(255, 255, 255, 0.94);
-  color: var(--color-ndb-BlackPearl);
+  background: #091847;
+  color: #fff;
 }
 
 .property-card--home .badge-rent {
-  background: var(--color-ndb-Denim);
+  background: var(--color-ndb-Malibu);
   color: #fff;
 }
 
 .property-card--home .badge-temporary {
   background: var(--color-ndb-Malibu);
-  color: var(--color-ndb-BlackPearl);
+  color: #fff;
 }
 
 /* arrows */
@@ -536,13 +536,13 @@ body > header > div > nav > ul > li:nth-child(5) > a:hover {
   align-items: center;
   gap: 6px;
   font-size: 0.92rem;
-  color: var(--color-ndb-Madison);
+  color: #6f7a86;
   font-weight: 600;
   white-space: nowrap;
 }
 
 .property-card--home .property-card__features i {
-  color: var(--color-ndb-Denim);
+  color: var(--color-ndb-Madison);
   font-size: 0.92rem;
   width: 14px;
   text-align: center;
@@ -575,7 +575,7 @@ body > header > div > nav > ul > li:nth-child(5) > a:hover {
   font-size: 0.95rem;
   font-weight: 800;
   white-space: nowrap;
-  background: var(--color-ndb-Denim);
+  background: rgba(14, 36, 106, 0.92);
   color: #fff;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   box-shadow: 0 12px 24px rgba(22, 99, 191, 0.2);
