@@ -164,7 +164,7 @@ function initTomSelects() {
 function cargarOpcionesDesdeDatos(props) {
   const ops = new Set();
   props.forEach((p) =>
-    (p.operations || []).forEach((o) => ops.add(opToStd(o.operation_type)))
+    (p.operations || []).forEach((o) => ops.add(opToStd(o.operation_type))),
   );
 
   const opsOptions = [...ops].map((v) => ({
@@ -284,6 +284,105 @@ function precioDeOperacion(p, opS) {
 function precioNumericoSegunOperacion(p, opS) {
   const priceObj = obtenerPriceObjSegunOperacion(p, opS);
   return precioNumericoDePriceObj(priceObj);
+}
+
+/* =========================
+   Helpers slider / imágenes
+   ========================= */
+const propertySwipers = [];
+
+function destruirSwipersActivos() {
+  while (propertySwipers.length) {
+    const instance = propertySwipers.pop();
+    try {
+      instance?.destroy(true, true);
+    } catch (e) {}
+  }
+}
+
+function escapeHtml(texto) {
+  return String(texto ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function obtenerImagenPrincipal(p) {
+  if (p.photos?.length && p.photos[0]?.image) {
+    return p.photos[0].image;
+  }
+  return "assets/img/no-image.jpg";
+}
+
+function obtenerSlidesPropiedad(p, titulo) {
+  if (p.photos?.length) {
+    return p.photos
+      .filter((ph) => ph?.image)
+      .map(
+        (ph, index) => `
+          <div class="swiper-slide">
+            <a href="propiedad.html?id=${p.id}" aria-label="Ver ${escapeHtml(titulo)}">
+              <img
+                src="${ph.image}"
+                alt="${escapeHtml(titulo)} - foto ${index + 1}"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+          </div>
+        `,
+      )
+      .join("");
+  }
+
+  return `
+    <div class="swiper-slide">
+      <a href="propiedad.html?id=${p.id}" aria-label="Ver ${escapeHtml(titulo)}">
+        <img
+          src="assets/img/no-image.jpg"
+          alt="${escapeHtml(titulo)}"
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+    </div>
+  `;
+}
+
+function initPropertySwipers() {
+  if (!window.Swiper) {
+    console.warn("Swiper no está cargado. Las cards se mostrarán sin slider funcional.");
+    return;
+  }
+
+  const swipers = document.querySelectorAll(".property-card__swiper");
+
+  swipers.forEach((el) => {
+    const totalSlides = Number(el.dataset.slides || 1);
+    const hasMultiple = totalSlides > 1;
+
+    const instance = new Swiper(el, {
+      loop: hasMultiple,
+      slidesPerView: 1,
+      spaceBetween: 0,
+      watchOverflow: true,
+      observer: true,
+      observeParents: true,
+      navigation: {
+        nextEl: el.querySelector(".swiper-button-next"),
+        prevEl: el.querySelector(".swiper-button-prev"),
+      },
+      pagination: {
+        el: el.querySelector(".swiper-pagination"),
+        clickable: true,
+      },
+      autoplay: false,
+    });
+
+    propertySwipers.push(instance);
+  });
 }
 
 /* =========================
@@ -473,13 +572,6 @@ function construirControlesPaginacion(total, actual, porPagina) {
 /* =========================
    Render cards
    ========================= */
-function obtenerImagenPrincipal(p) {
-  if (p.photos?.length && p.photos[0]?.image) {
-    return p.photos[0].image;
-  }
-  return "assets/img/no-image.jpg";
-}
-
 function cerrarSidebarMobile() {
   if (window.innerWidth <= 920 && filtersSidebar) {
     filtersSidebar.classList.remove("is-open");
@@ -490,6 +582,7 @@ function cerrarSidebarMobile() {
 function renderPagina() {
   if (!contenedor) return;
 
+  destruirSwipersActivos();
   contenedor.innerHTML = "";
 
   if (!propiedadesFiltradas.length) {
@@ -519,7 +612,7 @@ function renderPagina() {
   const start = (paginaActual - 1) * propiedadesPorPagina;
   const items = propiedadesFiltradas.slice(start, start + propiedadesPorPagina);
 
-  items.forEach((p) => {
+  items.forEach((p, index) => {
     const tipo =
       propertyTypeTranslations[p.type?.name] || p.type?.name || "Propiedad";
     const zona = p.location?.name || "Zona no especificada";
@@ -538,25 +631,34 @@ function renderPagina() {
           : "badge-temporary";
 
     const precio = precioDeOperacion(p, opS);
-    const imagen = obtenerImagenPrincipal(p);
 
     const ambientes = Number(p.room_amount || 0);
     const dormitorios = Number(p.suite_amount || 0);
     const banos = Number(p.bathroom_amount || 0);
     const superficie = Number(p.total_surface || 0);
 
+    const sliderId = `property-swiper-${start + index}-${p.id}`;
+    const totalFotos = p.photos?.filter((ph) => ph?.image)?.length || 1;
+    const slidesHtml = obtenerSlidesPropiedad(p, titulo);
+
     const html = `
       <article class="property-card">
         <div class="property-card__media">
           <span class="property-card__badge ${badgeClass}">${badgeText}</span>
-          <a href="propiedad.html?id=${p.id}" aria-label="Ver ${titulo}">
-            <img
-              src="${imagen}"
-              alt="${titulo}"
-              loading="lazy"
-              decoding="async"
-            />
-          </a>
+
+          <div
+            class="swiper property-card__swiper"
+            id="${sliderId}"
+            data-slides="${totalFotos}"
+            aria-label="Galería de imágenes de ${escapeHtml(titulo)}"
+          >
+            <div class="swiper-wrapper">
+              ${slidesHtml}
+            </div>
+
+            <div class="swiper-button-prev" aria-label="Imagen anterior"></div>
+            <div class="swiper-button-next" aria-label="Imagen siguiente"></div>
+          </div>
         </div>
 
         <div class="property-card__body">
@@ -605,6 +707,8 @@ function renderPagina() {
 
     contenedor.insertAdjacentHTML("beforeend", html);
   });
+
+  initPropertySwipers();
 
   construirControlesPaginacion(
     propiedadesFiltradas.length,
