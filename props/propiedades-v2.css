@@ -398,9 +398,9 @@ body {
   transition: transform 0.7s ease;
 }
 
-.property-card:hover .property-card__media img {
+/* .property-card:hover .property-card__media img {
   transform: scale(1.05);
-}
+} */
 
 .property-card__badge {
   position: absolute;
