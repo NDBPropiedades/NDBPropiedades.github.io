@@ -255,14 +255,18 @@ function formatearPrecioTokko(priceObj) {
 
 function elegirOperacionParaCard(p) {
   const opsStd = (p.operations || []).map((o) => opToStd(o.operation_type));
-  const selectedOps = tsOperacion?.getValue?.() || [];
+  const selectedOpsRaw = tsOperacion?.getValue?.() || [];
+  const selectedOps = Array.isArray(selectedOpsRaw)
+    ? selectedOpsRaw
+    : [selectedOpsRaw].filter(Boolean);
 
   let opS = selectedOps.find((op) => opsStd.includes(op));
 
   if (!opS) {
-    if (opsStd.includes("Temporary Rent")) opS = "Temporary Rent";
+    if (opsStd.includes("Sale")) opS = "Sale";
     else if (opsStd.includes("Rent")) opS = "Rent";
-    else opS = "Sale";
+    else if (opsStd.includes("Temporary Rent")) opS = "Temporary Rent";
+    else opS = opsStd[0] || "Sale";
   }
 
   return opS;
@@ -286,6 +290,65 @@ function precioNumericoSegunOperacion(p, opS) {
   return precioNumericoDePriceObj(priceObj);
 }
 
+function obtenerOperacionesDePropiedad(p) {
+  const opsUnicas = new Map();
+
+  (p.operations || []).forEach((o) => {
+    const tipoStd = opToStd(o.operation_type);
+
+    if (!opsUnicas.has(tipoStd)) {
+      opsUnicas.set(tipoStd, {
+        type: tipoStd,
+        label:
+          tipoStd === "Sale"
+            ? "Venta"
+            : tipoStd === "Rent"
+              ? "Alquiler"
+              : "Temporal",
+        badgeClass:
+          tipoStd === "Sale"
+            ? "badge-sale"
+            : tipoStd === "Rent"
+              ? "badge-rent"
+              : "badge-temporary",
+        priceObj: o?.prices?.[0] || null,
+      });
+    }
+  });
+
+  const ordenPreferido = ["Sale", "Rent", "Temporary Rent"];
+
+  return ordenPreferido
+    .filter((tipo) => opsUnicas.has(tipo))
+    .map((tipo) => opsUnicas.get(tipo));
+}
+
+function construirBadgesOperacionHtml(p) {
+  const operaciones = obtenerOperacionesDePropiedad(p);
+
+  return operaciones
+    .map(
+      (op) =>
+        `<span class="property-card__badge ${op.badgeClass}">${op.label}</span>`,
+    )
+    .join("");
+}
+
+function construirPreciosOperacionHtml(p) {
+  const operaciones = obtenerOperacionesDePropiedad(p);
+
+  return operaciones
+    .map(
+      (op) => `
+        <div class="property-card__price-row">
+          <span class="property-card__price-label">${op.label}</span>
+          <span class="property-card__price-value">${formatearPrecioTokko(op.priceObj)}</span>
+        </div>
+      `,
+    )
+    .join("");
+}
+
 /* =========================
    Helpers slider / imágenes
    ========================= */
@@ -307,13 +370,6 @@ function escapeHtml(texto) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
-}
-
-function obtenerImagenPrincipal(p) {
-  if (p.photos?.length && p.photos[0]?.image) {
-    return p.photos[0].image;
-  }
-  return "assets/img/no-image.jpg";
 }
 
 function obtenerSlidesPropiedad(p, titulo) {
@@ -353,7 +409,9 @@ function obtenerSlidesPropiedad(p, titulo) {
 
 function initPropertySwipers() {
   if (!window.Swiper) {
-    console.warn("Swiper no está cargado. Las cards se mostrarán sin slider funcional.");
+    console.warn(
+      "Swiper no está cargado. Las cards se mostrarán sin slider funcional.",
+    );
     return;
   }
 
@@ -391,7 +449,11 @@ function initPropertySwipers() {
 function aplicarFiltros(lista) {
   let arr = [...lista];
 
-  const operaciones = (tsOperacion?.getValue?.() || []).filter(Boolean);
+  const operacionesRaw = tsOperacion?.getValue?.() || [];
+  const operaciones = Array.isArray(operacionesRaw)
+    ? operacionesRaw.filter(Boolean)
+    : [operacionesRaw].filter(Boolean);
+
   if (operaciones.length) {
     arr = arr.filter((p) =>
       (p.operations || []).some((o) =>
@@ -400,12 +462,20 @@ function aplicarFiltros(lista) {
     );
   }
 
-  const tipologias = (tsTipologia?.getValue?.() || []).filter(Boolean);
+  const tipologiasRaw = tsTipologia?.getValue?.() || [];
+  const tipologias = Array.isArray(tipologiasRaw)
+    ? tipologiasRaw.filter(Boolean)
+    : [tipologiasRaw].filter(Boolean);
+
   if (tipologias.length) {
     arr = arr.filter((p) => tipologias.includes(p.type?.name));
   }
 
-  const zonas = (tsZona?.getValue?.() || []).filter(Boolean);
+  const zonasRaw = tsZona?.getValue?.() || [];
+  const zonas = Array.isArray(zonasRaw)
+    ? zonasRaw.filter(Boolean)
+    : [zonasRaw].filter(Boolean);
+
   if (zonas.length) {
     arr = arr.filter((p) => zonas.includes(p.location?.name));
   }
@@ -432,8 +502,9 @@ function aplicarFiltros(lista) {
   const q = normalizar(searchInput?.value);
   if (q) {
     arr = arr.filter((p) => {
-      const opS = elegirOperacionParaCard(p);
-      const precioTexto = precioDeOperacion(p, opS);
+      const operacionesTexto = obtenerOperacionesDePropiedad(p)
+        .map((op) => `${op.label} ${formatearPrecioTokko(op.priceObj)}`)
+        .join(" ");
 
       const campos = [
         p.publication_title,
@@ -441,7 +512,7 @@ function aplicarFiltros(lista) {
         p.address,
         p.type?.name,
         propertyTypeTranslations[p.type?.name] || p.type?.name,
-        precioTexto,
+        operacionesTexto,
       ];
 
       return campos.some((v) => normalizar(v).includes(q));
@@ -618,22 +689,13 @@ function renderPagina() {
     const zona = p.location?.name || "Zona no especificada";
     const titulo = p.publication_title || `${tipo} en ${zona}`;
 
-    const opS = elegirOperacionParaCard(p);
-
-    const badgeText =
-      opS === "Sale" ? "Venta" : opS === "Rent" ? "Alquiler" : "Temporal";
-
-    const badgeClass =
-      opS === "Sale"
-        ? "badge-sale"
-        : opS === "Rent"
-          ? "badge-rent"
-          : "badge-temporary";
-
-    const precio = precioDeOperacion(p, opS);
+    const badgesHtml = construirBadgesOperacionHtml(p);
+    const preciosHtml = construirPreciosOperacionHtml(p);
 
     const ambientes = Number(p.room_amount || 0);
-    const dormitorios = Number(p.suite_amount || 0);
+    const dormitorios = Number(
+      p.bedroom_amount || p.suite_amount || 0,
+    );
     const banos = Number(p.bathroom_amount || 0);
     const superficie = Number(p.total_surface || 0);
 
@@ -644,7 +706,9 @@ function renderPagina() {
     const html = `
       <article class="property-card">
         <div class="property-card__media">
-          <span class="property-card__badge ${badgeClass}">${badgeText}</span>
+          <div class="property-card__badges">
+            ${badgesHtml}
+          </div>
 
           <div
             class="swiper property-card__swiper"
@@ -662,15 +726,17 @@ function renderPagina() {
         </div>
 
         <div class="property-card__body">
-          <p class="property-card__price">${precio}</p>
+          <div class="property-card__prices">
+            ${preciosHtml}
+          </div>
 
           <h3 class="property-card__title">
             <a href="propiedad.html?id=${p.id}" style="color:inherit;text-decoration:none;">
-              ${titulo}
+              ${escapeHtml(titulo)}
             </a>
           </h3>
 
-          <p class="property-card__location">${zona}</p>
+          <p class="property-card__location">${escapeHtml(zona)}</p>
 
           <div class="property-card__features">
             ${
@@ -805,7 +871,7 @@ filtroPrecioMax?.addEventListener("input", () => {
 filtroAmbientes?.addEventListener("change", reiniciarListado);
 
 btnLimpiar?.addEventListener("click", () => {
-  searchInput.value = "";
+  if (searchInput) searchInput.value = "";
   if (filtroPrecioMin) filtroPrecioMin.value = "";
   if (filtroPrecioMax) filtroPrecioMax.value = "";
   if (filtroAmbientes) filtroAmbientes.value = "";

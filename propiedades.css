@@ -136,7 +136,6 @@ body {
 .properties-hero .hero-text {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.18);
 }
-
 /* =========================
    LAYOUT
    ========================= */
@@ -402,20 +401,30 @@ body {
 /* .property-card:hover .property-card__media img {
   transform: scale(1.05);
 } */
-
-.property-card__badge {
+.property-card__badges {
   position: absolute;
   top: 14px;
   left: 14px;
-  z-index: 2;
-  background: rgba(14, 36, 106, 0.92);
-  color: #fff;
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.property-card__badge {
+display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 8px 14px;
+  border-radius: 999px;
   font-size: 0.76rem;
   font-weight: 800;
-  letter-spacing: 0.03em;
-  padding: 8px 12px;
-  border-radius: 999px;
-  box-shadow: 0 8px 18px rgba(14, 36, 106, 0.22);
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
 }
 
 .property-card__badge.badge-sale {
