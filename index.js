@@ -312,6 +312,11 @@ function inicializarSwiperGeneral() {
   new Swiper(".myMainSwiper", {
     loop: true,
     grabCursor: true,
+    speed: 1200,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
     slidesPerView: 3,
     slidesPerGroup: 3,
     spaceBetween: 30,
