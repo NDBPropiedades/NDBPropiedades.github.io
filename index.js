@@ -312,7 +312,7 @@ function inicializarSwiperGeneral() {
   new Swiper(".myMainSwiper", {
     loop: true,
     grabCursor: true,
-    speed: 1200,
+    speed: 2000,
     autoplay: {
       delay: 4000,
       disableOnInteraction: false,
