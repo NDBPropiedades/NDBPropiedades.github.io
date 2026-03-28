@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -52,7 +52,10 @@
       rel="preload"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
       as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
     />
     <noscript>
       <link
@@ -65,7 +68,10 @@
       rel="preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
     />
     <noscript>
       <link
@@ -128,7 +134,12 @@
         t.src = v;
         s = b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t, s);
-      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
       fbq("init", "4030736927138394");
       fbq("track", "PageView");
     </script>
@@ -165,7 +176,11 @@
     <!-- Header -->
     <header class="header">
       <div class="container header-container">
-        <a href="index.html" class="logo" aria-label="Ir al inicio de NDB Propiedades">
+        <a
+          href="index.html"
+          class="logo"
+          aria-label="Ir al inicio de NDB Propiedades"
+        >
           <img
             src="/assets/img/img/Nicolas De Brasi - Logo 2 Positivo RGB.png"
             alt="NDB Propiedades"
@@ -224,7 +239,10 @@
                 <div class="section-head">
                   <h2 id="caracteristicas-title">Características</h2>
                 </div>
-                <div class="caracteristicas-propiedad" id="caracteristicas"></div>
+                <div
+                  class="caracteristicas-propiedad"
+                  id="caracteristicas"
+                ></div>
               </section>
 
               <section
@@ -259,11 +277,11 @@
 
           <aside class="detalle-sidebar">
             <div class="contact-card">
-              <div class="contact-card__eyebrow">Asesor comercial</div>
+              <div class="contact-card__eyebrow">Asesor inmobiliario</div>
               <div class="contact-card__brand">
                 <img
                   src="/assets/img/img/Nicolas De Brasi - Logo Positivo RGB.png"
-                  alt="NDB Propiedades"
+                  alt="NDB Propiedades inmobiliaria en Zona Norte Buenos Aires"
                   width="160"
                   height="64"
                   loading="lazy"
@@ -271,8 +289,16 @@
               </div>
 
               <div class="contact-card__body">
-                <h2>Nicolás De Brasi</h2>
-                <p>Te asesoramos para resolver dudas, coordinar visitas y avanzar con la operación.</p>
+                <h2>
+                  Asesoramiento inmobiliario para comprar, vender o invertir en
+                  propiedades
+                </h2>
+                <p>
+                  En NDB Propiedades te acompañamos en todo el proceso: desde la
+                  búsqueda de tu próxima propiedad hasta el cierre de la
+                  operación. Coordinamos visitas, resolvemos dudas y te ayudamos
+                  a tomar decisiones con información clara y profesional.
+                </p>
 
                 <div class="contact-card__info">
                   <a href="mailto:info@ndbpropiedades.com.ar">
@@ -310,7 +336,7 @@
                     id="formulario-link"
                     rel="noopener noreferrer"
                   >
-                    Completar formulario
+                    Solicitar asesoramiento
                   </a>
                 </div>
               </div>
@@ -322,7 +348,8 @@
           <div class="cta-band__content">
             <h2>¿Te interesa esta propiedad?</h2>
             <p>
-              Pedí más información, coordiná una visita y recibí asesoramiento personalizado.
+              Pedí más información, coordiná una visita y recibí asesoramiento
+              personalizado.
             </p>
           </div>
           <div class="cta-band__actions">
@@ -382,11 +409,15 @@
           <div style="height: 50px"></div>
           <p>Tel: +54 9 11 6407-8491</p>
           <p>
-            <a href="mailto:info@ndbpropiedades.com.ar">info@ndbpropiedades.com.ar</a>
+            <a href="mailto:info@ndbpropiedades.com.ar"
+              >info@ndbpropiedades.com.ar</a
+            >
           </p>
           <p>CMCPSI: 6049</p>
           <div class="redes">
-            <a href="mailto:info@ndbpropiedades.com.ar"><i class="fas fa-envelope"></i></a>
+            <a href="mailto:info@ndbpropiedades.com.ar"
+              ><i class="fas fa-envelope"></i
+            ></a>
             <a href="tel:+5491164078491"><i class="fas fa-phone"></i></a>
             <a
               href="https://instagram.com/ndbpropiedades"
@@ -405,17 +436,18 @@
       <div class="containers">
         <a
           href="https://www.raven3.com.ar"
-          style="font-size: 10px; color: var(--color-ndb-Gray); text-decoration: none"
+          style="
+            font-size: 10px;
+            color: var(--color-ndb-Gray);
+            text-decoration: none;
+          "
         >
           by <strong>Raven3</strong>
         </a>
       </div>
     </footer>
 
-    <script
-      src="/assets/vendor/swiper/swiper-bundle.min.js"
-      defer
-    ></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js" defer></script>
     <script src="/detalle-propiedad.js" defer></script>
     <script src="/navbar.js" defer></script>
   </body>

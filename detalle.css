@@ -350,7 +350,8 @@
 }
 
 .contact-card__eyebrow {
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
   padding: 8px 12px;
   border-radius: 999px;
   background: rgba(121, 194, 242, 0.18);
@@ -364,6 +365,8 @@
 
 .contact-card__brand {
   margin-bottom: 14px;
+  text-align: center;
+  
 }
 
 .contact-card__brand img {
