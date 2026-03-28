@@ -466,6 +466,7 @@ display: inline-flex;
   font-size: 1.02rem;
   line-height: 1.38;
   color: var(--color-ndb-text);
+  min-height: 48px;
 }
 
 .property-card__location {
@@ -505,7 +506,7 @@ display: inline-flex;
       border-top: 1px solid rgba(14, 36, 106, 0.08);
         margin-top: 4px;
   padding-top: 14px;
-    gap: 12px;
+
 }
 
 .property-card__code {
