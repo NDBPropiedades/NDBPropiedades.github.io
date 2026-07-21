@@ -918,4 +918,22 @@ document.addEventListener("click", (e) => {
     const year = new Date().getFullYear();
     copyright.textContent = `© ${year} NDB Propiedades. Todos los derechos reservados.`;
   }
+
+  initBackToTop();
 })();
+
+/* =========================
+   Volver arriba (mobile)
+   ========================= */
+function initBackToTop() {
+  const backToTopBtn = document.getElementById("backToTop");
+  if (!backToTopBtn) return;
+
+  window.addEventListener("scroll", () => {
+    backToTopBtn.classList.toggle("is-visible", window.scrollY > 400);
+  });
+
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}

@@ -630,6 +630,41 @@ body {
   height: 56px;
 }
 
+.back-to-top {
+  display: none;
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 50;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-ndb-blue);
+  color: var(--color-ndb-white);
+  font-size: 18px;
+  box-shadow: var(--color-ndb-shadow);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@media (max-width: 920px) {
+  .back-to-top {
+    display: flex;
+  }
+}
+
 /* =========================
    RESPONSIVE
    ========================= */
