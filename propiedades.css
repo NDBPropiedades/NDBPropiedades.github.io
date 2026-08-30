@@ -631,7 +631,7 @@ body {
 }
 
 .back-to-top {
-  display: none;
+  display: flex;
   position: fixed;
   left: 18px;
   bottom: 18px;
@@ -657,12 +657,6 @@ body {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
-}
-
-@media (max-width: 920px) {
-  .back-to-top {
-    display: flex;
-  }
 }
 
 /* =========================
