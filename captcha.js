@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{let e=document.getElementById("submit-button");e&&e.addEventListener("click",e=>{let t=grecaptcha.getResponse();if(!t){e.preventDefault(),alert("Por favor completa el reCAPTCHA antes de enviar.");return}})});
