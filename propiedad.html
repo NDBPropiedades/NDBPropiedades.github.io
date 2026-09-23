@@ -158,6 +158,7 @@
     <!-- WhatsApp -->
     <div class="wasap" style="animation-name: tada">
       <a
+        data-wa
         href="https://api.whatsapp.com/send?l=es&text=Hola%20NDB%20Propiedades!%20Quiero%20consultarles%20por%20una%20propiedad&phone=+5491172172121"
         target="_blank"
         rel="noopener noreferrer"
@@ -322,6 +323,7 @@
                 <div class="contact-card__actions">
                   <a
                     class="btn-primary"
+                    data-wa
                     href="https://api.whatsapp.com/send?l=es&text=Hola%20NDB%20Propiedades!%20Quiero%20consultarles%20por%20una%20propiedad&phone=+5491172172121"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -355,6 +357,7 @@
           <div class="cta-band__actions">
             <a
               class="btn-primary"
+              data-wa
               href="https://api.whatsapp.com/send?l=es&text=Hola%20NDB%20Propiedades!%20Quiero%20consultarles%20por%20una%20propiedad&phone=+5491172172121"
               target="_blank"
               rel="noopener noreferrer"
@@ -435,6 +438,49 @@
         >
       </div>
     </footer>
+
+    <!-- Modal consulta WhatsApp -->
+    <dialog class="wa-modal" id="wa-modal" aria-labelledby="wa-modal-title">
+      <form class="wa-modal__form" id="wa-form" method="dialog" novalidate>
+        <button
+          type="button"
+          class="wa-modal__close"
+          id="wa-close"
+          aria-label="Cerrar"
+        >
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+        <h2 id="wa-modal-title">Consultar por WhatsApp</h2>
+        <p class="wa-modal__prop" id="wa-prop"></p>
+
+        <label for="wa-nombre">Nombre y apellido *</label>
+        <input
+          type="text"
+          id="wa-nombre"
+          name="nombre"
+          autocomplete="name"
+          required
+          minlength="3"
+          placeholder="Ej: Juan Pérez"
+        />
+        <p class="wa-modal__error" id="wa-error" hidden>
+          Ingresá tu nombre y apellido.
+        </p>
+
+        <label for="wa-consulta">Consulta (opcional)</label>
+        <textarea
+          id="wa-consulta"
+          name="consulta"
+          rows="3"
+          placeholder="Ej: ¿Se puede visitar esta semana?"
+        ></textarea>
+
+        <button type="submit" class="btn-primary wa-modal__submit">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i>
+          Continuar en WhatsApp
+        </button>
+      </form>
+    </dialog>
 
     <script src="/assets/vendor/swiper/swiper-bundle.min.js" defer></script>
     <script src="/detalle-propiedad.js" defer></script>

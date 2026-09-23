@@ -8,6 +8,9 @@ const API_KEY = "76c2e21bd630d16cfdb33e96f43fc013eafc4173",
   urlParams = new URLSearchParams(window.location.search),
   propiedadId = urlParams.get("id");
 
+// Datos de la propiedad para armar el mensaje de WhatsApp
+let propInfo = null;
+
 if (!propiedadId) {
   infoEl.innerHTML = "<p>Error: ID de propiedad no especificado.</p>";
 } else {
@@ -50,6 +53,10 @@ if (!propiedadId) {
       const d = e.expenses != null ? `$${Number(e.expenses).toLocaleString("es-AR")}` : "No informadas";
       const n = e.legally_checked_text || "-";
       const c = e.public_url || null;
+
+      propInfo = { titulo: r, precio: s, direccion: l, zona: o, codigo: p };
+      const waProp = document.getElementById("wa-prop");
+      if (waProp) waProp.textContent = r;
 
       galeriaEl.innerHTML = `
         <div class="galeria-propiedad swiper mySwiper2">
@@ -128,8 +135,11 @@ if (!propiedadId) {
         `;
       }
 
-      linkFormulario.href =
+      const formUrl =
         "https://docs.google.com/forms/d/e/1FAIpQLScPwRC1SL82-IPmpWedPcxj-guvqRl-gJj7fK3Ryi6RsHVxnw/viewform?usp=pp_url";
+      linkFormulario.href = formUrl;
+      const linkFormularioBottom = document.getElementById("formulario-link-bottom");
+      if (linkFormularioBottom) linkFormularioBottom.href = formUrl;
 
       if (e.videos && e.videos.length > 0) {
         const g = e.videos[0];
@@ -150,4 +160,68 @@ if (!propiedadId) {
       infoEl.innerHTML = "<p>Error al cargar la propiedad.</p>";
       console.error(err);
     });
+}
+
+// ====== Consulta por WhatsApp con nombre y datos de la propiedad ======
+const WA_PHONE = "5491172172121";
+const waModal = document.getElementById("wa-modal");
+const waForm = document.getElementById("wa-form");
+const waNombre = document.getElementById("wa-nombre");
+const waConsulta = document.getElementById("wa-consulta");
+const waError = document.getElementById("wa-error");
+
+function armarMensajeWa(nombre, consulta) {
+  const lineas = [`Hola NDB Propiedades! Soy ${nombre}.`, "Me interesa esta propiedad:"];
+  if (propInfo) {
+    lineas.push(`- ${propInfo.titulo}`);
+    lineas.push(`- Código: ${propInfo.codigo} (ID ${propiedadId})`);
+    lineas.push(`- Dirección: ${propInfo.direccion}, ${propInfo.zona}`);
+    lineas.push(`- Precio: ${propInfo.precio}`);
+  } else if (propiedadId) {
+    lineas.push(`- ID ${propiedadId}`);
+  }
+  if (consulta) lineas.push("", `Consulta: ${consulta}`);
+  lineas.push("", window.location.href);
+  return lineas.join("\n");
+}
+
+if (waModal && typeof waModal.showModal === "function") {
+  document.querySelectorAll("a[data-wa]").forEach((a) => {
+    a.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      waError.hidden = true;
+      waNombre.removeAttribute("aria-invalid");
+      try {
+        waNombre.value = waNombre.value || localStorage.getItem("ndb-nombre") || "";
+      } catch (_) {}
+      waModal.showModal();
+      waNombre.focus();
+    });
+  });
+
+  document.getElementById("wa-close").addEventListener("click", () => waModal.close());
+
+  // Cerrar al tocar fuera del formulario
+  waModal.addEventListener("click", (ev) => {
+    if (ev.target === waModal) waModal.close();
+  });
+
+  waForm.addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    const nombre = waNombre.value.trim().replace(/\s+/g, " ");
+    // Pedimos al menos nombre y apellido (dos palabras)
+    if (nombre.split(" ").length < 2) {
+      waError.hidden = false;
+      waNombre.setAttribute("aria-invalid", "true");
+      waNombre.focus();
+      return;
+    }
+    try {
+      localStorage.setItem("ndb-nombre", nombre);
+    } catch (_) {}
+
+    const texto = armarMensajeWa(nombre, waConsulta.value.trim());
+    window.open(`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(texto)}`, "_blank", "noopener");
+    waModal.close();
+  });
 }

@@ -665,3 +665,97 @@
     font-size: 0.92rem;
   }
 }
+/* Modal consulta WhatsApp */
+.wa-modal {
+  width: min(440px, calc(100% - 32px));
+  margin: auto;
+  padding: 0;
+  border: none;
+  border-radius: var(--detalle-radius);
+  background: var(--detalle-surface);
+  color: var(--detalle-text);
+  box-shadow: 0 24px 60px rgba(7, 19, 53, 0.25);
+  font-family: var(--font-texto, "Satoshi", sans-serif);
+}
+
+.wa-modal::backdrop {
+  background: rgba(7, 19, 53, 0.55);
+}
+
+.wa-modal__form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 28px 24px 24px;
+}
+
+.wa-modal h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.wa-modal__prop {
+  margin: 0 0 10px;
+  color: var(--detalle-muted);
+  font-size: 0.92rem;
+}
+
+.wa-modal label {
+  margin-top: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.wa-modal input,
+.wa-modal textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--detalle-border-strong);
+  border-radius: var(--detalle-radius-sm);
+  font: inherit;
+  font-size: 1rem;
+  color: var(--detalle-text);
+  background: var(--detalle-surface-soft);
+  resize: vertical;
+}
+
+.wa-modal input:focus,
+.wa-modal textarea:focus {
+  outline: 2px solid var(--detalle-accent);
+  outline-offset: 1px;
+  background: #fff;
+}
+
+.wa-modal input[aria-invalid="true"] {
+  border-color: #c62828;
+}
+
+.wa-modal__error {
+  margin: 0;
+  color: #c62828;
+  font-size: 0.85rem;
+}
+
+.wa-modal__submit {
+  margin-top: 14px;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.wa-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 999px;
+  background: var(--detalle-surface-soft);
+  color: var(--detalle-text);
+  cursor: pointer;
+}
