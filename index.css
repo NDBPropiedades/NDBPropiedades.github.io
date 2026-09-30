@@ -730,6 +730,35 @@ body > header > div > nav > ul > li:nth-child(5) > a:hover {
   text-align: left;
 }
 
+.acerca-oficina-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  border: 1.5px solid var(--color-ndb-Malibu);
+  border-radius: 999px;
+  color: var(--color-ndb-Malibu);
+  font-weight: var(--font-medium);
+  text-decoration: none;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.acerca-oficina-link i {
+  transition: transform 0.3s;
+}
+
+.acerca-oficina-link:hover {
+  background-color: var(--color-ndb-Malibu);
+  color: var(--color-ndb-BlackPearl);
+}
+
+.acerca-oficina-link:hover i {
+  transform: translateX(4px);
+}
+
 .typewriter {
   overflow: hidden;
   border-right: 3px solid var(--color-ndb-Malibu);
