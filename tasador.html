@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasador NDB | Herramienta interna</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png" />
+    <link rel="shortcut icon" href="assets/img/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="tasador.css" />
+  </head>
+  <body>
+    <!-- ============ LOGIN ============ -->
+    <section id="login" class="login" hidden>
+      <form id="loginForm" class="login-card" autocomplete="on">
+        <img src="assets/img/img/Nicolas De Brasi - Logo Positivo RGB.png" alt="NDB Propiedades" class="login-logo" />
+        <h1>Tasador en línea</h1>
+        <p class="muted">Acceso exclusivo del equipo NDB</p>
+        <label class="fld">
+          <span>Email</span>
+          <input type="email" id="loginEmail" autocomplete="username" required />
+        </label>
+        <label class="fld">
+          <span>Contraseña</span>
+          <input type="password" id="loginPass" autocomplete="current-password" required />
+        </label>
+        <label class="chk"><input type="checkbox" id="loginRemember" checked /> Mantener sesión iniciada</label>
+        <p id="loginError" class="login-error" hidden>Email o contraseña incorrectos.</p>
+        <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
+      </form>
+    </section>
+
+    <!-- ============ APP ============ -->
+    <div id="app" hidden>
+      <header class="topbar">
+        <div class="topbar-brand">
+          <img src="assets/img/img/Nicolas De Brasi - Icono Negativo RGB.png" alt="NDB" />
+          <div>
+            <strong>Tasador NDB</strong>
+            <small id="saveStatus">Sin cambios</small>
+          </div>
+        </div>
+        <nav class="topbar-actions">
+          <button type="button" class="btn btn-ghost" id="btnNueva" title="Nueva tasación"><i class="fas fa-plus"></i><span>Nueva</span></button>
+          <button type="button" class="btn btn-ghost" id="btnLista" title="Mis tasaciones"><i class="fas fa-folder-open"></i><span>Mis tasaciones</span></button>
+          <button type="button" class="btn btn-ghost" id="btnRefs" title="Valores de referencia por zona"><i class="fas fa-map-marked-alt"></i><span>Valores zona</span></button>
+          <button type="button" class="btn btn-accent" id="btnInforme" title="Generar informe"><i class="fas fa-file-pdf"></i><span>Informe</span></button>
+          <button type="button" class="btn btn-ghost" id="btnSalir" title="Cerrar sesión"><i class="fas fa-sign-out-alt"></i></button>
+        </nav>
+      </header>
+
+      <main class="layout">
+        <div class="col-form">
+          <!-- 1. Propiedad -->
+          <section class="card">
+            <h2><span class="step">1</span> La propiedad</h2>
+            <div class="grid">
+              <label class="fld">
+                <span>Tipo de inmueble</span>
+                <select data-f="tipo">
+                  <option value="casa">Casa</option>
+                  <option value="depto">Departamento</option>
+                  <option value="ph">PH</option>
+                  <option value="terreno">Terreno / Lote</option>
+                  <option value="local">Local comercial</option>
+                  <option value="oficina">Oficina</option>
+                </select>
+              </label>
+              <label class="fld span-2">
+                <span>Dirección</span>
+                <input type="text" data-f="direccion" placeholder="Ej: Rioja 3000" />
+              </label>
+              <label class="fld">
+                <span>Localidad</span>
+                <select data-f="localidad" id="selLocalidad"></select>
+              </label>
+              <label class="fld" data-show="localidad=otra">
+                <span>¿Cuál?</span>
+                <input type="text" data-f="localidadOtra" placeholder="Localidad" />
+              </label>
+              <label class="fld">
+                <span>Barrio / referencia</span>
+                <input type="text" data-f="barrio" placeholder="Ej: Bajo, Barrio Parque" />
+              </label>
+              <label class="fld">
+                <span>Propietario</span>
+                <input type="text" data-f="propietario" />
+              </label>
+              <label class="fld">
+                <span>Teléfono</span>
+                <input type="tel" data-f="telefono" />
+              </label>
+              <label class="fld">
+                <span>Fecha de visita</span>
+                <input type="date" data-f="fechaVisita" />
+              </label>
+              <label class="chk span-full"><input type="checkbox" data-f="barrioCerrado" /> Barrio cerrado / country</label>
+            </div>
+            <div class="map-wrap" id="mapWrap" hidden>
+              <iframe id="mapFrame" title="Mapa de la propiedad" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </section>
+
+          <!-- 2. Superficies -->
+          <section class="card">
+            <h2><span class="step">2</span> Superficies (m²)</h2>
+            <div class="grid">
+              <label class="fld">
+                <span>Terreno total</span>
+                <input type="number" min="0" step="any" data-f="terreno" inputmode="decimal" />
+              </label>
+              <label class="fld">
+                <span>Frente (m)</span>
+                <input type="number" min="0" step="any" data-f="frente" inputmode="decimal" />
+              </label>
+              <label class="fld">
+                <span>Fondo (m)</span>
+                <input type="number" min="0" step="any" data-f="fondo" inputmode="decimal" />
+              </label>
+              <label class="fld" data-hide="tipo=terreno">
+                <span>Cubierta</span>
+                <input type="number" min="0" step="any" data-f="cubierta" inputmode="decimal" />
+              </label>
+              <label class="fld" data-hide="tipo=terreno">
+                <span>Semicubierta <em>(galería, quincho abierto)</em></span>
+                <input type="number" min="0" step="any" data-f="semicubierta" inputmode="decimal" />
+              </label>
+              <label class="fld" data-hide="tipo=terreno">
+                <span>Descubierta <em>(patio, jardín, terraza, balcón)</em></span>
+                <div class="input-btn">
+                  <input type="number" min="0" step="any" data-f="descubierta" inputmode="decimal" />
+                  <button type="button" class="btn btn-mini" id="btnCalcDesc" title="Calcular: terreno − superficie ocupada en planta baja">Auto</button>
+                </div>
+              </label>
+            </div>
+            <details class="adv" data-hide="tipo=terreno">
+              <summary>Coeficientes de homogeneización</summary>
+              <div class="grid">
+                <label class="fld"><span>Coef. semicubierta</span><input type="number" step="0.05" min="0" max="1" data-f="coefSemi" /></label>
+                <label class="fld"><span>Coef. descubierta</span><input type="number" step="0.05" min="0" max="1" data-f="coefDesc" /></label>
+              </div>
+              <p class="hint">Criterio usual: cubierta 100%, semicubierta 50%, descubierta 20–30%.</p>
+            </details>
+            <div class="kpis">
+              <div><small>Sup. homogeneizada</small><strong id="outSupHom">—</strong></div>
+              <div><small>Sup. total</small><strong id="outSupTot">—</strong></div>
+              <div><small>FOS aprox.</small><strong id="outFos">—</strong></div>
+            </div>
+          </section>
+
+          <!-- 3. Características -->
+          <section class="card" data-hide="tipo=terreno">
+            <h2><span class="step">3</span> Características</h2>
+            <div class="grid grid-sm">
+              <label class="fld"><span>Ambientes</span><input type="number" min="0" data-f="ambientes" inputmode="numeric" /></label>
+              <label class="fld"><span>Dormitorios</span><input type="number" min="0" data-f="dormitorios" inputmode="numeric" /></label>
+              <label class="fld"><span>Baños</span><input type="number" min="0" data-f="banos" inputmode="numeric" /></label>
+              <label class="fld"><span>Toilettes</span><input type="number" min="0" data-f="toilettes" inputmode="numeric" /></label>
+              <label class="fld"><span>Cocheras</span><input type="number" min="0" data-f="cocheras" inputmode="numeric" /></label>
+              <label class="fld"><span>Plantas</span><input type="number" min="1" data-f="plantas" inputmode="numeric" /></label>
+              <label class="fld" data-show="tipo=depto|oficina|ph"><span>Piso</span><input type="text" data-f="piso" placeholder="Ej: 4°" /></label>
+            </div>
+            <div class="grid">
+              <label class="fld">
+                <span>Orientación</span>
+                <select data-f="orientacion">
+                  <option value="">—</option><option>Norte</option><option>Noreste</option><option>Este</option><option>Sudeste</option>
+                  <option>Sur</option><option>Sudoeste</option><option>Oeste</option><option>Noroeste</option>
+                </select>
+              </label>
+              <label class="fld">
+                <span>Disposición</span>
+                <select data-f="disposicion">
+                  <option value="">—</option><option>Frente</option><option>Contrafrente</option><option>Lateral</option><option>Interno</option>
+                </select>
+              </label>
+              <label class="fld">
+                <span>Luminosidad</span>
+                <select data-f="luminosidad">
+                  <option value="">—</option><option>Muy luminoso</option><option>Luminoso</option><option>Normal</option><option>Poco luminoso</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
+          <!-- 4. Estado -->
+          <section class="card" data-hide="tipo=terreno">
+            <h2><span class="step">4</span> Estado y antigüedad</h2>
+            <div class="grid">
+              <label class="fld"><span>Antigüedad (años)</span><input type="number" min="0" data-f="antiguedad" inputmode="numeric" /></label>
+              <label class="fld"><span>Año de refacción integral <em>(opcional)</em></span><input type="number" min="1900" max="2100" data-f="anioRefaccion" inputmode="numeric" /></label>
+              <label class="fld"><span>Vida útil (años)</span><input type="number" min="10" data-f="vidaUtil" inputmode="numeric" /></label>
+              <label class="fld">
+                <span>Calidad constructiva</span>
+                <select data-f="calidad">
+                  <option value="economica">Económica</option>
+                  <option value="estandar">Estándar</option>
+                  <option value="buena">Buena</option>
+                  <option value="muybuena">Muy buena</option>
+                  <option value="premium">Premium / categoría</option>
+                </select>
+              </label>
+            </div>
+            <span class="fld-title">Estado de conservación</span>
+            <div class="estado-scale" id="estadoScale" role="radiogroup" aria-label="Estado de conservación"></div>
+            <div class="kpis">
+              <div><small>Edad efectiva</small><strong id="outEdad">—</strong></div>
+              <div><small>Depreciación (Ross-Heidecke)</small><strong id="outDep">—</strong></div>
+              <div><small>Valor residual edificio</small><strong id="outResid">—</strong></div>
+            </div>
+          </section>
+
+          <!-- 5. Extras -->
+          <section class="card">
+            <h2><span class="step">5</span> Extras y ajustes</h2>
+            <p class="hint">Marcá lo que tiene la propiedad. El % ajusta el valor respecto de los comparables: si los comparables también lo tienen, dejalo sin marcar o compensalo en el comparable.</p>
+            <div class="amen-grid" id="amenGrid"></div>
+          </section>
+
+          <!-- 6. Comparables -->
+          <section class="card">
+            <h2><span class="step">6</span> Comparables de mercado</h2>
+            <div class="grid">
+              <label class="fld"><span>Descuento oferta → cierre (%)</span><input type="number" min="0" max="50" step="0.5" data-f="descOferta" /></label>
+              <label class="fld">
+                <span>Valor base</span>
+                <select data-f="baseStat"><option value="promedio">Promedio</option><option value="mediana">Mediana</option></select>
+              </label>
+              <label class="chk"><input type="checkbox" data-f="ajusteSup" /> Ajustar por tamaño (las grandes valen menos por m²)</label>
+            </div>
+            <div id="compList" class="comp-list"></div>
+            <div class="row-actions">
+              <button type="button" class="btn btn-outline" id="btnAddComp"><i class="fas fa-plus"></i> Agregar comparable</button>
+            </div>
+            <div class="kpis" id="compStats"></div>
+            <div class="callout" id="refCallout" hidden></div>
+          </section>
+
+          <!-- 7. Costo -->
+          <section class="card">
+            <h2><span class="step">7</span> Método del costo <em class="muted">(opcional, ideal para casas)</em></h2>
+            <label class="chk"><input type="checkbox" data-f="usarCosto" /> Usar método del costo de reposición</label>
+            <div data-show="usarCosto=1">
+              <div class="grid">
+                <label class="fld"><span>Valor terreno (USD/m²)</span><input type="number" min="0" step="any" data-f="valorTerrenoM2" inputmode="decimal" /></label>
+                <label class="fld" data-hide="tipo=terreno"><span>Costo construcción nueva (USD/m²)</span><input type="number" min="0" step="any" data-f="costoM2" inputmode="decimal" /></label>
+                <label class="fld" data-hide="tipo=terreno"><span>Obras complementarias (USD) <em>pileta, cercos, parquización</em></span><input type="number" min="0" step="any" data-f="complementarias" inputmode="decimal" /></label>
+                <label class="fld"><span>Factor de comercialización</span><input type="number" min="0.5" max="2" step="0.05" data-f="factorComerc" /></label>
+              </div>
+              <div class="grid">
+                <label class="fld span-full">
+                  <span>Peso del método comparativo: <strong id="outPeso">70%</strong></span>
+                  <input type="range" min="0" max="100" step="5" data-f="pesoComparativo" />
+                </label>
+              </div>
+              <div class="kpis">
+                <div><small>Terreno</small><strong id="outCTerreno">—</strong></div>
+                <div><small>Edificio depreciado</small><strong id="outCEdif">—</strong></div>
+                <div><small>Valor por costo</small><strong id="outCosto">—</strong></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 8. Fotos -->
+          <section class="card">
+            <h2><span class="step">8</span> Fotos</h2>
+            <label class="dropzone" id="dropzone">
+              <input type="file" id="fotoInput" accept="image/*" multiple hidden />
+              <i class="fas fa-camera"></i>
+              <strong>Subí o arrastrá fotos</strong>
+              <small>Desde el celu podés sacarlas directo. Se comprimen automáticamente.</small>
+            </label>
+            <div class="foto-grid" id="fotoGrid"></div>
+          </section>
+
+          <!-- 9. Observaciones -->
+          <section class="card">
+            <h2><span class="step">9</span> Observaciones</h2>
+            <div class="grid">
+              <label class="fld span-full"><span>Puntos fuertes <em>(van al informe)</em></span><textarea rows="3" data-f="fuertes" placeholder="Ej: excelente luz natural, a 3 cuadras de Maipú, jardín amplio…"></textarea></label>
+              <label class="fld span-full"><span>A considerar <em>(van al informe)</em></span><textarea rows="3" data-f="debiles" placeholder="Ej: requiere actualizar baños, sobre calle con tránsito…"></textarea></label>
+              <label class="fld span-full"><span>Notas internas <em>(no se imprimen)</em></span><textarea rows="3" data-f="notas" placeholder="Expectativa del propietario, urgencia, documentación…"></textarea></label>
+            </div>
+          </section>
+        </div>
+
+        <!-- ============ RESULTADO ============ -->
+        <aside class="col-result" id="resultado">
+          <div class="result-card">
+            <small class="eyebrow">Valor de mercado estimado</small>
+            <div class="big-value" id="outValor">USD —</div>
+            <div class="range" id="outRango">Completá superficies y comparables</div>
+            <div class="confidence" id="outConf"></div>
+
+            <div class="result-rows">
+              <div><span>USD/m² homogeneizado</span><strong id="outM2">—</strong></div>
+              <div><span>Comparativo</span><strong id="outComparativo">—</strong></div>
+              <div data-show="usarCosto=1"><span>Costo de reposición</span><strong id="outCosto2">—</strong></div>
+              <div><span>Ajuste por extras</span><strong id="outExtras">—</strong></div>
+            </div>
+
+            <h3>Estrategia de precio</h3>
+            <div class="grid grid-2">
+              <label class="fld"><span>Margen negociación %</span><input type="number" min="0" max="30" step="0.5" data-f="margenPublicacion" /></label>
+              <label class="fld"><span>Venta rápida −%</span><input type="number" min="0" max="40" step="0.5" data-f="descVentaRapida" /></label>
+            </div>
+            <div class="price-tiers">
+              <div class="tier tier-pub"><small>Publicar en</small><strong id="outPublicar">—</strong></div>
+              <div class="tier tier-cierre"><small>Cierre esperado</small><strong id="outCierre">—</strong></div>
+              <div class="tier tier-rapida"><small>Venta rápida</small><strong id="outRapida">—</strong></div>
+            </div>
+
+            <h3>Otros números</h3>
+            <div class="grid grid-2">
+              <label class="fld"><span>Dólar (ARS)</span><input type="number" min="0" step="any" data-f="dolar" /></label>
+              <label class="fld"><span>Honorarios %</span><input type="number" min="0" max="10" step="0.5" data-f="honorarios" /></label>
+              <label class="fld"><span>Rentabilidad anual %</span><input type="number" min="0" max="20" step="0.1" data-f="rentabilidad" /></label>
+              <label class="fld"><span>Valor final manual (USD)</span><input type="number" min="0" step="1000" data-f="valorManual" placeholder="opcional" /></label>
+            </div>
+            <div class="result-rows">
+              <div><span>En pesos</span><strong id="outPesos">—</strong></div>
+              <div><span>Honorarios estimados</span><strong id="outHonor">—</strong></div>
+              <div><span>Alquiler estimado / mes</span><strong id="outAlquiler">—</strong></div>
+            </div>
+
+            <div class="result-actions">
+              <button type="button" class="btn btn-primary btn-block" id="btnGuardar"><i class="fas fa-save"></i> Guardar tasación</button>
+              <button type="button" class="btn btn-accent btn-block" id="btnInforme2"><i class="fas fa-file-pdf"></i> Informe / PDF</button>
+              <button type="button" class="btn btn-wa btn-block" id="btnWa"><i class="fab fa-whatsapp"></i> Enviar resumen</button>
+            </div>
+          </div>
+        </aside>
+      </main>
+
+      <!-- Barra móvil -->
+      <a href="#resultado" class="mobile-bar">
+        <span>Valor estimado</span>
+        <strong id="outValorMobile">USD —</strong>
+        <i class="fas fa-chevron-up"></i>
+      </a>
+    </div>
+
+    <!-- ============ MODALES ============ -->
+    <dialog id="dlgLista" class="dlg">
+      <div class="dlg-head">
+        <h2>Mis tasaciones</h2>
+        <button type="button" class="btn btn-icon" data-close aria-label="Cerrar"><i class="fas fa-times"></i></button>
+      </div>
+      <input type="search" id="listaBuscar" class="dlg-search" placeholder="Buscar por dirección, localidad o propietario…" />
+      <div id="listaItems" class="lista"></div>
+      <div class="dlg-foot">
+        <button type="button" class="btn btn-outline" id="btnExport"><i class="fas fa-download"></i> Exportar backup</button>
+        <label class="btn btn-outline"><i class="fas fa-upload"></i> Importar<input type="file" id="importInput" accept="application/json" hidden /></label>
+      </div>
+    </dialog>
+
+    <dialog id="dlgRefs" class="dlg dlg-wide">
+      <div class="dlg-head">
+        <h2>Valores de referencia USD/m²</h2>
+        <button type="button" class="btn btn-icon" data-close aria-label="Cerrar"><i class="fas fa-times"></i></button>
+      </div>
+      <p class="hint">Se usan cuando no cargás comparables. Son orientativos: actualizalos con los cierres reales de la oficina. Terreno = USD por m² de lote.</p>
+      <div class="refs-wrap"><table class="refs" id="refsTable"></table></div>
+      <div class="dlg-foot">
+        <button type="button" class="btn btn-outline" id="btnRefsReset"><i class="fas fa-undo"></i> Restaurar valores iniciales</button>
+        <button type="button" class="btn btn-primary" data-close>Listo</button>
+      </div>
+    </dialog>
+
+    <!-- ============ INFORME ============ -->
+    <div id="informeWrap" class="informe-wrap" hidden>
+      <div class="informe-toolbar">
+        <button type="button" class="btn btn-ghost-dark" id="btnCerrarInforme"><i class="fas fa-arrow-left"></i> Volver</button>
+        <button type="button" class="btn btn-primary" id="btnImprimir"><i class="fas fa-print"></i> Imprimir / Guardar PDF</button>
+      </div>
+      <article id="informe" class="informe"></article>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="tasador.js"></script>
+  </body>
+</html>
