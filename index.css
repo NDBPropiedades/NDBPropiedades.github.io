@@ -759,6 +759,62 @@ body > header > div > nav > ul > li:nth-child(5) > a:hover {
   transform: translateX(4px);
 }
 
+.acerca-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* =========================
+   Aviso CABA
+   ========================= */
+.caba-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  padding: 0.9rem 1rem;
+  background: var(--color-ndb-BlackPearl);
+  color: var(--color-ndb-White);
+  text-decoration: none;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.caba-banner__tag {
+  background: var(--color-ndb-Malibu);
+  color: var(--color-ndb-BlackPearl);
+  font-size: 0.72rem;
+  font-weight: var(--font-bold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.caba-banner__text strong {
+  color: var(--color-ndb-Malibu);
+}
+
+.caba-banner__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: var(--font-medium);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--color-ndb-Malibu);
+}
+
+.caba-banner__cta i {
+  transition: transform 0.3s;
+}
+
+.caba-banner:hover .caba-banner__cta i {
+  transform: translateX(4px);
+}
+
 .typewriter {
   overflow: hidden;
   border-right: 3px solid var(--color-ndb-Malibu);

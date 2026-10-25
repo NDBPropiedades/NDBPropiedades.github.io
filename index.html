@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      NDB Propiedades | Inmobiliaria en Zona Norte | Nicolás De Brasi
+      NDB Propiedades | Inmobiliaria en Buenos Aires y CABA | Nicolás De Brasi
     </title>
     <meta
       name="description"
-      content="NDB Propiedades | Inmobiliaria en Zona Norte. Venta y alquiler de casas y departamentos. Confianza, experiencia y asesoramiento con Nicolás De Brasi."
+      content="NDB Propiedades | Inmobiliaria en Provincia de Buenos Aires y Ciudad de Buenos Aires (CABA). Venta, alquiler y tasación de casas y departamentos con Nicolás De Brasi, corredor matriculado CMCPSI 6944 y CUCICBA 10.077."
     />
     <!-- Favicon básico -->
     <link
@@ -52,11 +52,11 @@
 
     <meta
       property="og:title"
-      content="NDB Propiedades | Inmobiliaria en Zona Norte"
+      content="NDB Propiedades | Inmobiliaria en Buenos Aires y CABA"
     />
     <meta
       property="og:description"
-      content="Venta y alquiler de propiedades en Zona Norte. Conocé NDB Propiedades con Nicolás De Brasi."
+      content="Venta y alquiler de propiedades en toda la Provincia de Buenos Aires y en CABA. Conocé NDB Propiedades con Nicolás De Brasi."
     />
     <meta
       property="og:image"
@@ -70,11 +70,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="NDB Propiedades | Inmobiliaria en Zona Norte"
+      content="NDB Propiedades | Inmobiliaria en Buenos Aires y CABA"
     />
     <meta
       name="twitter:description"
-      content="Venta y alquiler de propiedades en Zona Norte. Conocé NDB Propiedades con Nicolás De Brasi."
+      content="Venta y alquiler de propiedades en toda la Provincia de Buenos Aires y en CABA. Conocé NDB Propiedades con Nicolás De Brasi."
     />
     <meta
       name="twitter:image"
@@ -124,13 +124,14 @@
         "address": {
           "@type": "PostalAddress",
           "addressCountry": "AR",
-          "addressRegion": "Buenos Aires",
-          "addressLocality": "Zona Norte"
+          "streetAddress": "Rioja 3000",
+          "addressLocality": "Olivos",
+          "addressRegion": "Buenos Aires"
         },
-        "areaServed": {
-          "@type": "Place",
-          "name": "Zona Norte, Buenos Aires, Argentina"
-        }
+        "areaServed": [
+          { "@type": "State", "name": "Provincia de Buenos Aires, Argentina" },
+          { "@type": "City", "name": "Ciudad Autónoma de Buenos Aires, Argentina" }
+        ]
       }
     </script>
     <script type="application/ld+json">
@@ -233,6 +234,7 @@
             <li><a href="index.html">INICIO</a></li>
             <li><a href="propiedades.html">PROPIEDADES</a></li>
             <li><a href="oficina.html">OFICINA</a></li>
+            <li><a href="zonas.html">ZONAS</a></li>
             <li><a href="index.html#tasa">CONTACTO</a></li>
             <li><a href="index.html#nosotros">NOSOTROS</a></li>
             <li>
@@ -281,9 +283,20 @@
       </div>
     </section>
 
+    <a href="zonas.html" class="caba-banner">
+      <span class="caba-banner__tag">Nuevo</span>
+      <span class="caba-banner__text"
+        >Ahora también operamos en <strong>CABA</strong> · Matrícula CUCICBA
+        10.077</span
+      >
+      <span class="caba-banner__cta"
+        >Ver zonas <i class="fas fa-arrow-right" aria-hidden="true"></i
+      ></span>
+    </a>
+
     <section class="propiedades" id="propiedades">
       <h1 style="display: none">
-        NDB Propiedades | Inmobiliaria en Zona Norte
+        NDB Propiedades | Inmobiliaria en Provincia de Buenos Aires y CABA
       </h1>
       <div class="propiedades__inner">
         <h2>Propiedades Destacadas</h2>
@@ -317,9 +330,12 @@
             Hola, Soy <span>Nicolás <strong>De Brasi</strong></span>
           </h2>
           <p>
-            Soy martillero publico y corredor de comercio, licenciado en
-            ciencias de la comunicacion y he trabajado en distintas firmas
-            durante los ultimos 10 años. Sé que mudarse es mucho más que cambiar
+            Soy martillero público y corredor de comercio, licenciado en
+            ciencias de la comunicación y he trabajado en distintas firmas
+            durante los últimos 10 años. Estoy matriculado en la Provincia de
+            Buenos Aires (CMCPSI 6944) y en la Ciudad de Buenos Aires (CUCICBA
+            10.077), así que puedo acompañarte en operaciones de ambos lados
+            de la General Paz. Sé que mudarse es mucho más que cambiar
             de casa, es un momento único en la vida. Por eso, mi objetivo es
             ayudarte, acompañarte, escucharte y asesorarte de la mejor manera
             posible. Me interesa conocer más sobre cada persona, entender sus
@@ -340,10 +356,16 @@
             empatía y compromiso genuino.
           </p>
           <p>Queremos ser tu inmobiliaria de confianza, hoy y siempre.</p>
-          <a href="oficina.html" class="acerca-oficina-link"
-            >Conocé nuestra oficina en Olivos
-            <i class="fas fa-arrow-right" aria-hidden="true"></i
-          ></a>
+          <div class="acerca-links">
+            <a href="oficina.html" class="acerca-oficina-link"
+              >Conocé nuestra oficina en Olivos
+              <i class="fas fa-arrow-right" aria-hidden="true"></i
+            ></a>
+            <a href="zonas.html" class="acerca-oficina-link"
+              >Dónde operamos
+              <i class="fas fa-arrow-right" aria-hidden="true"></i
+            ></a>
+          </div>
         </div>
       </div>
     </section>
@@ -531,6 +553,10 @@
             <label for="localidad" style="display: none">Localidad</label>
             <select name="localidad" id="localidad" required>
               <option value="localidad">Localidad</option>
+              <optgroup label="Ciudad de Buenos Aires">
+                <option value="CABA">CABA (Capital Federal)</option>
+              </optgroup>
+              <optgroup label="Provincia de Buenos Aires">
               <option value="Acassuso">Acassuso</option>
               <option value="Beccar">Beccar</option>
               <option value="Boulogne">Boulogne</option>
@@ -550,6 +576,8 @@
               <option value="Tortuguitas">Tortuguitas</option>
               <option value="Vicente López">Vicente López</option>
               <option value="Villa Adelina">Villa Adelina</option>
+              <option value="Otra localidad de Provincia">Otra localidad de Provincia</option>
+              </optgroup>
             </select>
           </div>
           <div class="form-row">
@@ -614,7 +642,7 @@
         </div>
 
         <div class="footer-center">
-          <p><strong>NDB Propiedades</strong> | Zona Norte</p>
+          <p><strong>NDB Propiedades</strong> | Provincia de Buenos Aires y CABA</p>
           <p><i class="fas fa-phone"></i> +54 9 11 7217-2121</p>
           <p>
             <i class="fas fa-envelope"></i>
@@ -641,6 +669,7 @@
             <li><a href="#">INICIO</a></li>
             <li><a href="propiedades.html">PROPIEDADES</a></li>
             <li><a href="oficina.html">OFICINA</a></li>
+            <li><a href="zonas.html">ZONAS</a></li>
             <li><a href="#contacto">CONTACTO</a></li>
             <li><a href="#nosotros">NOSOTROS</a></li>
             <li>
@@ -651,7 +680,7 @@
       </div>
 
       <div class="containers footer-legal">
-        <p><i class="fas fa-certificate"></i> CMCPSI 6944</p>
+        <p><i class="fas fa-certificate"></i> CMCPSI 6944 · CUCICBA 10.077</p>
         <p id="copyright"></p>
         <a
           href="https://raven3.com.ar/webs-para-inmobiliarias"

@@ -1,0 +1,221 @@
+/* =========================
+   Zonas — NDB Propiedades
+   (se apoya en oficina.css)
+   ========================= */
+
+/* Matrículas en el hero */
+.zn-licenses {
+  display: grid;
+  gap: 1.25rem;
+  justify-self: end;
+  width: 100%;
+  max-width: 440px;
+}
+
+.zn-license {
+  position: relative;
+  padding: 2rem 2rem 1.75rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  animation: of-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.15s;
+}
+
+.zn-license--new {
+  border-color: rgba(126, 204, 255, 0.55);
+  background: rgba(126, 204, 255, 0.1);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  animation-delay: 0.35s;
+}
+
+.zn-license__icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(126, 204, 255, 0.15);
+  color: var(--color-ndb-Malibu);
+  font-size: 1.1rem;
+  margin-bottom: 1.1rem;
+}
+
+.zn-license__area {
+  font-size: 0.8rem;
+  font-weight: var(--font-medium);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.zn-license__num {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: var(--font-light);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin: 0.25rem 0 0.6rem;
+}
+
+.zn-license__num strong {
+  font-weight: var(--font-bold);
+  color: var(--color-ndb-Malibu);
+}
+
+.zn-license__org {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+}
+
+.zn-license__badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: var(--color-ndb-Malibu);
+  color: var(--color-ndb-BlackPearl);
+  font-size: 0.72rem;
+  font-weight: var(--font-bold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+}
+
+/* Por qué importa */
+.zn-why {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4.5rem;
+  align-items: center;
+}
+
+.zn-why__lead {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: #3d4666;
+}
+
+/* Zonas */
+.zn-zones__head {
+  margin-bottom: 2.5rem;
+}
+
+.zn-zones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.zn-zone {
+  position: relative;
+  padding: 2.5rem;
+  border-radius: 18px;
+  background: var(--color-ndb-White);
+  box-shadow: 0 20px 50px rgba(14, 36, 106, 0.08);
+}
+
+.zn-zone--new {
+  outline: 2px solid var(--color-ndb-Malibu);
+}
+
+.zn-zone__title {
+  font-size: 1.6rem;
+  font-weight: var(--font-bold);
+  color: var(--color-ndb-Madison);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.zn-zone__title i {
+  color: var(--color-ndb-Cobalt);
+  font-size: 1.2rem;
+}
+
+.zn-zone__text {
+  color: #5a6384;
+  margin-bottom: 1.5rem;
+}
+
+.zn-chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.zn-chips li {
+  font-size: 0.92rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: var(--color-ndb-Mercury);
+  color: var(--color-ndb-Madison);
+}
+
+.zn-chips .zn-chips__more {
+  background: var(--color-ndb-Madison);
+  color: var(--color-ndb-White);
+  font-weight: var(--font-medium);
+}
+
+/* CTA */
+.zn-cta {
+  align-items: flex-start;
+  padding: 4rem 3.5rem;
+}
+
+.zn-cta__text {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 2rem;
+  max-width: 36rem;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .zn-licenses {
+    justify-self: stretch;
+    max-width: none;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .zn-why,
+  .zn-zones {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .zn-zones {
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .zn-licenses {
+    grid-template-columns: 1fr;
+  }
+
+  .zn-license,
+  .zn-zone {
+    padding: 1.75rem 1.5rem;
+  }
+
+  .zn-zone__title {
+    font-size: 1.35rem;
+    padding-right: 4.5rem;
+  }
+
+  .zn-cta {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zn-license {
+    animation: none;
+  }
+}

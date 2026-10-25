@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <title>
-      Propiedades en Zona Norte - Venta y Alquiler | NDB Propiedades
+      Propiedades en Venta y Alquiler en Buenos Aires y CABA | NDB Propiedades
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Encontrá casas, departamentos y terrenos en venta y alquiler en Zona Norte, Buenos Aires. Usá filtros y descubrí tu próxima propiedad con NDB Propiedades."
+      content="Encontrá casas, departamentos y terrenos en venta y alquiler en Provincia de Buenos Aires y CABA. Usá filtros y descubrí tu próxima propiedad con NDB Propiedades."
     />
     <meta
       property="og:title"
@@ -16,7 +16,7 @@
     />
     <meta
       property="og:description"
-      content="Descubrí nuestra oferta de propiedades en Zona Norte, Buenos Aires."
+      content="Descubrí nuestra oferta de propiedades en Provincia de Buenos Aires y CABA."
     />
     <meta
       property="og:image"
@@ -31,11 +31,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Propiedades en Zona Norte - NDB Propiedades"
+      content="Propiedades en Buenos Aires y CABA - NDB Propiedades"
     />
     <meta
       name="twitter:description"
-      content="Inmobiliaria en Zona Norte, tasaciones online y asesoramiento personalizado."
+      content="Inmobiliaria en Provincia de Buenos Aires y CABA, tasaciones online y asesoramiento personalizado."
     />
     <meta
       name="twitter:image"
@@ -83,13 +83,14 @@
         "address": {
           "@type": "PostalAddress",
           "addressCountry": "AR",
-          "addressRegion": "Buenos Aires",
-          "addressLocality": "Zona Norte"
+          "streetAddress": "Rioja 3000",
+          "addressLocality": "Olivos",
+          "addressRegion": "Buenos Aires"
         },
-        "areaServed": {
-          "@type": "Place",
-          "name": "Zona Norte, Buenos Aires, Argentina"
-        }
+        "areaServed": [
+          { "@type": "State", "name": "Provincia de Buenos Aires, Argentina" },
+          { "@type": "City", "name": "Ciudad Autónoma de Buenos Aires, Argentina" }
+        ]
       }
     </script>
   </head>
@@ -141,6 +142,7 @@
             <li><a href="/index.html">INICIO</a></li>
             <li><a href="/propiedades.html" class="active">PROPIEDADES</a></li>
             <li><a href="/oficina.html">OFICINA</a></li>
+            <li><a href="/zonas.html">ZONAS</a></li>
             <li><a href="/index.html#tasa">CONTACTO</a></li>
             <li><a href="/index.html#nosotros">NOSOTROS</a></li>
             <li>
@@ -340,7 +342,7 @@
         </div>
 
         <div class="footer-center">
-          <p><strong>NDB Propiedades</strong> | Zona Norte</p>
+          <p><strong>NDB Propiedades</strong> | Provincia de Buenos Aires y CABA</p>
           <p><i class="fas fa-phone"></i> +54 9 11 7217-2121</p>
           <p>
             <i class="fas fa-envelope"></i>
@@ -365,6 +367,7 @@
             <li><a href="index.html">INICIO</a></li>
             <li><a href="propiedades.html">PROPIEDADES</a></li>
             <li><a href="/oficina.html">OFICINA</a></li>
+            <li><a href="/zonas.html">ZONAS</a></li>
             <li><a href="index.html#tasa">CONTACTO</a></li>
             <li><a href="index.html#nosotros">NOSOTROS</a></li>
             <li>
@@ -375,7 +378,7 @@
       </div>
 
       <div class="containers footer-legal">
-        <p><i class="fas fa-certificate"></i> CMCPSI 6944</p>
+        <p><i class="fas fa-certificate"></i> CMCPSI 6944 · CUCICBA 10.077</p>
         <p id="copyright"></p>
         <a
           href="https://raven3.com.ar/webs-para-inmobiliarias"
