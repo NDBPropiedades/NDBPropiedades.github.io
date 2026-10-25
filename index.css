@@ -114,9 +114,7 @@
 /* =========================
    CTA / BUTTONS
    ========================= */
-#contactForm > button:hover,
-body > footer > div.containers.footer-container > div.footer-right > ul > li:nth-child(5) > a:hover,
-body > header > div > nav > ul > li:nth-child(5) > a:hover {
+#contactForm > button:hover {
   color: #fff;
 }
 
