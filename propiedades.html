@@ -188,17 +188,6 @@
       </section>
 
       <section class="properties-layout container">
-        <!-- Mobile open filters -->
-        <button
-          class="filters-toggle"
-          id="open-filters"
-          type="button"
-          aria-label="Abrir filtros"
-        >
-          <i class="fas fa-sliders-h"></i>
-          Filtros
-        </button>
-
         <!-- Sidebar -->
         <aside class="filters-sidebar" id="filters-sidebar">
           <div class="filters-sidebar__header">
@@ -247,27 +236,24 @@
               <select id="filtro-zona" multiple placeholder="Zona"></select>
             </div>
 
-            <div class="filter-group">
-              <label for="filtro-orden">Ordenar</label>
-              <select id="filtro-orden" placeholder="Ordenar"></select>
-            </div>
+            <div class="filter-row">
+              <div class="filter-group">
+                <label for="filtro-precio-min">Precio mín.</label>
+                <input
+                  id="filtro-precio-min"
+                  type="number"
+                  placeholder="50000"
+                />
+              </div>
 
-            <div class="filter-group">
-              <label for="filtro-precio-min">Precio mínimo</label>
-              <input
-                id="filtro-precio-min"
-                type="number"
-                placeholder="Ej: 50000"
-              />
-            </div>
-
-            <div class="filter-group">
-              <label for="filtro-precio-max">Precio máximo</label>
-              <input
-                id="filtro-precio-max"
-                type="number"
-                placeholder="Ej: 300000"
-              />
+              <div class="filter-group">
+                <label for="filtro-precio-max">Precio máx.</label>
+                <input
+                  id="filtro-precio-max"
+                  type="number"
+                  placeholder="300000"
+                />
+              </div>
             </div>
 
             <div class="filter-group">
@@ -293,8 +279,38 @@
         <!-- Results -->
         <div class="properties-content">
           <div class="results-toolbar">
+            <!-- Mobile open filters -->
+            <button
+              class="filters-toggle"
+              id="open-filters"
+              type="button"
+              aria-label="Abrir filtros"
+            >
+              <i class="fas fa-sliders-h"></i>
+              Filtros
+              <span class="filters-toggle__badge" id="filters-badge" hidden
+                >0</span
+              >
+            </button>
+
             <div class="results-info">
               <p id="results-count">Cargando propiedades...</p>
+            </div>
+
+            <div class="results-sort">
+              <label for="filtro-orden">
+                <i class="fas fa-sort-amount-down"></i>
+                <span>Ordenar por</span>
+              </label>
+              <select id="filtro-orden">
+                <option value="">Relevancia</option>
+                <option value="fecha-desc">Nuevas primero</option>
+                <option value="fecha-asc">Antiguas primero</option>
+                <option value="precio-asc">Precio: menor a mayor</option>
+                <option value="precio-desc">Precio: mayor a menor</option>
+                <option value="titulo-asc">Título: A-Z</option>
+                <option value="titulo-desc">Título: Z-A</option>
+              </select>
             </div>
 
             <!-- <div class="results-view">

@@ -29,6 +29,7 @@ const btnLimpiar = document.getElementById("btn-limpiar");
 const openFiltersBtn = document.getElementById("open-filters");
 const closeFiltersBtn = document.getElementById("close-filters");
 const filtersSidebar = document.getElementById("filters-sidebar");
+const filtersBadge = document.getElementById("filters-badge");
 
 const propertyTypeTranslations = {
   Land: "Terreno",
@@ -104,7 +105,6 @@ function unlockScroll() {
 let tsOperacion = null;
 let tsTipologia = null;
 let tsZona = null;
-let tsOrden = null;
 
 function initTomSelects() {
   if (!window.TomSelect) {
@@ -135,7 +135,6 @@ function initTomSelects() {
     tsOperacion?.destroy();
     tsTipologia?.destroy();
     tsZona?.destroy();
-    tsOrden?.destroy();
   } catch (e) {}
 
   tsOperacion = makeTS(selOperacion, {
@@ -148,13 +147,6 @@ function initTomSelects() {
 
   tsZona = makeTS(selZona, {
     maxItems: null,
-  });
-
-  tsOrden = makeTS(selOrden, {
-    plugins: [],
-    maxItems: 1,
-    closeAfterSelect: true,
-    searchField: ["text", "value"],
   });
 }
 
@@ -207,20 +199,6 @@ function cargarOpcionesDesdeDatos(props) {
   tsZona?.clearOptions();
   tsZona?.addOptions(zonaOptions);
   tsZona?.refreshOptions(false);
-
-  const ordenOptions = [
-    { value: "precio-desc", text: "Precio: mayor a menor" },
-    { value: "precio-asc", text: "Precio: menor a mayor" },
-    { value: "titulo-asc", text: "Título: A-Z" },
-    { value: "titulo-desc", text: "Título: Z-A" },
-    { value: "fecha-desc", text: "Nuevas primero" },
-    { value: "fecha-asc", text: "Antiguas primero" },
-  ];
-
-  tsOrden?.clear();
-  tsOrden?.clearOptions();
-  tsOrden?.addOptions(ordenOptions);
-  tsOrden?.refreshOptions(false);
 }
 
 /* =========================
@@ -519,7 +497,7 @@ function aplicarFiltros(lista) {
     });
   }
 
-  const orden = tsOrden?.getValue?.() || "";
+  const orden = selOrden?.value || "";
 
   if (orden) {
     arr.sort((a, b) => {
@@ -594,7 +572,11 @@ function construirControlesPaginacion(total, actual, porPagina) {
       if (disabled || activo) return;
       paginaActual = pagina;
       renderPagina();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const layout = document.querySelector(".properties-layout");
+      const top = layout
+        ? layout.getBoundingClientRect().top + window.scrollY - 110
+        : 0;
+      window.scrollTo({ top, behavior: "smooth" });
     });
 
     return b;
@@ -790,6 +772,24 @@ function reiniciarListado() {
   propiedadesFiltradas = aplicarFiltros(todasLasPropiedades);
   paginaActual = 1;
   renderPagina();
+  actualizarBadgeFiltros();
+}
+
+function actualizarBadgeFiltros() {
+  if (!filtersBadge) return;
+
+  const activos = [
+    searchInput?.value.trim(),
+    tsOperacion?.getValue?.().length,
+    tsTipologia?.getValue?.().length,
+    tsZona?.getValue?.().length,
+    filtroPrecioMin?.value,
+    filtroPrecioMax?.value,
+    filtroAmbientes?.value,
+  ].filter(Boolean).length;
+
+  filtersBadge.textContent = activos;
+  filtersBadge.hidden = activos === 0;
 }
 
 /* =========================
@@ -869,6 +869,7 @@ filtroPrecioMax?.addEventListener("input", () => {
 });
 
 filtroAmbientes?.addEventListener("change", reiniciarListado);
+selOrden?.addEventListener("change", reiniciarListado);
 
 btnLimpiar?.addEventListener("click", () => {
   if (searchInput) searchInput.value = "";
@@ -879,7 +880,6 @@ btnLimpiar?.addEventListener("click", () => {
   tsOperacion?.clear(true);
   tsTipologia?.clear(true);
   tsZona?.clear(true);
-  tsOrden?.clear(true);
 
   reiniciarListado();
 });
