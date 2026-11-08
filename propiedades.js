@@ -6,9 +6,13 @@ let todasLasPropiedades = [];
 let propiedadesFiltradas = [];
 let paginaActual = 1;
 
-const propiedadesPorPagina = 50;
+const propiedadesPorPagina = 24;
 const API_KEY = "76c2e21bd630d16cfdb33e96f43fc013eafc4173";
-const API_URL = `https://tokkobroker.com/api/v1/property/?key=${API_KEY}&format=json&shared=true`;
+const API_URL = `https://tokkobroker.com/api/v1/property/?key=${API_KEY}&format=json&shared=true&limit=500`;
+const WHATSAPP_NUMERO = "5491172172121";
+const CACHE_KEY = "ndb-propiedades-v1";
+const CACHE_TTL_MS = 10 * 60 * 1000;
+let datosListos = false;
 
 const contenedor = document.getElementById("lista-propiedades");
 const searchInput = document.getElementById("search-text");
@@ -21,6 +25,7 @@ const selTipologia = document.getElementById("filtro-tipologia");
 const selZona = document.getElementById("filtro-zona");
 const selOrden = document.getElementById("filtro-orden");
 
+const filtroMoneda = document.getElementById("filtro-moneda");
 const filtroPrecioMin = document.getElementById("filtro-precio-min");
 const filtroPrecioMax = document.getElementById("filtro-precio-max");
 const filtroAmbientes = document.getElementById("filtro-ambientes");
@@ -30,6 +35,10 @@ const openFiltersBtn = document.getElementById("open-filters");
 const closeFiltersBtn = document.getElementById("close-filters");
 const filtersSidebar = document.getElementById("filters-sidebar");
 const filtersBadge = document.getElementById("filters-badge");
+const btnVerResultados = document.getElementById("btn-ver-resultados");
+const emptyTitle = document.getElementById("empty-title");
+const emptyText = document.getElementById("empty-text");
+const emptyAction = document.getElementById("empty-action");
 
 const propertyTypeTranslations = {
   Land: "Terreno",
@@ -124,8 +133,6 @@ function initTomSelects() {
       ...extra,
     });
 
-    ts.on("dropdown_open", lockScroll);
-    ts.on("dropdown_close", unlockScroll);
     ts.on("change", reiniciarListado);
 
     return ts;
@@ -165,7 +172,7 @@ function cargarOpcionesDesdeDatos(props) {
       v === "Sale" ? "Venta" : v === "Rent" ? "Alquiler" : "Alquiler Temporal",
   }));
 
-  tsOperacion?.clear();
+  tsOperacion?.clear(true);
   tsOperacion?.clearOptions();
   tsOperacion?.addOptions(opsOptions);
   tsOperacion?.refreshOptions(false);
@@ -180,7 +187,7 @@ function cargarOpcionesDesdeDatos(props) {
     .sort()
     .map((v) => ({ value: v, text: propertyTypeTranslations[v] || v }));
 
-  tsTipologia?.clear();
+  tsTipologia?.clear(true);
   tsTipologia?.clearOptions();
   tsTipologia?.addOptions(tipoOptions);
   tsTipologia?.refreshOptions(false);
@@ -195,7 +202,7 @@ function cargarOpcionesDesdeDatos(props) {
     .sort((a, b) => a.localeCompare(b, "es"))
     .map((v) => ({ value: v, text: v }));
 
-  tsZona?.clear();
+  tsZona?.clear(true);
   tsZona?.clearOptions();
   tsZona?.addOptions(zonaOptions);
   tsZona?.refreshOptions(false);
@@ -212,7 +219,7 @@ function precioNumericoDePriceObj(priceObj) {
 }
 
 function formatearPrecioTokko(priceObj) {
-  if (!priceObj || priceObj.price == null) return "Consultar precio";
+  if (!priceObj || !(Number(priceObj.price) > 0)) return "Consultar precio";
 
   const currency = (priceObj.currency || "").toUpperCase();
   const n = Number(priceObj.price);
@@ -359,7 +366,7 @@ function obtenerSlidesPropiedad(p, titulo) {
           <div class="swiper-slide">
             <a href="propiedad.html?id=${p.id}" aria-label="Ver ${escapeHtml(titulo)}">
               <img
-                src="${ph.image}"
+                ${index === 0 ? `src="${ph.image}"` : `data-src="${ph.image}"`}
                 alt="${escapeHtml(titulo)} - foto ${index + 1}"
                 loading="lazy"
                 decoding="async"
@@ -375,7 +382,7 @@ function obtenerSlidesPropiedad(p, titulo) {
     <div class="swiper-slide">
       <a href="propiedad.html?id=${p.id}" aria-label="Ver ${escapeHtml(titulo)}">
         <img
-          src="assets/img/no-image.jpg"
+          src="/assets/img/no-image.jpg"
           alt="${escapeHtml(titulo)}"
           loading="lazy"
           decoding="async"
@@ -404,8 +411,6 @@ function initPropertySwipers() {
       slidesPerView: 1,
       spaceBetween: 0,
       watchOverflow: true,
-      observer: true,
-      observeParents: true,
       navigation: {
         nextEl: el.querySelector(".swiper-button-next"),
         prevEl: el.querySelector(".swiper-button-prev"),
@@ -418,6 +423,18 @@ function initPropertySwipers() {
     });
 
     propertySwipers.push(instance);
+
+    // El resto de las fotos se descarga recién cuando el usuario llega al slider
+    if (hasMultiple) {
+      const hidratar = () => {
+        el.querySelectorAll("img[data-src]").forEach((img) => {
+          img.src = img.dataset.src;
+          img.removeAttribute("data-src");
+        });
+      };
+      el.addEventListener("pointerenter", hidratar, { once: true });
+      el.addEventListener("focusin", hidratar, { once: true });
+    }
   });
 }
 
@@ -464,12 +481,26 @@ function aplicarFiltros(lista) {
     : Infinity;
 
   if (precioMin > 0 || Number.isFinite(precioMax)) {
-    arr = arr.filter((p) => {
-      const opS = elegirOperacionParaCard(p);
-      const priceData = precioNumericoSegunOperacion(p, opS);
-      const precio = Number(priceData.value || 0);
-      return precio >= precioMin && precio <= precioMax;
-    });
+    const moneda = filtroMoneda?.value || "USD";
+
+    arr = arr.filter((p) =>
+      (p.operations || []).some((o) => {
+        if (
+          operaciones.length &&
+          !operaciones.includes(opToStd(o.operation_type))
+        ) {
+          return false;
+        }
+
+        const { currency, value } = precioNumericoDePriceObj(o?.prices?.[0]);
+        return (
+          currency === moneda &&
+          value > 0 &&
+          value >= precioMin &&
+          value <= precioMax
+        );
+      }),
+    );
   }
 
   const ambientesMin = Number(filtroAmbientes?.value || 0);
@@ -512,21 +543,25 @@ function aplicarFiltros(lista) {
       const ta = a.publication_title || "";
       const tb = b.publication_title || "";
 
-      const fa = new Date(a.created_on || 0);
-      const fb = new Date(b.created_on || 0);
+      const fa = new Date(a.created_at || 0);
+      const fb = new Date(b.created_at || 0);
+
+      const compararPrecio = (direccion) => {
+        const conPrecioA = pa.value > 0;
+        const conPrecioB = pb.value > 0;
+        if (conPrecioA !== conPrecioB) return conPrecioA ? -1 : 1;
+        if (rank(pa.currency) !== rank(pb.currency)) {
+          return rank(pa.currency) - rank(pb.currency);
+        }
+        return direccion * (pa.value - pb.value);
+      };
 
       switch (orden) {
         case "precio-asc":
-          if (rank(pa.currency) !== rank(pb.currency)) {
-            return rank(pa.currency) - rank(pb.currency);
-          }
-          return pa.value - pb.value;
+          return compararPrecio(1);
 
         case "precio-desc":
-          if (rank(pa.currency) !== rank(pb.currency)) {
-            return rank(pa.currency) - rank(pb.currency);
-          }
-          return pb.value - pa.value;
+          return compararPrecio(-1);
 
         case "titulo-asc":
           return ta.localeCompare(tb, "es");
@@ -572,6 +607,7 @@ function construirControlesPaginacion(total, actual, porPagina) {
       if (disabled || activo) return;
       paginaActual = pagina;
       renderPagina();
+      sincronizarURL("push");
       const layout = document.querySelector(".properties-layout");
       const top = layout
         ? layout.getBoundingClientRect().top + window.scrollY - 110
@@ -626,10 +662,62 @@ function construirControlesPaginacion(total, actual, porPagina) {
    Render cards
    ========================= */
 function cerrarSidebarMobile() {
-  if (window.innerWidth <= 920 && filtersSidebar) {
+  if (
+    window.innerWidth <= 920 &&
+    filtersSidebar?.classList.contains("is-open")
+  ) {
     filtersSidebar.classList.remove("is-open");
     unlockScroll();
   }
+}
+
+function textoPropiedades(n) {
+  return n === 1 ? "1 propiedad" : `${n} propiedades`;
+}
+
+function actualizarConteo(n) {
+  if (resultsCount) {
+    resultsCount.textContent = `${textoPropiedades(n)} ${
+      n === 1 ? "encontrada" : "encontradas"
+    }`;
+  }
+
+  if (btnVerResultados) {
+    btnVerResultados.textContent = n
+      ? `Ver ${textoPropiedades(n)}`
+      : "Sin resultados";
+  }
+}
+
+function linkWhatsappPropiedad(p, titulo) {
+  const mensaje = `Hola NDB Propiedades! Me interesa la propiedad "${titulo}" (ID ${p.id}): https://ndbpropiedades.com.ar/propiedad.html?id=${p.id}`;
+  return `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensaje)}`;
+}
+
+function mostrarEstadoVacio(error = false) {
+  if (!emptyState) return;
+
+  emptyTitle.textContent = error
+    ? "No pudimos cargar las propiedades"
+    : "No encontramos propiedades con esos filtros";
+  emptyText.textContent = error
+    ? "Probá de nuevo en unos minutos o escribinos y te ayudamos."
+    : "Probá ajustando la búsqueda o contanos qué estás buscando.";
+  emptyAction.textContent = error ? "Reintentar" : "Limpiar filtros";
+  emptyAction.dataset.accion = error ? "reintentar" : "limpiar";
+  emptyState.hidden = false;
+}
+
+function mostrarSkeleton() {
+  contenedor.style.display = "grid";
+  contenedor.innerHTML = `
+    <div class="property-card property-card--skeleton" aria-hidden="true">
+      <div class="property-card__media"></div>
+      <div class="property-card__body">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  `.repeat(6);
 }
 
 function renderPagina() {
@@ -639,28 +727,26 @@ function renderPagina() {
   contenedor.innerHTML = "";
 
   if (!propiedadesFiltradas.length) {
-    if (resultsCount) {
-      resultsCount.textContent = "0 propiedades encontradas";
-    }
-
-    if (emptyState) {
-      emptyState.hidden = false;
-    }
+    actualizarConteo(0);
+    mostrarEstadoVacio();
 
     contenedor.style.display = "none";
     paginacionNav.innerHTML = "";
     return;
   }
 
-  if (resultsCount) {
-    resultsCount.textContent = `${propiedadesFiltradas.length} propiedades encontradas`;
-  }
+  actualizarConteo(propiedadesFiltradas.length);
 
   if (emptyState) {
     emptyState.hidden = true;
   }
 
   contenedor.style.display = "grid";
+
+  const totalPaginas = Math.ceil(
+    propiedadesFiltradas.length / propiedadesPorPagina,
+  );
+  paginaActual = Math.min(Math.max(1, paginaActual), totalPaginas);
 
   const start = (paginaActual - 1) * propiedadesPorPagina;
   const items = propiedadesFiltradas.slice(start, start + propiedadesPorPagina);
@@ -718,7 +804,10 @@ function renderPagina() {
             </a>
           </h3>
 
-          <p class="property-card__location">${escapeHtml(zona)}</p>
+          <p class="property-card__location">
+            <span>${escapeHtml(zona)}</span>
+            <span class="property-card__code">ID: ${p.id}</span>
+          </p>
 
           <div class="property-card__features">
             ${
@@ -733,7 +822,7 @@ function renderPagina() {
             }
             ${
               banos > 0
-                ? `<span><i class="fas fa-bath"></i> ${banos} baños</span>`
+                ? `<span><i class="fas fa-bath"></i> ${banos} ${banos === 1 ? "baño" : "baños"}</span>`
                 : ""
             }
             ${
@@ -744,7 +833,16 @@ function renderPagina() {
           </div>
 
           <div class="property-card__footer">
-            <span class="property-card__code">ID: ${p.id}</span>
+            <a
+              class="property-card__whatsapp"
+              href="${linkWhatsappPropiedad(p, titulo)}"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Consultar por WhatsApp: ${escapeHtml(titulo)}"
+            >
+              <i class="fab fa-whatsapp"></i>
+              Consultar
+            </a>
             <a class="property-card__link" href="propiedad.html?id=${p.id}">
               Ver propiedad
             </a>
@@ -773,6 +871,81 @@ function reiniciarListado() {
   paginaActual = 1;
   renderPagina();
   actualizarBadgeFiltros();
+  sincronizarURL();
+}
+
+/* =========================
+   Filtros en la URL
+   ========================= */
+function sincronizarURL(modo = "replace") {
+  if (!datosListos) return;
+
+  const params = new URLSearchParams();
+  const agregar = (clave, valor) => {
+    if (valor) params.append(clave, valor);
+  };
+
+  agregar("q", searchInput?.value.trim());
+  (tsOperacion?.getValue() || []).forEach((v) => agregar("op", v));
+  (tsTipologia?.getValue() || []).forEach((v) => agregar("tipo", v));
+  (tsZona?.getValue() || []).forEach((v) => agregar("zona", v));
+  agregar("min", filtroPrecioMin?.value);
+  agregar("max", filtroPrecioMax?.value);
+  if (filtroPrecioMin?.value || filtroPrecioMax?.value) {
+    agregar("moneda", filtroMoneda?.value);
+  }
+  agregar("amb", filtroAmbientes?.value);
+  agregar("orden", selOrden?.value);
+  if (paginaActual > 1) agregar("pag", String(paginaActual));
+
+  const query = params.toString();
+  const url = `${location.pathname}${query ? `?${query}` : ""}`;
+
+  if (modo === "push") history.pushState(null, "", url);
+  else history.replaceState(null, "", url);
+}
+
+function aplicarEstadoDesdeURL() {
+  const params = new URLSearchParams(location.search);
+
+  if (searchInput) searchInput.value = params.get("q") || "";
+  if (filtroPrecioMin) filtroPrecioMin.value = params.get("min") || "";
+  if (filtroPrecioMax) filtroPrecioMax.value = params.get("max") || "";
+  if (filtroMoneda) {
+    filtroMoneda.value = params.get("moneda") === "ARS" ? "ARS" : "USD";
+  }
+  if (filtroAmbientes) filtroAmbientes.value = params.get("amb") || "";
+  if (selOrden) {
+    selOrden.value = params.get("orden") || "";
+    if (selOrden.selectedIndex < 0) selOrden.value = "";
+  }
+
+  tsOperacion?.setValue(params.getAll("op"), true);
+  tsTipologia?.setValue(params.getAll("tipo"), true);
+  tsZona?.setValue(params.getAll("zona"), true);
+
+  paginaActual = Math.max(1, parseInt(params.get("pag"), 10) || 1);
+}
+
+function mostrarDesdeEstadoURL() {
+  aplicarEstadoDesdeURL();
+  propiedadesFiltradas = aplicarFiltros(todasLasPropiedades);
+  renderPagina();
+  actualizarBadgeFiltros();
+}
+
+function limpiarFiltros() {
+  if (searchInput) searchInput.value = "";
+  if (filtroPrecioMin) filtroPrecioMin.value = "";
+  if (filtroPrecioMax) filtroPrecioMax.value = "";
+  if (filtroMoneda) filtroMoneda.value = "USD";
+  if (filtroAmbientes) filtroAmbientes.value = "";
+
+  tsOperacion?.clear(true);
+  tsTipologia?.clear(true);
+  tsZona?.clear(true);
+
+  reiniciarListado();
 }
 
 function actualizarBadgeFiltros() {
@@ -816,18 +989,60 @@ async function fetchTodasLasPropiedades() {
   return res;
 }
 
+function leerCache() {
+  try {
+    const guardado = JSON.parse(sessionStorage.getItem(CACHE_KEY));
+    if (guardado && Date.now() - guardado.fecha < CACHE_TTL_MS) {
+      return guardado.propiedades;
+    }
+  } catch (e) {}
+  return null;
+}
+
+function guardarCache(propiedades) {
+  try {
+    const livianas = propiedades.map((p) => ({
+      id: p.id,
+      publication_title: p.publication_title,
+      type: { name: p.type?.name },
+      location: { name: p.location?.name },
+      address: p.address,
+      operations: p.operations,
+      photos: (p.photos || []).map((ph) => ({ image: ph?.image })),
+      room_amount: p.room_amount,
+      bedroom_amount: p.bedroom_amount,
+      suite_amount: p.suite_amount,
+      bathroom_amount: p.bathroom_amount,
+      total_surface: p.total_surface,
+      created_at: p.created_at,
+    }));
+
+    sessionStorage.setItem(
+      CACHE_KEY,
+      JSON.stringify({ fecha: Date.now(), propiedades: livianas }),
+    );
+  } catch (e) {}
+}
+
 async function cargarPropiedades() {
   try {
-    if (resultsCount) {
-      resultsCount.textContent = "Cargando propiedades...";
+    if (emptyState) emptyState.hidden = true;
+
+    let propiedades = leerCache();
+
+    if (!propiedades) {
+      if (resultsCount) {
+        resultsCount.textContent = "Cargando propiedades...";
+      }
+      mostrarSkeleton();
+      propiedades = await fetchTodasLasPropiedades();
+      guardarCache(propiedades);
     }
 
-    contenedor.innerHTML = "";
-
-    todasLasPropiedades = await fetchTodasLasPropiedades();
-
+    todasLasPropiedades = propiedades;
     cargarOpcionesDesdeDatos(todasLasPropiedades);
-    reiniciarListado();
+    datosListos = true;
+    mostrarDesdeEstadoURL();
   } catch (error) {
     console.error("Error cargando propiedades:", error);
 
@@ -835,16 +1050,9 @@ async function cargarPropiedades() {
       resultsCount.textContent = "No se pudieron cargar las propiedades";
     }
 
+    contenedor.innerHTML = "";
     contenedor.style.display = "none";
-
-    if (emptyState) {
-      emptyState.hidden = false;
-      emptyState.innerHTML = `
-        <i class="fas fa-house-circle-xmark"></i>
-        <h3>No se pudieron cargar las propiedades</h3>
-        <p>Revisá la conexión, la API o las restricciones de CORS.</p>
-      `;
-    }
+    mostrarEstadoVacio(true);
   }
 }
 
@@ -870,18 +1078,24 @@ filtroPrecioMax?.addEventListener("input", () => {
 
 filtroAmbientes?.addEventListener("change", reiniciarListado);
 selOrden?.addEventListener("change", reiniciarListado);
+filtroMoneda?.addEventListener("change", reiniciarListado);
 
-btnLimpiar?.addEventListener("click", () => {
-  if (searchInput) searchInput.value = "";
-  if (filtroPrecioMin) filtroPrecioMin.value = "";
-  if (filtroPrecioMax) filtroPrecioMax.value = "";
-  if (filtroAmbientes) filtroAmbientes.value = "";
+window.addEventListener("popstate", () => {
+  if (datosListos) mostrarDesdeEstadoURL();
+});
 
-  tsOperacion?.clear(true);
-  tsTipologia?.clear(true);
-  tsZona?.clear(true);
+btnLimpiar?.addEventListener("click", limpiarFiltros);
 
-  reiniciarListado();
+emptyAction?.addEventListener("click", () => {
+  if (emptyAction.dataset.accion === "reintentar") cargarPropiedades();
+  else limpiarFiltros();
+});
+
+btnVerResultados?.addEventListener("click", () => {
+  cerrarSidebarMobile();
+  document
+    .querySelector(".properties-content")
+    ?.scrollIntoView({ behavior: "smooth" });
 });
 
 openFiltersBtn?.addEventListener("click", () => {
@@ -898,7 +1112,7 @@ document.addEventListener("click", (e) => {
   if (
     window.innerWidth <= 920 &&
     filtersSidebar?.classList.contains("is-open") &&
-    !filtersSidebar.contains(e.target) &&
+    !e.composedPath().includes(filtersSidebar) &&
     !openFiltersBtn?.contains(e.target)
   ) {
     filtersSidebar.classList.remove("is-open");
@@ -911,6 +1125,7 @@ document.addEventListener("click", (e) => {
    ========================= */
 (function boot() {
   initTomSelects();
+  cargarVideoHero();
   cargarPropiedades();
 
   const copyright = document.getElementById("copyright");
@@ -921,6 +1136,25 @@ document.addEventListener("click", (e) => {
 
   initBackToTop();
 })();
+
+/* =========================
+   Video del hero (solo desktop)
+   ========================= */
+function cargarVideoHero() {
+  const video = document.querySelector(".properties-hero__video");
+  if (!video) return;
+
+  const esDesktop = window.matchMedia("(min-width: 921px)").matches;
+  const reduceMovimiento = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  const ahorraDatos = navigator.connection?.saveData;
+
+  if (!esDesktop || reduceMovimiento || ahorraDatos) return;
+
+  video.src = video.dataset.src;
+  video.play().catch(() => {});
+}
 
 /* =========================
    Volver arriba (mobile)

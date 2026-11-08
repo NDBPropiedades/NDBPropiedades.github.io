@@ -20,7 +20,7 @@
     />
     <meta
       property="og:image"
-      content="https://ndbpropiedades.com.ar/assets/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.png"
+      content="https://ndbpropiedades.com.ar/assets/img/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.png"
     />
     <meta
       property="og:url"
@@ -39,7 +39,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://ndbpropiedades.com.ar/assets/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.png"
+      content="https://ndbpropiedades.com.ar/assets/img/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.png"
     />
 
     <link
@@ -54,7 +54,7 @@
 
     <link
       rel="preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       as="style"
       onload="this.rel = 'stylesheet'"
     />
@@ -76,7 +76,7 @@
         "@context": "https://schema.org",
         "@type": "RealEstateAgent",
         "name": "NDB Propiedades",
-        "image": "https://ndbpropiedades.com.ar/assets/img/Nicolas De Brasi - Logo 2 Positivo RGB.jpg",
+        "image": "https://ndbpropiedades.com.ar/assets/img/img/Nicolas%20De%20Brasi%20-%20Logo%202%20Positivo%20RGB.jpg",
         "url": "https://ndbpropiedades.com.ar",
         "telephone": "+54 9 11 7217-2121",
         "email": "info@ndbpropiedades.com.ar",
@@ -161,18 +161,13 @@
       <section class="properties-hero properties-hero--video">
         <video
           class="properties-hero__video"
-          autoplay
           muted
           loop
           playsinline
-          poster="/assets/img/img/Nicolas De Brasi - Logo Negativo RGB.jpg"
-        >
-          <source
-            src="/assets/video/Institucional_Nico_NDB.mp4"
-            type="video/mp4"
-          />
-          Tu navegador no soporta video HTML5.
-        </video>
+          preload="none"
+          poster="/assets/img/img/hero-propiedades.jpg"
+          data-src="/assets/video/Institucional_Nico_NDB_web.mp4"
+        ></video>
 
         <div class="properties-hero__overlay"></div>
         <div class="properties-hero__fade"></div>
@@ -181,8 +176,8 @@
           <!-- <p class="eyebrow">NDB PROPIEDADES</p> -->
           <h1>Es lindo llegar a casa. Mejor es encontrarla.</h1>
           <p class="hero-text">
-            Explorá todas las propiedades disponibles de NDB Propiedades con
-            filtros por operación, tipo, zona, precio y ambientes.
+            Casas, departamentos y terrenos en venta y alquiler en Provincia de
+            Buenos Aires y CABA.
           </p>
         </div>
       </section>
@@ -236,13 +231,23 @@
               <select id="filtro-zona" multiple placeholder="Zona"></select>
             </div>
 
+            <div class="filter-group">
+              <label for="filtro-moneda">Moneda del precio</label>
+              <select id="filtro-moneda">
+                <option value="USD">Dólares (USD)</option>
+                <option value="ARS">Pesos (ARS)</option>
+              </select>
+            </div>
+
             <div class="filter-row">
               <div class="filter-group">
                 <label for="filtro-precio-min">Precio mín.</label>
                 <input
                   id="filtro-precio-min"
                   type="number"
-                  placeholder="50000"
+                  min="0"
+                  inputmode="numeric"
+                  placeholder="Desde"
                 />
               </div>
 
@@ -251,7 +256,9 @@
                 <input
                   id="filtro-precio-max"
                   type="number"
-                  placeholder="300000"
+                  min="0"
+                  inputmode="numeric"
+                  placeholder="Hasta"
                 />
               </div>
             </div>
@@ -271,6 +278,9 @@
             <div class="filter-actions">
               <button type="button" id="btn-limpiar" class="btn btn-outline">
                 Limpiar
+              </button>
+              <button type="button" id="btn-ver-resultados" class="btn btn-primary">
+                Ver propiedades
               </button>
             </div>
           </form>
@@ -330,8 +340,24 @@
 
           <div class="empty-state" id="empty-state" hidden>
             <i class="fas fa-house-circle-xmark"></i>
-            <h3>No encontramos propiedades con esos filtros</h3>
-            <p>Probá ajustando la búsqueda o limpiando los filtros.</p>
+            <h3 id="empty-title">No encontramos propiedades con esos filtros</h3>
+            <p id="empty-text">
+              Probá ajustando la búsqueda o contanos qué estás buscando.
+            </p>
+            <div class="empty-state__actions">
+              <button type="button" id="empty-action" class="btn btn-outline">
+                Limpiar filtros
+              </button>
+              <a
+                class="property-card__whatsapp"
+                href="https://wa.me/5491172172121?text=Hola%20NDB%20Propiedades!%20Estoy%20buscando%20una%20propiedad%20y%20no%20encontr%C3%A9%20lo%20que%20necesito%20en%20la%20web."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-whatsapp"></i>
+                Contanos qué buscás
+              </a>
+            </div>
           </div>
 
           <nav
@@ -341,6 +367,103 @@
           ></nav>
         </div>
       </section>
+
+      <!-- seo-barrios:start -->
+      <section class="zonas-explorar container" aria-labelledby="zonas-titulo">
+        <h2 id="zonas-titulo">Explorá por zona</h2>
+        <div class="zonas-tiles">
+          <a class="zona-tile" href="/barrios/san-isidro.html">
+            <img src="https://static.tokkobroker.com/pictures/7134282_1701232857856715174096066717427337470072266689486866144588844243749198001558.jpg" alt="" width="400" height="300" loading="lazy" decoding="async" />
+            <span class="zona-tile__texto"><strong>San Isidro</strong><small>16 propiedades</small></span>
+          </a>
+          <a class="zona-tile" href="/barrios/olivos.html">
+            <img src="https://static.tokkobroker.com/pictures/7744916_39173469168124909575665743079225956792300410680286274905406286609283129275158.jpg" alt="" width="400" height="300" loading="lazy" decoding="async" />
+            <span class="zona-tile__texto"><strong>Olivos</strong><small>10 propiedades</small></span>
+          </a>
+          <a class="zona-tile" href="/barrios/martinez.html">
+            <img src="https://static.tokkobroker.com/pictures/7861585_76391161684808812282081754815353454886847292044238948784565441540966707637445.jpg" alt="" width="400" height="300" loading="lazy" decoding="async" />
+            <span class="zona-tile__texto"><strong>Martínez</strong><small>9 propiedades</small></span>
+          </a>
+          <a class="zona-tile" href="/barrios/san-fernando.html">
+            <img src="https://static.tokkobroker.com/pictures/7624277_1574880550467457227046787680516853688378196869850172471862600870540826743495.jpg" alt="" width="400" height="300" loading="lazy" decoding="async" />
+            <span class="zona-tile__texto"><strong>San Fernando</strong><small>7 propiedades</small></span>
+          </a>
+          <a class="zona-tile" href="/barrios/punta-chica.html">
+            <img src="https://static.tokkobroker.com/pictures/7230510_79033405560092849577657391662335414491838755403612190015094209471855101014675.jpg" alt="" width="400" height="300" loading="lazy" decoding="async" />
+            <span class="zona-tile__texto"><strong>Punta Chica</strong><small>5 propiedades</small></span>
+          </a>
+          <a class="zona-tile" href="/barrios/la-lucila.html">
+            <img src="https://static.tokkobroker.com/pictures/8030809_72564548855832663538835341775224039077570741956007871252508406087384725345643.jpg" alt="" width="400" height="300" loading="lazy" decoding="async" />
+            <span class="zona-tile__texto"><strong>La Lucila</strong><small>4 propiedades</small></span>
+          </a>
+          <a class="zona-tile" href="/barrios/palermo.html">
+            <img src="https://static.tokkobroker.com/pictures/7804781_21259272077008242456926458386947353369821066039080287591297019659908520493189.jpg" alt="" width="400" height="300" loading="lazy" decoding="async" />
+            <span class="zona-tile__texto"><strong>Palermo</strong><small>4 propiedades</small></span>
+          </a>
+          <a class="zona-tile" href="/barrios/belgrano.html">
+            <img src="https://static.tokkobroker.com/pictures/8452767_30899524201801389146683241328626241839322784463768214294123625035416262499730.jpg" alt="" width="400" height="300" loading="lazy" decoding="async" />
+            <span class="zona-tile__texto"><strong>Belgrano</strong><small>3 propiedades</small></span>
+          </a>
+        </div>
+        <details class="zonas-mas">
+          <summary>Ver las 60 zonas</summary>
+          <ul>
+            <li><a href="/barrios/acas-libert-solis.html">Acassuso (Libertador a Solís)</a></li>
+            <li><a href="/barrios/almagro.html">Almagro</a></li>
+            <li><a href="/barrios/arroyon.html">Arroyon</a></li>
+            <li><a href="/barrios/balvanera.html">Balvanera</a></li>
+            <li><a href="/barrios/countries-b-cerrado-pilar.html">Barrios cerrados de Pilar</a></li>
+            <li><a href="/barrios/beccar.html">Beccar</a></li>
+            <li><a href="/barrios/beccar-vias-libert.html">Beccar (Vías a Libertador)</a></li>
+            <li><a href="/barrios/beccar-vias-rolon.html">Beccar (Vías a Rolón)</a></li>
+            <li><a href="/barrios/beccar-alto.html">Beccar Alto</a></li>
+            <li><a href="/barrios/caballito.html">Caballito</a></li>
+            <li><a href="/barrios/capilla-del-senor.html">Capilla del Señor</a></li>
+            <li><a href="/barrios/ceibos.html">Ceibos</a></li>
+            <li><a href="/barrios/chacras-de-la-reserva.html">Chacras de la Reserva</a></li>
+            <li><a href="/barrios/el-naudir.html">El Naudir</a></li>
+            <li><a href="/barrios/el-olivar.html">El Olivar</a></li>
+            <li><a href="/barrios/el-talar.html">El Talar</a></li>
+            <li><a href="/barrios/exaltacion-de-la-cruz.html">Exaltación de la Cruz</a></li>
+            <li><a href="/barrios/floresta.html">Floresta</a></li>
+            <li><a href="/barrios/florida-mitre-este.html">Florida (Mitre al Este)</a></li>
+            <li><a href="/barrios/habitat-residencias.html">Habitat Residencias</a></li>
+            <li><a href="/barrios/la-comarca.html">La Comarca</a></li>
+            <li><a href="/barrios/la-damasia.html">La Damasia</a></li>
+            <li><a href="/barrios/la-estela.html">La Estela</a></li>
+            <li><a href="/barrios/la-posta-pilar.html">La Posta Pilar</a></li>
+            <li><a href="/barrios/las-lomas-de-san-isidro.html">Las Lomas de San Isidro</a></li>
+            <li><a href="/barrios/las-piedras.html">Las Piedras</a></li>
+            <li><a href="/barrios/los-cardales.html">Los Cardales</a></li>
+            <li><a href="/barrios/mart-libert-rio.html">Martínez (Libertador al Río)</a></li>
+            <li><a href="/barrios/mart-vias-libert.html">Martínez (Vías a Libertador)</a></li>
+            <li><a href="/barrios/mart-vias-santa-fe.html">Martínez (Vías a Santa Fe)</a></li>
+            <li><a href="/barrios/matheu.html">Matheu</a></li>
+            <li><a href="/barrios/microcentro.html">Microcentro</a></li>
+            <li><a href="/barrios/miramar.html">Miramar</a></li>
+            <li><a href="/barrios/monserrat.html">Monserrat</a></li>
+            <li><a href="/barrios/nordelta.html">Nordelta</a></li>
+            <li><a href="/barrios/nunez.html">Núñez</a></li>
+            <li><a href="/barrios/pilar.html">Pilar</a></li>
+            <li><a href="/barrios/pinamar-norte.html">Pinamar Norte</a></li>
+            <li><a href="/barrios/recoleta.html">Recoleta</a></li>
+            <li><a href="/barrios/retiro.html">Retiro</a></li>
+            <li><a href="/barrios/san-cristobal.html">San Cristóbal</a></li>
+            <li><a href="/barrios/s-fer-vias-centro.html">San Fernando (Vías al Centro)</a></li>
+            <li><a href="/barrios/san-sebastian.html">San Sebastián</a></li>
+            <li><a href="/barrios/santa-ana.html">Santa Ana</a></li>
+            <li><a href="/barrios/talar-de-martinez.html">Talar de Martínez</a></li>
+            <li><a href="/barrios/tigre.html">Tigre</a></li>
+            <li><a href="/barrios/vicente-lopez.html">Vicente López</a></li>
+            <li><a href="/barrios/victoria.html">Victoria</a></li>
+            <li><a href="/barrios/villa-martelli.html">Villa Martelli</a></li>
+            <li><a href="/barrios/villa-rosa.html">Villa Rosa</a></li>
+            <li><a href="/barrios/virreyes.html">Virreyes</a></li>
+            <li><a href="/barrios/zona-delta-tigre.html">Zona Delta Tigre</a></li>
+          </ul>
+        </details>
+      </section>
+      <!-- seo-barrios:end -->
     </main>
 
     <!-- Footer -->
