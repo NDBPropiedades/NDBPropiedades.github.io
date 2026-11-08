@@ -162,6 +162,34 @@
   font-weight: var(--font-medium);
 }
 
+.zn-chips .zn-chips__link {
+  padding: 0;
+  background: none;
+}
+
+.zn-chips__link a {
+  display: block;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: var(--color-ndb-Sail);
+  color: var(--color-ndb-Madison);
+  font-weight: var(--font-medium);
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.zn-chips__link a:hover {
+  background: var(--color-ndb-Madison);
+  color: var(--color-ndb-White);
+}
+
+.zn-chips__link a:focus-visible {
+  outline: 2px solid var(--color-ndb-Denim);
+  outline-offset: 2px;
+}
+
 /* CTA */
 .zn-cta {
   align-items: flex-start;

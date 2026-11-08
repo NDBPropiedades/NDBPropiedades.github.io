@@ -514,6 +514,43 @@ ${resto.map((z) => `            <li><a href="${rutaBarrio(z)}">${esc(nombreZona(
   writeFileSync(archivo, crlf ? nuevo.replaceAll("\n", "\r\n") : nuevo);
 }
 
+// Etiquetas de zonas.html sin página propia en Tokko, o que pueden quedarse
+// sin ella: se prueba con estas subzonas, en orden.
+const SUBZONAS_ETIQUETA = {
+  Florida: ["Florida Mitre/Este"],
+  Acassuso: ["Acas.-Libert./Solis"],
+  Martínez: ["Mart.-Vias/Libert.", "Mart.-Libert./Rio", "Mart.-Vias/Santa Fe"],
+  Beccar: ["Beccar-Vias/Libert.", "Beccar-Vias/Rolon", "Beccar Alto"],
+  "San Fernando": ["S.Fer.-Vias/Centro"],
+};
+
+function actualizarEtiquetasZonas(zonas) {
+  const archivo = "zonas.html";
+  const original = readFileSync(archivo, "utf8");
+  const crlf = original.includes("\r\n");
+  const html = original.replaceAll("\r\n", "\n");
+
+  const zonaDeEtiqueta = (texto) =>
+    zonas.find((z) => nombreZona(z) === texto) ||
+    (SUBZONAS_ETIQUETA[texto] || []).find((z) => zonas.includes(z));
+
+  const nuevo = html.replace(
+    /<ul class="zn-chips">[\s\S]*?<\/ul>/g,
+    (lista) =>
+      lista.replace(
+        /<li(?: class="zn-chips__link")?>(?:<a href="[^"]*">)?([^<]+)(?:<\/a>)?<\/li>/g,
+        (_, texto) => {
+          const zona = zonaDeEtiqueta(texto.trim());
+          return zona
+            ? `<li class="zn-chips__link"><a href="${rutaBarrio(zona)}">${texto}</a></li>`
+            : `<li>${texto}</li>`;
+        },
+      ),
+  );
+
+  writeFileSync(archivo, crlf ? nuevo.replaceAll("\n", "\r\n") : nuevo);
+}
+
 function sitemap(rutas) {
   const fijas = [
     ["/index.html", "1.0"],
@@ -561,6 +598,7 @@ for (const z of zonas) {
 }
 
 actualizarBloqueZonas(zonas, porZona);
+actualizarEtiquetasZonas(zonas);
 sitemap([...zonas.map(rutaBarrio), ...propiedades.map(rutaFicha)]);
 
 console.log(`${propiedades.length} fichas y ${zonas.length} zonas generadas`);
