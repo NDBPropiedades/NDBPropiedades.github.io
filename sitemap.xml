@@ -177,6 +177,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ndbpropiedades.com.ar/barrios/la-lucila-vias-libert.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ndbpropiedades.com.ar/barrios/la-posta-pilar.html</loc>
     <priority>0.7</priority>
   </url>
@@ -742,6 +746,10 @@
   </url>
   <url>
     <loc>https://ndbpropiedades.com.ar/fichas/13737364-departamento-de-2-ambientes-en-alquiler-con-balcon-y-cochera-en-san-isidro.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ndbpropiedades.com.ar/fichas/13743236-casa-4-dormitorios-jardin-pileta-en-alquiler-temporario-en-la-lucila-vias-a-libe.html</loc>
     <priority>0.7</priority>
   </url>
 </urlset>
