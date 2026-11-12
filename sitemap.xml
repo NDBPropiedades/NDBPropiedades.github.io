@@ -49,6 +49,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ndbpropiedades.com.ar/barrios/s-fer-vias-centro.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ndbpropiedades.com.ar/barrios/countries-b-cerrado-pilar.html</loc>
     <priority>0.7</priority>
   </url>
@@ -82,10 +86,6 @@
   </url>
   <url>
     <loc>https://ndbpropiedades.com.ar/barrios/pilar.html</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ndbpropiedades.com.ar/barrios/s-fer-vias-centro.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
