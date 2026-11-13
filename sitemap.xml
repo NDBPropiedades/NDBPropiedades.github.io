@@ -33,6 +33,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ndbpropiedades.com.ar/barrios/palermo.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ndbpropiedades.com.ar/barrios/punta-chica.html</loc>
     <priority>0.7</priority>
   </url>
@@ -41,15 +45,11 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ndbpropiedades.com.ar/barrios/palermo.html</loc>
+    <loc>https://ndbpropiedades.com.ar/barrios/beccar-vias-rolon.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ndbpropiedades.com.ar/barrios/belgrano.html</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ndbpropiedades.com.ar/barrios/s-fer-vias-centro.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -62,10 +62,6 @@
   </url>
   <url>
     <loc>https://ndbpropiedades.com.ar/barrios/beccar-vias-libert.html</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ndbpropiedades.com.ar/barrios/beccar-vias-rolon.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -86,6 +82,10 @@
   </url>
   <url>
     <loc>https://ndbpropiedades.com.ar/barrios/pilar.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ndbpropiedades.com.ar/barrios/s-fer-vias-centro.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -197,6 +197,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ndbpropiedades.com.ar/barrios/mart-santa-fe-fleming.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ndbpropiedades.com.ar/barrios/mart-libert-rio.html</loc>
     <priority>0.7</priority>
   </url>
@@ -226,6 +230,10 @@
   </url>
   <url>
     <loc>https://ndbpropiedades.com.ar/barrios/retiro.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ndbpropiedades.com.ar/barrios/s-fer-vias-libert.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -357,7 +365,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ndbpropiedades.com.ar/fichas/7446579-cochera-cubierta-en-venta-en-san-isidro.html</loc>
+    <loc>https://ndbpropiedades.com.ar/fichas/7446579-venta-cochera-cubierta-en-la-calabria-san-isidro.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -477,7 +485,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ndbpropiedades.com.ar/fichas/8067286-chalet-de-5-dormitorios-con-jardin-en-la-lucila-vicente-lopez.html</loc>
+    <loc>https://ndbpropiedades.com.ar/fichas/8067286-casa-5-dormitorios-con-jardin-y-pileta-en-la-lucila-vias-a-libertador.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -750,6 +758,18 @@
   </url>
   <url>
     <loc>https://ndbpropiedades.com.ar/fichas/13743236-casa-4-dormitorios-jardin-pileta-en-alquiler-temporario-en-la-lucila-vias-a-libe.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ndbpropiedades.com.ar/fichas/13978849-departamento-de-4-ambientes-con-cochera-en-alquiler-en-beccar.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ndbpropiedades.com.ar/fichas/14307337-venta-departamento-4-ambientes-con-cochera-y-amenities-en-palermo.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ndbpropiedades.com.ar/fichas/14308594-venta-casa-4-dormitorios-jardin-pileta-en-martinez.html</loc>
     <priority>0.7</priority>
   </url>
 </urlset>
