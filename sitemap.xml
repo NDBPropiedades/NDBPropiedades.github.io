@@ -45,6 +45,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ndbpropiedades.com.ar/barrios/beccar.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ndbpropiedades.com.ar/barrios/beccar-vias-rolon.html</loc>
     <priority>0.7</priority>
   </url>
@@ -54,10 +58,6 @@
   </url>
   <url>
     <loc>https://ndbpropiedades.com.ar/barrios/countries-b-cerrado-pilar.html</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ndbpropiedades.com.ar/barrios/beccar.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -689,10 +689,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ndbpropiedades.com.ar/fichas/12424409-departamento-en-alquiler-de-2-ambientes-con-balcon-y-cochera-en-san-isidro.html</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://ndbpropiedades.com.ar/fichas/12435564-departamento-en-venta-a-estrenar-de-2-ambientes-con-balcon-y-parrilla-en-puerto-.html</loc>
     <priority>0.7</priority>
   </url>
@@ -766,6 +762,10 @@
   </url>
   <url>
     <loc>https://ndbpropiedades.com.ar/fichas/14308594-venta-casa-4-dormitorios-jardin-pileta-en-martinez.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ndbpropiedades.com.ar/fichas/14348130-casa-en-venta-de-6-ambientes-con-patio-y-pileta-en-san-isidro.html</loc>
     <priority>0.7</priority>
   </url>
 </urlset>
