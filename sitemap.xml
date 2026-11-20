@@ -21,11 +21,11 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ndbpropiedades.com.ar/barrios/olivos.html</loc>
+    <loc>https://ndbpropiedades.com.ar/barrios/martinez.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ndbpropiedades.com.ar/barrios/martinez.html</loc>
+    <loc>https://ndbpropiedades.com.ar/barrios/olivos.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -33,11 +33,11 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ndbpropiedades.com.ar/barrios/palermo.html</loc>
+    <loc>https://ndbpropiedades.com.ar/barrios/punta-chica.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ndbpropiedades.com.ar/barrios/punta-chica.html</loc>
+    <loc>https://ndbpropiedades.com.ar/barrios/palermo.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -113,7 +113,15 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ndbpropiedades.com.ar/barrios/arroyon.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ndbpropiedades.com.ar/barrios/balvanera.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ndbpropiedades.com.ar/barrios/barrio-norte.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -369,7 +377,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ndbpropiedades.com.ar/fichas/7470392-venta-casa-4-dorm-jardin-y-pileta-con-vista-a-la-laguna-en-santa-ana-villanueva.html</loc>
+    <loc>https://ndbpropiedades.com.ar/fichas/7470392-venta-casa-a-estrenar-4-dormitorios-jardin-pileta-con-vista-a-la-laguna-en-santa.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -422,6 +430,10 @@
   </url>
   <url>
     <loc>https://ndbpropiedades.com.ar/fichas/7720402-departamento-en-venta-de-3-dormitorios-en-san-fernando.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ndbpropiedades.com.ar/fichas/7765923-cabana-en-venta-el-delta-de-4500-m2-de-terreno-en-arroyo-arroyon.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -541,6 +553,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ndbpropiedades.com.ar/fichas/8429114-venta-departamento-9-ambientes-de-138-m2-en-barrio-norte.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ndbpropiedades.com.ar/fichas/8435329-departamento-a-estrenar-de-2-ambientes-en-porto-ii-en-olivos.html</loc>
     <priority>0.7</priority>
   </url>
@@ -641,6 +657,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ndbpropiedades.com.ar/fichas/10343884-casa-en-venta-de-4-ambientes-con-patio-en-martinez.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ndbpropiedades.com.ar/fichas/10488413-ph-ende-3-ambientes-con-patio-en-san-isidro.html</loc>
     <priority>0.7</priority>
   </url>
@@ -678,6 +698,10 @@
   </url>
   <url>
     <loc>https://ndbpropiedades.com.ar/fichas/12366586-local-comercial-en-alquiler-en-san-fernando.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ndbpropiedades.com.ar/fichas/12424409-departamento-en-alquiler-de-2-ambientes-con-balcon-y-cochera-en-san-isidro.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -733,7 +757,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ndbpropiedades.com.ar/fichas/13730152-oficina-de-5-ambientes-con-2-balcones-en-capital-federal.html</loc>
+    <loc>https://ndbpropiedades.com.ar/fichas/13730152-venta-oficina-de-5-ambientes-con-2-balcones-en-retiro.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -749,10 +773,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ndbpropiedades.com.ar/fichas/14307337-departamento-en-venta-de-4-ambientes-con-cochera-y-ameniti-en-palermo.html</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://ndbpropiedades.com.ar/fichas/14308594-venta-casa-4-dormitorios-jardin-pileta-en-martinez.html</loc>
     <priority>0.7</priority>
   </url>
@@ -765,7 +785,11 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ndbpropiedades.com.ar/fichas/14419739-casa-de-4-ambientes-con-jardin-y-pileta-en-el-barrio-miraflores.html</loc>
+    <loc>https://ndbpropiedades.com.ar/fichas/14419739-venta-casa-de-4-ambientes-con-jardin-y-pileta-en-el-barrio-miraflores-de-tortugu.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ndbpropiedades.com.ar/fichas/14425782-departamento-en-venta-de-4-ambientes-con-balcon-en-la-calabria-san-isidro.html</loc>
     <priority>0.7</priority>
   </url>
 </urlset>
