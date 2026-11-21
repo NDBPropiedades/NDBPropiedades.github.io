@@ -33,11 +33,11 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ndbpropiedades.com.ar/barrios/punta-chica.html</loc>
+    <loc>https://ndbpropiedades.com.ar/barrios/palermo.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ndbpropiedades.com.ar/barrios/palermo.html</loc>
+    <loc>https://ndbpropiedades.com.ar/barrios/punta-chica.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -770,6 +770,10 @@
   </url>
   <url>
     <loc>https://ndbpropiedades.com.ar/fichas/13978849-departamento-de-4-ambientes-con-cochera-en-alquiler-en-beccar.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ndbpropiedades.com.ar/fichas/14307337-departamento-en-venta-de-4-ambientes-con-cochera-y-ameniti-en-palermo.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
