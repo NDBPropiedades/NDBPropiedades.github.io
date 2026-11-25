@@ -93,6 +93,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ndbpropiedades.com.ar/barrios/santa-ana.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ndbpropiedades.com.ar/barrios/talar-de-martinez.html</loc>
     <priority>0.7</priority>
   </url>
@@ -250,10 +254,6 @@
   </url>
   <url>
     <loc>https://ndbpropiedades.com.ar/barrios/san-sebastian.html</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ndbpropiedades.com.ar/barrios/santa-ana.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -794,6 +794,10 @@
   </url>
   <url>
     <loc>https://ndbpropiedades.com.ar/fichas/14425782-departamento-en-venta-de-4-ambientes-con-balcon-en-la-calabria-san-isidro.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ndbpropiedades.com.ar/fichas/14513830-casa-en-venta-de-6-ambientes-con-jardin-y-pileta-en-el-barrio-santa-ana-villanue.html</loc>
     <priority>0.7</priority>
   </url>
 </urlset>
